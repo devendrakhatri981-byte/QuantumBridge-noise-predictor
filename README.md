@@ -32,6 +32,28 @@ A linear model using just two features — CNOT gate count and which chip a circ
 
 ![Project Summary](docs/project_summary_charts.png)
 
+## v1 Emulator — Validated
+
+QuantumBridge now includes a working offline emulator: give it any Qiskit circuit
+and a target chip, and it returns a realistic noisy result — without touching
+IBM's cloud or using any quota.
+
+![Emulator Validation](docs/emulator_validation.png)
+
+| CNOTs | Backend | Real hardware | Emulator | Deviation |
+|---|---|---|---|---|
+| 1 | ibm_fez | 3.80% | 4.62% | 0.82 pts |
+| 2 | ibm_fez | 5.64% | 6.24% | 0.60 pts |
+| 3 | ibm_kingston | 4.94% | 5.55% | 0.61 pts |
+| 4 | ibm_kingston | 6.39% | 7.16% | 0.77 pts |
+
+**Average deviation: 0.70 percentage points** — within the natural run-to-run
+variation of real quantum hardware itself (~1-2 points, see Entry 004). The
+emulator shows a small, consistent upward bias (~0.7 pts) across all four
+tested conditions, likely from the training data's session composition —
+noted here rather than hidden, since a known small bias is more trustworthy
+than an unexplained "perfect" result.
+
 ## Repository Structure
 
 ```
