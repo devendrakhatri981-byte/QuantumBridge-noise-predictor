@@ -1,0 +1,13 @@
+{
+  "run_number": 7,
+  "timestamp": "2026-07-14T12:14:48.375887",
+  "backend": "ibm_fez",
+  "job_id": "d9atlku6hjac73feuulg",
+  "shots": 1024,
+  "counts": {
+    "11": 495,
+    "00": 474,
+    "01": 19,
+    "10": 36
+  }
+}

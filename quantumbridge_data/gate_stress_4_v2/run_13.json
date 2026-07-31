@@ -1,0 +1,17 @@
+{
+  "circuit_type": "gate_stress_4_v2",
+  "num_qubits": 2,
+  "cnot_count": 1,
+  "single_qubit_gates": 5,
+  "run_number": 13,
+  "timestamp": "2026-07-17T10:38:44.966597",
+  "backend": "ibm_fez",
+  "job_id": "d9crhi4jeosc73fgm980",
+  "shots": 1024,
+  "counts": {
+    "00": 473,
+    "10": 41,
+    "11": 480,
+    "01": 30
+  }
+}

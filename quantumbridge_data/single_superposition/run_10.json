@@ -1,0 +1,13 @@
+{
+  "circuit_type": "single_superposition",
+  "num_qubits": 1,
+  "run_number": 10,
+  "timestamp": "2026-07-14T16:49:52.681937",
+  "backend": "ibm_fez",
+  "job_id": "d9b1mim6hjac73ff3po0",
+  "shots": 1024,
+  "counts": {
+    "1": 501,
+    "0": 523
+  }
+}

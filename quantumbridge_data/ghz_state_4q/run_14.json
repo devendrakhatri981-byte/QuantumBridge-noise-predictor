@@ -1,0 +1,23 @@
+{
+  "circuit_type": "ghz_state_4q",
+  "num_qubits": 4,
+  "cnot_count": 3,
+  "run_number": 14,
+  "timestamp": "2026-07-15T09:42:04.666827",
+  "backend": "ibm_kingston",
+  "job_id": "d9bggsrv6alc73ct1f0g",
+  "shots": 1024,
+  "counts": {
+    "1111": 469,
+    "0000": 511,
+    "1101": 16,
+    "0001": 10,
+    "0111": 5,
+    "1110": 3,
+    "0100": 2,
+    "1011": 4,
+    "1000": 2,
+    "0011": 1,
+    "0010": 1
+  }
+}

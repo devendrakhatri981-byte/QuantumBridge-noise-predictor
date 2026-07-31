@@ -1,0 +1,17 @@
+{
+  "circuit_type": "cnot_sweep_1_v2",
+  "num_qubits": 2,
+  "cnot_count": 1,
+  "single_qubit_gates": 1,
+  "run_number": 7,
+  "timestamp": "2026-07-18T12:43:16.020305",
+  "backend": "ibm_fez",
+  "job_id": "d9dielsinv1c73ap4n1g",
+  "shots": 1024,
+  "counts": {
+    "11": 505,
+    "00": 467,
+    "10": 34,
+    "01": 18
+  }
+}

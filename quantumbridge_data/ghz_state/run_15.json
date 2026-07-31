@@ -1,0 +1,19 @@
+{
+  "circuit_type": "ghz_state",
+  "num_qubits": 3,
+  "run_number": 15,
+  "timestamp": "2026-07-14T17:10:18.165587",
+  "backend": "ibm_fez",
+  "job_id": "d9b20566hjac73ff43m0",
+  "shots": 1024,
+  "counts": {
+    "000": 503,
+    "001": 11,
+    "111": 465,
+    "110": 25,
+    "100": 6,
+    "010": 2,
+    "101": 6,
+    "011": 6
+  }
+}

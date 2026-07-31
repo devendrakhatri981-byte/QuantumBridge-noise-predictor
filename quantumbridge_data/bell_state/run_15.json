@@ -1,0 +1,15 @@
+{
+  "circuit_type": "bell_state",
+  "num_qubits": 2,
+  "run_number": 15,
+  "timestamp": "2026-07-14T17:06:00.826889",
+  "backend": "ibm_fez",
+  "job_id": "d9b1u4ug26ic73dfcprg",
+  "shots": 1024,
+  "counts": {
+    "01": 13,
+    "00": 501,
+    "11": 483,
+    "10": 27
+  }
+}

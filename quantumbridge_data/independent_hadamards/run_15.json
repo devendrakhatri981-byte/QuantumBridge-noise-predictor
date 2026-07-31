@@ -1,0 +1,15 @@
+{
+  "circuit_type": "independent_hadamards",
+  "num_qubits": 2,
+  "run_number": 15,
+  "timestamp": "2026-07-14T16:56:20.614820",
+  "backend": "ibm_fez",
+  "job_id": "d9b1pjmg26ic73dfcktg",
+  "shots": 1024,
+  "counts": {
+    "10": 253,
+    "11": 255,
+    "00": 253,
+    "01": 263
+  }
+}
