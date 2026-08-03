@@ -12,7 +12,7 @@ from qiskit_aer import AerSimulator
 from qiskit_aer.noise import NoiseModel
 from qiskit_ibm_runtime.fake_provider import FakeCairoV2
 
-from emulator_v3_routing import load_calibration, build_connectivity_graph, cnot_error_for_pair
+from emulator_v3_routing import load_calibration, build_connectivity_graph, cnot_error_for_pair, success_prob_from_gate_count
 
 SQ_GATE_COST = 0.00224  # ~0.224 pts/gate, from Entry 010's deconfounded measurement
 
@@ -34,7 +34,20 @@ def v3_predicted_success_probability(circuit, graph):
         elif gate.num_qubits == 1 and gate.name not in ("measure", "barrier"):
             success_prob *= (1 - SQ_GATE_COST)
     return success_prob, details
+def success_prob_from_gate_count(cx_count, graph):
+    """Given the REAL number of CX gates a transpiled circuit actually used
+    (not our BFS path estimate), predict success probability using the
+    average per-edge error across the whole chip as a stand-in cost per gate.
+    This isolates whether v3's gate-COUNT was ever the problem, separate
+    from whether the routing/compounding LOGIC is the problem."""
+    all_errors = [err for neighbors in graph.values() for _, err in neighbors]
+    avg_edge_err = sum(all_errors) / len(all_errors)
 
+    success_prob = 1.0
+    for _ in range(cx_count):
+        success_prob *= (1 - avg_edge_err)
+
+    return success_prob
 
 from qiskit.transpiler import CouplingMap
 import json
@@ -56,14 +69,22 @@ def real_noise_success_probability(circuit, backend, ideal_outcomes, shots=4096)
         coupling_map=FIXED_COUPLING_MAP,
         basis_gates=backend.operation_names,
         initial_layout=list(range(circuit.num_qubits)),
-        optimization_level=1,
+        optimization_level=3,
     )
+    # --- debug line ---
+    op_counts = transpiled.count_ops()
+    two_qubit_gates = sum(count for name, count in op_counts.items()
+                           if name in ("cx", "ecr", "cz"))
+    print(f"    [debug] real transpiled op counts: {dict(op_counts)}")
+    print(f"    [debug] total 2-qubit gates (post-routing): {two_qubit_gates}")
+    # -------------------
     result = sim.run(transpiled, shots=shots).result()
     counts = result.get_counts()
     total = sum(counts.values())
     success = sum(c for bitstring, c in counts.items()
                    if bitstring.replace(" ", "") in ideal_outcomes) / total
-    return success, counts
+    real_cx_count = op_counts.get("cx", 0)
+    return success, counts, real_cx_count
 
 
 if __name__ == "__main__":
@@ -92,15 +113,20 @@ if __name__ == "__main__":
         "bell_scattered_0_26":   (qc4, {"00", "11"}),
     }
 
-    print(f"{'Circuit':<26} {'v3 predicted':>14} {'Aer+noise (real)':>18} {'Diff':>8}")
-    print("=" * 70)
-
+    print(f"{'Circuit':<26} {'v3 (BFS)':>10}  {'v3 (real CX)':>14}  {'Aer+noise':>12}  {'BFS Diff':>10}")
+    print("=" * 78)
+    
     diffs = []
     for name, (qc, ideal) in test_circuits.items():
         v3_prob, details = v3_predicted_success_probability(qc, graph)
-        real_prob, counts = real_noise_success_probability(qc, backend, ideal)
-        diff = abs(v3_prob - real_prob)
-        diffs.append(diff)
-        print(f"{name:<26} {v3_prob*100:>12.2f}%  {real_prob*100:>16.2f}%  {diff*100:>6.2f}pts")
+        real_prob, counts, real_cx_count = real_noise_success_probability(qc, backend, ideal)
+        v3_corrected_prob = success_prob_from_gate_count(real_cx_count, graph)
+
+        diff_bfs = abs(v3_prob - real_prob)
+        diff_corrected = abs(v3_corrected_prob - real_prob)
+        diffs.append(diff_bfs)
+
+        print(f"{name:<26} {v3_prob*100:>10.2f}%  {v3_corrected_prob*100:>14.2f}%  "
+              f"{real_prob*100:>12.2f}%  {diff_bfs*100:>8.2f}pts")
 
     print(f"\nMean absolute difference: {sum(diffs)/len(diffs)*100:.2f} percentage points")
