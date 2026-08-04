@@ -80,13 +80,14 @@ def edge_error(graph, a, b):
     return 0.01  # fallback
 def cnot_error_for_pair(graph, q1, q2):
     """Real direct error if adjacent, or estimated SWAP-routing cost if not.
-    Error is scaled by FORGIVENESS_RATIO — an empirically fitted correction
-    (Entry 016/017) accounting for the fact that not every gate error
-    actually causes circuit-level failure, since success is measured
-    against a multi-outcome ideal set rather than a single exact bitstring."""
+    Error is scaled per-edge by variable_forgiveness_ratio() — an
+    empirically fitted, error-magnitude-aware correction (Entry 019)
+    replacing the earlier flat FORGIVENESS_RATIO constant (Entry 017),
+    since high-error edges were found to be forgiven less than low-error
+    edges."""
     for neighbor, err in graph.get(q1, []):
         if neighbor == q2:
-            return err * FORGIVENESS_RATIO, ["direct"]
+            return err * variable_forgiveness_ratio(err), ["direct"]
 
     path = shortest_path(graph, q1, q2)
     if path is None or len(path) < 2:
@@ -96,24 +97,44 @@ def cnot_error_for_pair(graph, q1, q2):
 
     success_prob = 1.0
     for i in range(num_swaps):
-        hop_err = edge_error(graph, path[i], path[i + 1]) * FORGIVENESS_RATIO
+        raw_hop_err = edge_error(graph, path[i], path[i + 1])
+        hop_err = raw_hop_err * variable_forgiveness_ratio(raw_hop_err)
         success_prob *= (1 - hop_err) ** 3
 
-    final_hop_err = edge_error(graph, path[-2], path[-1]) * FORGIVENESS_RATIO
+    raw_final_err = edge_error(graph, path[-2], path[-1])
+    final_hop_err = raw_final_err * variable_forgiveness_ratio(raw_final_err)
     success_prob *= (1 - final_hop_err)
 
     total_error = round(1 - success_prob, 5)
-    return total_error, [f"routed via {path} ({num_swaps} SWAPs, forgiveness-corrected)"]
+    return total_error, [f"routed via {path} ({num_swaps} SWAPs, variable-forgiveness-corrected)"]
 
 def success_prob_from_gate_count(cx_count, graph):
-    """Predict success probability from a real gate count, using the
-    average per-edge error scaled by the empirically fitted forgiveness
-    ratio (Entry 016/017)."""
-    all_errors = [err for neighbors in graph.values() for _, err in neighbors]
-    avg_edge_err = sum(all_errors) / len(all_errors) * FORGIVENESS_RATIO
+    """Predict success probability from a real gate count. Each edge's
+    error is scaled by its own error-magnitude-aware forgiveness ratio
+    (Entry 019) before averaging, rather than applying one flat ratio to
+    the chip-wide average error."""
+    corrected_errors = [err * variable_forgiveness_ratio(err)
+                         for neighbors in graph.values()
+                         for _, err in neighbors]
+    avg_corrected_err = sum(corrected_errors) / len(corrected_errors)
 
     success_prob = 1.0
     for _ in range(cx_count):
-        success_prob *= (1 - avg_edge_err)
+        success_prob *= (1 - avg_corrected_err)
 
     return success_prob
+
+def variable_forgiveness_ratio(raw_edge_error):
+    """Interpolate/extrapolate the forgiveness ratio based on raw edge
+    error magnitude, using a power-law fit through the two measured
+    points (Entry 017: 0.53 at 0.60% error; Entry 019: 0.334 at 3.13%
+    error). High-error edges are forgiven less than low-error edges."""
+    import math
+    x1, y1 = 0.0060, 0.53
+    x2, y2 = 0.0313, 0.334
+    exponent = (math.log(y2) - math.log(y1)) / (math.log(x2) - math.log(x1))
+    coefficient = y1 / (x1 ** exponent)
+    ratio = coefficient * (raw_edge_error ** exponent)
+    return max(0.1, min(1.0, ratio))  # clamp to a sane range
+
+
