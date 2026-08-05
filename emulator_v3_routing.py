@@ -124,17 +124,52 @@ def success_prob_from_gate_count(cx_count, graph):
 
     return success_prob
 
+def load_forgiveness_law():
+    """Load the fitted power law relating raw edge error to forgiveness ratio.
+
+    Entry 021 replaced the original two-point Cairo fit. Those two points
+    (Entry 017: 0.53 at 0.60%; Entry 019: 0.334 at 3.13%) defined a power law
+    exactly, with zero residual, so the fit could never be tested — and the
+    high-error anchor edge (19,22) was subsequently found to have T2 = 6.9 us
+    against a 697 ns gate, meaning its decay was ~3 parts dephasing to 1 part
+    gate error. It was not measuring forgiveness at all.
+
+    The current law is fitted on four FakeKyiv edges that pass the Entry 021
+    decoherence screen D = gate_error / (gate_duration / T2_min) >= 1.5,
+    giving R^2 = 0.9648 across a 4.4x error span.
+
+    Kept in JSON rather than hardcoded so per-chip calibration can replace it
+    without touching this module."""
+    try:
+        with open("quantumbridge_data/forgiveness_law.json") as f:
+            law = json.load(f)
+        return law["coefficient"], law["exponent"], law.get("error_range_fitted")
+    except (FileNotFoundError, KeyError):
+        # Kyiv Entry 021 fit, inlined as fallback
+        return 0.0898, -0.3873, [0.00986, 0.043229]
+
+
+FORGIVENESS_COEFFICIENT, FORGIVENESS_EXPONENT, FORGIVENESS_FIT_RANGE = load_forgiveness_law()
+
+
 def variable_forgiveness_ratio(raw_edge_error):
-    """Interpolate/extrapolate the forgiveness ratio based on raw edge
-    error magnitude, using a power-law fit through the two measured
-    points (Entry 017: 0.53 at 0.60% error; Entry 019: 0.334 at 3.13%
-    error). High-error edges are forgiven less than low-error edges."""
-    import math
-    x1, y1 = 0.0060, 0.53
-    x2, y2 = 0.0313, 0.334
-    exponent = (math.log(y2) - math.log(y1)) / (math.log(x2) - math.log(x1))
-    coefficient = y1 / (x1 ** exponent)
-    ratio = coefficient * (raw_edge_error ** exponent)
+    """Forgiveness ratio for an edge, from its raw calibrated gate error.
+
+    High-error edges are forgiven less than low-error edges. See Entry 021 for
+    the fit and its validity conditions.
+
+    CAVEAT (Entry 020): absolute forgiveness constants are chip-specific —
+    Sherbrooke measured ~26% above Cairo at both error magnitudes. This law is
+    fitted on Kyiv and is an interim default, not a universal constant. Applying
+    it to another chip carries a systematic offset of that order.
+
+    CAVEAT (Entry 021): the fit covers 0.99%-4.32% raw edge error. Below that
+    range it extrapolates, and the two Kyiv edges below 1% were exactly the ones
+    where decoherence rather than gate error drove the decay. Predictions on
+    very-low-error edges should be treated as least trustworthy."""
+    if raw_edge_error <= 0:
+        return 1.0
+    ratio = FORGIVENESS_COEFFICIENT * (raw_edge_error ** FORGIVENESS_EXPONENT)
     return max(0.1, min(1.0, ratio))  # clamp to a sane range
 
 

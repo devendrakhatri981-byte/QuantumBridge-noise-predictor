@@ -1,0 +1,30 @@
+{
+  "_comment": "Fitted forgiveness law: ratio = coefficient * raw_edge_error^exponent. Replaces the two-point Cairo constants of Entries 017/019, whose high-error anchor edge (19,22) failed the Entry 021 decoherence screen (T2 = 6.9 us, D = 0.31).",
+  "fitted_on_chip": "kyiv",
+  "entry": "021",
+  "coefficient": 0.0898,
+  "exponent": -0.3873,
+  "r2": 0.9648,
+  "n_edges": 4,
+  "error_range_fitted": [0.00986, 0.043229],
+  "d_screen_threshold": 1.5,
+  "edges_used": [
+    {"qubits": [77, 78], "raw_error": 0.00986, "ratio": 0.5353, "D": 3.73},
+    {"qubits": [45, 46], "raw_error": 0.016181, "ratio": 0.4308, "D": 1.65},
+    {"qubits": [66, 67], "raw_error": 0.026181, "ratio": 0.3937, "D": 4.03},
+    {"qubits": [23, 24], "raw_error": 0.043229, "ratio": 0.2927, "D": 5.01}
+  ],
+  "edges_rejected": [
+    {"qubits": [119, 120], "raw_error": 0.003113, "ratio": 0.4345, "D": 1.12, "reason": "decoherence comparable to gate error"},
+    {"qubits": [28, 29], "raw_error": 0.006013, "ratio": 1.5904, "D": 0.14, "reason": "T2 = 12.7 us; decay dominated by dephasing, ratio physically impossible"}
+  ],
+  "superseded": {
+    "source": "Entries 017 / 019, FakeCairoV2",
+    "coefficient": 0.1264,
+    "exponent": -0.2804,
+    "n_edges": 2,
+    "r2": null,
+    "reason": "Two points define a power law exactly, so the fit had zero residual and could not be tested. The high-error anchor (19,22) was later found to be decoherence-dominated."
+  },
+  "known_limitation": "Entry 020 established that absolute forgiveness constants are chip-specific (Sherbrooke ran ~26% above Cairo). This law is therefore an interim single-chip default, not a universal constant. Per-chip calibration via the six-edge D-screened protocol is the intended replacement."
+}
