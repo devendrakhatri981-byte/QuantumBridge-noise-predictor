@@ -23,32 +23,58 @@ def load_forgiveness_ratio():
 
 FORGIVENESS_RATIO = load_forgiveness_ratio()
 
-def load_calibration():
-    with open("quantumbridge_data/offline_calibration_cairo_full.json") as f:
+DEFAULT_CHIP = "cairo"
+
+
+def load_calibration(chip=DEFAULT_CHIP):
+    """Load a chip's exported two-qubit gate errors.
+
+    Defaults to cairo so existing callers (Entries 013-021) behave unchanged.
+    Note Entry 022: FakeCairoV2 is a mixed cx/ecr snapshot and should not be
+    used for circuit-level validation -- see diagnose_basis_mismatch.py."""
+    with open(f"quantumbridge_data/offline_calibration_{chip}_full.json") as f:
         return json.load(f)
 
 
-def build_connectivity_graph(calibration):
+def build_connectivity_graph(calibration, chip=DEFAULT_CHIP, report_coverage=False):
     """Build an adjacency map: qubit -> list of (neighbor, cnot_error).
+
     Topology (which edges exist) comes from the real chip's coupling map.
-    Error rates come from calibration data where available, with a
-    fallback estimate for edges the calibration export didn't capture."""
-    with open("quantumbridge_data/real_topology_cairo.json") as f:
+    Error rates come from calibration data where available, with a fallback
+    estimate for edges the calibration export didn't capture.
+
+    Set report_coverage=True to print how many edges fell back -- worth
+    checking on any new chip, since a high fallback rate means the model is
+    largely running on a made-up constant."""
+    with open(f"quantumbridge_data/real_topology_{chip}.json") as f:
         real_edges = json.load(f)
 
     error_lookup = {}
     for g in calibration["two_qubit_gate_errors"]:
         q1, q2 = g["qubits"]
         err = g["gate_error"] or 0.01
-        error_lookup[tuple(sorted((q1, q2)))] = err
+        if err < 0.5:  # filter placeholder entries (Entry 020)
+            error_lookup[tuple(sorted((q1, q2)))] = err
 
     FALLBACK_ERR = 0.01  # used when calibration didn't capture this edge
 
     graph = {}
+    fallbacks = 0
     for a, b in real_edges:
-        err = error_lookup.get((a, b), FALLBACK_ERR)
+        key = (min(a, b), max(a, b))
+        if key in error_lookup:
+            err = error_lookup[key]
+        else:
+            err = FALLBACK_ERR
+            fallbacks += 1
         graph.setdefault(a, []).append((b, err))
         graph.setdefault(b, []).append((a, err))
+
+    if report_coverage:
+        n = len(real_edges)
+        print(f"[{chip}] calibration coverage: {n - fallbacks}/{n} edges "
+              f"({100 * (n - fallbacks) / n:.1f}%), {fallbacks} using "
+              f"{FALLBACK_ERR * 100:.2f}% fallback")
 
     return graph
 

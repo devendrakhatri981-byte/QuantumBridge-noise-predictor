@@ -1,0 +1,70 @@
+{
+  "chip": "kyiv",
+  "shots": 4096,
+  "seeds": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "method": "matrix_product_state",
+  "silent_gates": 0,
+  "calibration_coverage": "139/144 (96.5%)",
+  "note": "First validation with verified full noise coverage. ghz_scattered_0_63_126 was killed (MPS memory, two 26-hop routes) and is omitted.",
+  "results": [
+    {
+      "circuit": "bell_adjacent_77_78",
+      "hops": 1,
+      "two_qubit_gates": 1,
+      "aer_ref": 0.9607,
+      "v3_pred": 0.9925,
+      "gap": 0.0318
+    },
+    {
+      "circuit": "bell_near_77_82",
+      "hops": 5,
+      "two_qubit_gates": 13,
+      "aer_ref": 0.4874,
+      "v3_pred": 0.9289,
+      "gap": 0.4415
+    },
+    {
+      "circuit": "bell_mid_77_100",
+      "hops": 6,
+      "two_qubit_gates": 16,
+      "aer_ref": 0.8369,
+      "v3_pred": 0.9027,
+      "gap": 0.0658
+    },
+    {
+      "circuit": "bell_far_0_126",
+      "hops": 26,
+      "two_qubit_gates": 76,
+      "aer_ref": 0.699,
+      "v3_pred": 0.6051,
+      "gap": 0.0939
+    },
+    {
+      "circuit": "ghz_local_77_78_79",
+      "hops": 2,
+      "two_qubit_gates": 2,
+      "aer_ref": 0.8853,
+      "v3_pred": 0.9867,
+      "gap": 0.1014
+    }
+  ],
+  "mean_gap": 0.1469,
+  "root_cause": "v3 models two-qubit gate error only, with no decoherence term. Routes through low-T2 qubits are catastrophically under-penalized; long routes through healthy qubits are over-penalized by SWAP compounding.",
+  "worst_qubit": {
+    "qubit": 80,
+    "T2_us": 8.51,
+    "T1_us": 5.02,
+    "note": "edges (79,80) and (80,81) have NO calibration data, so v3 used its 1% fallback exactly where reality is worst"
+  },
+  "naive_decoherence_fix": {
+    "bell_near_gap": 0.1009,
+    "bell_far_gap": 0.3923,
+    "mean_gap": 0.1385,
+    "verdict": "rejected - charging duration/T2 per gate to both qubits double-counts along a SWAP chain, fixing short bad routes while destroying long good ones"
+  }
+}
