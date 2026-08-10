@@ -25,6 +25,26 @@ FORGIVENESS_RATIO = load_forgiveness_ratio()
 
 DEFAULT_CHIP = "cairo"
 
+# --- Calibration policy (Entry 022) -----------------------------------------
+# v3 originally substituted a flat 1% for any edge the calibration export
+# didn't cover, silently. Entry 022 showed why that is the worst possible
+# default: uncalibrated edges CORRELATE WITH BROKEN QUBITS. On Kyiv, edges
+# (79,80) and (80,81) carry no calibration -- and qubit 80 has T2 = 8.51 us,
+# roughly twenty times worse than the chip median. v3 charged its optimistic
+# 1% guess at exactly the point where reality was catastrophic, contributing
+# to a 44-point error on bell_near_77_82.
+#
+# The guess is retained for backward compatibility with Entries 013-021, but
+# it is now tracked and, under STRICT_CALIBRATION, refused outright.
+FALLBACK_ERR = 0.01
+STRICT_CALIBRATION = False   # True -> raise instead of guessing
+UNCALIBRATED = set()         # populated by build_connectivity_graph()
+
+
+class UncalibratedEdgeError(RuntimeError):
+    """Raised under STRICT_CALIBRATION when a prediction would depend on an
+    edge with no measured calibration data."""
+
 
 def load_calibration(chip=DEFAULT_CHIP):
     """Load a chip's exported two-qubit gate errors.
@@ -56,27 +76,38 @@ def build_connectivity_graph(calibration, chip=DEFAULT_CHIP, report_coverage=Fal
         if err < 0.5:  # filter placeholder entries (Entry 020)
             error_lookup[tuple(sorted((q1, q2)))] = err
 
-    FALLBACK_ERR = 0.01  # used when calibration didn't capture this edge
-
     graph = {}
-    fallbacks = 0
+    UNCALIBRATED.clear()
     for a, b in real_edges:
         key = (min(a, b), max(a, b))
         if key in error_lookup:
             err = error_lookup[key]
         else:
             err = FALLBACK_ERR
-            fallbacks += 1
+            UNCALIBRATED.add(key)
         graph.setdefault(a, []).append((b, err))
         graph.setdefault(b, []).append((a, err))
 
     if report_coverage:
         n = len(real_edges)
-        print(f"[{chip}] calibration coverage: {n - fallbacks}/{n} edges "
-              f"({100 * (n - fallbacks) / n:.1f}%), {fallbacks} using "
-              f"{FALLBACK_ERR * 100:.2f}% fallback")
+        k = len(UNCALIBRATED)
+        print(f"[{chip}] calibration coverage: {n - k}/{n} edges "
+              f"({100 * (n - k) / n:.1f}%), {k} uncalibrated"
+              + (f" -> {sorted(UNCALIBRATED)}" if 0 < k <= 8 else ""))
 
     return graph
+
+
+def is_calibrated(a, b):
+    """True if this edge has a real measured gate error rather than a guess."""
+    return (min(a, b), max(a, b)) not in UNCALIBRATED
+
+
+def uncalibrated_on_path(path):
+    """Uncalibrated edges along a routed path, in order."""
+    return [(min(path[i], path[i + 1]), max(path[i], path[i + 1]))
+            for i in range(len(path) - 1)
+            if not is_calibrated(path[i], path[i + 1])]
 
 
 def shortest_path(graph, start, end):
@@ -110,14 +141,34 @@ def cnot_error_for_pair(graph, q1, q2):
     empirically fitted, error-magnitude-aware correction (Entry 019)
     replacing the earlier flat FORGIVENESS_RATIO constant (Entry 017),
     since high-error edges were found to be forgiven less than low-error
-    edges."""
+    edges.
+
+    Entry 022: any edge used here without real calibration data is now
+    reported in the returned notes, and refused outright under
+    STRICT_CALIBRATION. A silent guess on an uncalibrated edge was a major
+    contributor to the 44-point bell_near_77_82 error."""
     for neighbor, err in graph.get(q1, []):
         if neighbor == q2:
+            if not is_calibrated(q1, q2):
+                if STRICT_CALIBRATION:
+                    raise UncalibratedEdgeError(
+                        f"edge ({min(q1, q2)},{max(q1, q2)}) has no calibration "
+                        f"data; refusing to predict with the {FALLBACK_ERR:.0%} "
+                        f"fallback. Set STRICT_CALIBRATION=False to allow it.")
+                return (err * variable_forgiveness_ratio(err),
+                        [f"direct UNCALIBRATED (assumed {FALLBACK_ERR:.2%})"])
             return err * variable_forgiveness_ratio(err), ["direct"]
 
     path = shortest_path(graph, q1, q2)
     if path is None or len(path) < 2:
         return 0.05, ["no_path_fallback"]
+
+    bad = uncalibrated_on_path(path)
+    if bad and STRICT_CALIBRATION:
+        raise UncalibratedEdgeError(
+            f"route {q1}->{q2} crosses uncalibrated edges {bad}; refusing to "
+            f"predict with the {FALLBACK_ERR:.0%} fallback. "
+            f"Set STRICT_CALIBRATION=False to allow it.")
 
     num_swaps = len(path) - 2
 
@@ -132,7 +183,10 @@ def cnot_error_for_pair(graph, q1, q2):
     success_prob *= (1 - final_hop_err)
 
     total_error = round(1 - success_prob, 5)
-    return total_error, [f"routed via {path} ({num_swaps} SWAPs, variable-forgiveness-corrected)"]
+    note = f"routed via {path} ({num_swaps} SWAPs, variable-forgiveness-corrected)"
+    if bad:
+        note += f" -- WARNING: {len(bad)} uncalibrated edge(s) {bad} assumed {FALLBACK_ERR:.2%}"
+    return total_error, [note]
 
 def success_prob_from_gate_count(cx_count, graph):
     """Predict success probability from a real gate count. Each edge's

@@ -1,0 +1,65 @@
+{
+  "chip": "kyiv",
+  "reference": "Entry 022 Aer/MPS, 4 seeds x 4096 shots",
+  "v4_terms": [
+    "gate error (forgiveness-corrected)",
+    "time-integrated dephasing along carrier path",
+    "readout error"
+  ],
+  "results": [
+    {
+      "circuit": "bell_adjacent_77_78",
+      "aer": 0.9607,
+      "v3": 0.9925,
+      "v3_gap": 0.0318,
+      "v4": 0.9627,
+      "v4_gap": 0.002
+    },
+    {
+      "circuit": "bell_near_77_82",
+      "aer": 0.4874,
+      "v3": 0.9289,
+      "v3_gap": 0.4415,
+      "v4": 0.7035,
+      "v4_gap": 0.2161
+    },
+    {
+      "circuit": "bell_mid_77_100",
+      "aer": 0.8369,
+      "v3": 0.9027,
+      "v3_gap": 0.0658,
+      "v4": 0.7841,
+      "v4_gap": 0.0528
+    },
+    {
+      "circuit": "bell_far_0_126",
+      "aer": 0.699,
+      "v3": 0.6051,
+      "v3_gap": 0.0939,
+      "v4": 0.353,
+      "v4_gap": 0.346
+    },
+    {
+      "circuit": "ghz_local_77_78_79",
+      "aer": 0.8853,
+      "v3": 0.9867,
+      "v3_gap": 0.1014,
+      "v4": 0.8912,
+      "v4_gap": 0.0059
+    }
+  ],
+  "summary": {
+    "v3_mean": 0.1469,
+    "v4_mean": 0.1246,
+    "v3_median": 0.0939,
+    "v4_median": 0.0528,
+    "v3_worst": 0.4415,
+    "v4_worst": 0.346
+  },
+  "verdict": "v4 structure validated on local circuits (readout term reduces bell_adjacent 3.18->0.20 and ghz_local 10.14->0.59 pts) and halves the worst decoherence failure. Long routes regress: bell_far 9.39->34.60. Remaining error is dwell-time attribution along a SWAP chain, currently heuristic.",
+  "routing_confound": {
+    "note": "v3/v4 route by BFS; Aer routes by SABRE. Scoring v4's cost model on the real transpiled route gives mean 10.37 vs 12.46 and fixes bell_mid (5.28->0.67), but bell_near worsens (21.61->28.85). Routing mismatch explains part of the error, not all.",
+    "v4_real_route_mean": 0.1037
+  },
+  "next": "Track the actual qubit permutation through the transpiled circuit to derive dwell time exactly, instead of the current /3 heuristic."
+}
