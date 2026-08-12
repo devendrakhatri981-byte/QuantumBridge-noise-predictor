@@ -1,0 +1,83 @@
+{
+  "chip": "kyiv",
+  "reference": "Entry 022 Aer/MPS, 4 seeds x 4096 shots",
+  "method": "transpile with 'swap' kept as an explicit undecomposed gate (basis_gates += ['swap']), walked gate-by-gate to derive the real physical route and per-leg duration instead of guessing v3's BFS path with a flat 3-gate-per-hop heuristic.",
+  "bug_found_and_fixed": "first draft charged decoherence but no gate error at all on SWAP legs, and used 1x gate duration instead of the physical 3x (a SWAP is 3 real two-qubit pulses). Caught by comparing against the Entry 022 reference before trusting the result.",
+  "results": [
+    {
+      "circuit": "bell_adjacent_77_78",
+      "hops": 1,
+      "aer": 0.9607,
+      "v3": 0.9925,
+      "v3_gap": 0.0318,
+      "v4_bfs": 0.9627,
+      "v4_bfs_gap": 0.002,
+      "v4_exact": 0.9612,
+      "v4_exact_gap": 0.0005
+    },
+    {
+      "circuit": "bell_near_77_82",
+      "hops": 5,
+      "aer": 0.4874,
+      "v3": 0.9289,
+      "v3_gap": 0.4415,
+      "v4_bfs": 0.7035,
+      "v4_bfs_gap": 0.2161,
+      "v4_exact": 0.5113,
+      "v4_exact_gap": 0.0239
+    },
+    {
+      "circuit": "bell_mid_77_100",
+      "hops": 6,
+      "aer": 0.8369,
+      "v3": 0.9027,
+      "v3_gap": 0.0658,
+      "v4_bfs": 0.7841,
+      "v4_bfs_gap": 0.0528,
+      "v4_exact": 0.6462,
+      "v4_exact_gap": 0.1907
+    },
+    {
+      "circuit": "bell_far_0_126",
+      "hops": 26,
+      "aer": 0.699,
+      "v3": 0.6051,
+      "v3_gap": 0.0939,
+      "v4_bfs": 0.353,
+      "v4_bfs_gap": 0.346,
+      "v4_exact": 0.2407,
+      "v4_exact_gap": 0.4583
+    },
+    {
+      "circuit": "ghz_local_77_78_79",
+      "hops": 2,
+      "aer": 0.8853,
+      "v3": 0.9867,
+      "v3_gap": 0.1014,
+      "v4_bfs": 0.8912,
+      "v4_bfs_gap": 0.0059,
+      "v4_exact": 0.8821,
+      "v4_exact_gap": 0.0032
+    }
+  ],
+  "summary": {
+    "v3_mean": 0.1469,
+    "v4_bfs_mean": 0.1246,
+    "v4_exact_mean": 0.1354,
+    "v3_median": 0.0939,
+    "v4_bfs_median": 0.0528,
+    "v4_exact_median": 0.0239,
+    "v3_worst": 0.4415,
+    "v4_bfs_worst": 0.346,
+    "v4_exact_worst": 0.4583
+  },
+  "swap_leg_verification": {
+    "bell_far_0_126": {
+      "exact_swaps": 25,
+      "decomposed_gate_count": 76,
+      "note": "25 swaps x 3 real gates + 1 entangling gate = 76, matches the independently transpiled Aer reference circuit's ecr count exactly -- confirms the exact-route extraction is faithful to what SABRE actually chose, at every optimization_level 1-3."
+    }
+  },
+  "verdict": "Exact dwell-time routing essentially solves the problem it targeted: median gap 5.28 -> 2.39 pts, and the single worst prior failure (bell_near, low-T2 qubit 80) drops from a 21.61-point gap to 2.39. But mean gap moved the wrong way, 12.46 -> 13.54, because bell_mid and bell_far -- long routes through otherwise healthy qubits -- got worse (5.28->19.07 and 34.60->45.83). This is not a new bug: Entries 015 and 016 already diagnosed that v3's multiplicative gate-error compounding formula (1-e)^n over-penalizes long chains independent of routing accuracy or real gate count. Exact routing removed the guesswork around WHERE the state travels and confirmed the swap count is correct (verified against the real transpiled circuit); it could not fix an error rooted in HOW per-gate error compounds, and adding a second multiplicative term (decoherence) on top of an already too-pessimistic base only compounds that pre-existing problem further on long chains.",
+  "next": "The compounding formula flagged in Entries 015/016 is now the dominant unresolved issue, not the routing model."
+}
