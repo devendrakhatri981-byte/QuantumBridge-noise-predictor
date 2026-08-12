@@ -1,0 +1,127 @@
+{
+  "edge": [
+    77,
+    78
+  ],
+  "raw_calibrated_error": 0.00986009314244607,
+  "shots": 8192,
+  "seeds": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "gate_counts": [
+    1,
+    3,
+    5,
+    9,
+    13,
+    21,
+    33,
+    51,
+    75
+  ],
+  "results": [
+    {
+      "n": 1,
+      "aer": 0.994354248046875,
+      "naive": 0.9901399068575539,
+      "ratio": 1.0042563087904377,
+      "diff_pts": 0.4214341189321069
+    },
+    {
+      "n": 3,
+      "aer": 0.984466552734375,
+      "naive": 0.9707104262705729,
+      "ratio": 1.0141711947162786,
+      "diff_pts": 1.3756126463802087
+    },
+    {
+      "n": 5,
+      "aer": 0.975189208984375,
+      "naive": 0.9516622096981673,
+      "ratio": 1.0247220064498197,
+      "diff_pts": 2.3526999286207717
+    },
+    {
+      "n": 9,
+      "aer": 0.955413818359375,
+      "naive": 0.9146797892854661,
+      "ratio": 1.044533649426899,
+      "diff_pts": 4.073402907390888
+    },
+    {
+      "n": 13,
+      "aer": 0.93792724609375,
+      "naive": 0.8791345378657582,
+      "ratio": 1.066875666573993,
+      "diff_pts": 5.879270822799176
+    },
+    {
+      "n": 21,
+      "aer": 0.902923583984375,
+      "naive": 0.8121343138271395,
+      "ratio": 1.111790954539768,
+      "diff_pts": 9.078927015723547
+    },
+    {
+      "n": 33,
+      "aer": 0.857025146484375,
+      "naive": 0.7210852928222221,
+      "ratio": 1.1885211846855235,
+      "diff_pts": 13.59398536621529
+    },
+    {
+      "n": 51,
+      "aer": 0.799652099609375,
+      "naive": 0.6032881626160508,
+      "ratio": 1.3254894578766925,
+      "diff_pts": 19.636393699332423
+    },
+    {
+      "n": 75,
+      "aer": 0.737091064453125,
+      "naive": 0.4756005615211068,
+      "ratio": 1.549811173678384,
+      "diff_pts": 26.14905029320182
+    }
+  ],
+  "fitted_effective_error": 0.0040974963077497276,
+  "ratio_effective_to_nominal": 0.4155636512307053,
+  "verdict": "MISMATCH: even with decoherence and readout completely removed, a chain of the SAME depolarizing gate does not compound as (1-p)^n. The effective per-gate cost is lower than the calibrated value by a factor of 0.42. This is the compounding-formula bug Entry 016 named, isolated from every other confound.",
+  "closed_form_derivation": {
+    "formula": "success = 0.5 + 0.5 * (1-p)^n",
+    "reasoning": "Qiskit's 2-qubit depolarizing_error(p) channel: with prob (1-p) apply the ideal gate, with prob p replace the state with the maximally mixed state on 2 qubits. The maximally mixed state is an ABSORBING state under further depolarizing applications. So after n gates: probability of never having depolarized = (1-p)^n, contributing 1.0 to the {00,11} ideal-outcome population; probability of having depolarized at least once = 1-(1-p)^n, contributing exactly 0.5 (2 of 4 basis outcomes are in the ideal set, maximally mixed state distributes evenly). Total: (1-p)^n * 1.0 + (1-(1-p)^n) * 0.5 = 0.5 + 0.5*(1-p)^n.",
+    "cross_check_edge": {
+      "qubits": [
+        23,
+        24
+      ],
+      "raw_error": 0.043229,
+      "results": [
+        {
+          "n": 5,
+          "aer": 0.89749,
+          "predicted": 0.90088,
+          "diff_pts": -0.338
+        },
+        {
+          "n": 21,
+          "aer": 0.69791,
+          "predicted": 0.69767,
+          "diff_pts": 0.024
+        },
+        {
+          "n": 51,
+          "aer": 0.55124,
+          "predicted": 0.5525,
+          "diff_pts": -0.126
+        }
+      ]
+    },
+    "match_quality": "within 0.4 percentage points at every tested gate count (1-75) across two edges spanning a 4.4x error-magnitude range -- consistent with shot noise at 4 seeds x 8192 shots.",
+    "implication": "The 'forgiveness ratio' measured empirically in Entries 017-021 is not an ad hoc correction. For a 2-outcome-of-4 ideal set it has a closed form independent of any calibration data: an edge's raw gate error should be scaled toward roughly 0.5x its nominal value for a Bell-state chain, purely from the definition of the depolarizing channel and the ideal set's size -- BEFORE any decoherence or hardware-specific effect is added. Entries 017-021's empirically fitted power law (coefficient 0.0898, exponent -0.3873) was fitting a curve that a large part of is explained by this fixed geometric fact, not by chip physics.",
+    "open_question": "The closed-form ratio approaches 0.5 as n grows (asymptote), while Entry 021's power law predicts ratios below 0.5 that keep falling with error magnitude with no such floor. Whether the empirical law's shape beyond the depolarizing-absorption baseline is capturing real chip physics (decoherence, correlated errors) or overfitting noise is untested and is the natural next step."
+  }
+}
