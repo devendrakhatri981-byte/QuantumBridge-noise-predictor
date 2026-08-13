@@ -34,10 +34,25 @@ accumulates a lot. Same formula, both regimes.
 import json
 
 from emulator_v3_routing import (edge_error, is_calibrated, shortest_path,
-                                 uncalibrated_on_path, variable_forgiveness_ratio)
+                                 uncalibrated_on_path)
 
 SQ_GATE_COST = 0.00224   # Entry 010, deconfounded single-qubit gate cost
 GATES_PER_SWAP = 3       # a SWAP decomposes into 3 two-qubit gates
+
+
+def ideal_set_floor(num_measured_qubits, ideal_set_size=2):
+    """The population floor a maximally-mixed state contributes to the ideal
+    outcome set once the depolarizing channel has fired at least once.
+
+    Entry 025: for a 2-of-4 Bell circuit this is 0.5. Entry 026 confirmed no
+    residual chip physics survives subtracting this baseline from measured
+    decay curves -- Entry 027 retires the fitted variable_forgiveness_ratio()
+    power law and uses this closed form directly instead. Generalizes to any
+    ideal-outcome-set size over any number of measured qubits (default 2:
+    the |0..0> / |1..1> pair every circuit in this project targets)."""
+    if not num_measured_qubits:
+        return 0.5
+    return ideal_set_size / (2 ** num_measured_qubits)
 
 
 def load_coherence(chip):
@@ -72,39 +87,52 @@ def dephasing(coh, qubit, seconds):
 
 
 def route_cost(graph, coh, q1, q2):
-    """Success probability for one logical two-qubit gate between q1 and q2,
-    including the SWAP chain needed to bring them together.
+    """Cost of one logical two-qubit gate between q1 and q2, including the
+    SWAP chain needed to bring them together.
 
-    Returns (success_probability, notes)."""
+    Entry 027: gate error and decoherence are no longer merged into one
+    "success probability" here. Gate error is a depolarizing channel with an
+    absorbing final state (Entry 025) -- it has to be accumulated as a
+    survival product across the WHOLE circuit and converted to a success
+    probability exactly once, at the end, via the ideal_set_floor() closed
+    form. Decoherence has no such absorbing structure, so it's still an
+    ordinary multiplicative probability.
+
+    Returns (survive_factor, deco_factor, notes) where survive_factor is the
+    probability this gate's real edge error(s) did NOT fire the depolarizing
+    channel, and deco_factor is the ordinary (1 - dephasing) probability."""
     notes = []
 
     # Adjacent: one gate, no routing.
     for neighbor, err in graph.get(q1, []):
         if neighbor == q2:
             d = gate_duration(coh, q1, q2)
-            p = 1 - err * variable_forgiveness_ratio(err)
-            p *= (1 - dephasing(coh, q1, d))
+            deco = 1 - dephasing(coh, q1, d)
             if not is_calibrated(q1, q2):
                 notes.append(f"UNCALIBRATED edge ({q1},{q2})")
-            return p, notes or ["direct"]
+            return (1 - err), deco, notes or ["direct"]
 
     path = shortest_path(graph, q1, q2)
     if path is None or len(path) < 2:
-        return 0.95, ["no_path_fallback"]
+        return 0.95, 1.0, ["no_path_fallback"]
 
     bad = uncalibrated_on_path(path)
     if bad:
         notes.append(f"{len(bad)} uncalibrated edge(s) {bad}")
 
     num_swaps = len(path) - 2
-    success = 1.0
+    survive = 1.0
+    deco_factor = 1.0
 
-    # Gate-error term: 3 gates per SWAP, plus the final entangling gate.
+    # Gate-error term: 3 real gates per SWAP, plus the final entangling gate.
+    # Raw calibrated error, no forgiveness-ratio correction (Entry 027) --
+    # the absorbing-state closed form applied at the circuit level already
+    # accounts for the "forgiveness" Entries 017-021 were fitting empirically.
     for i in range(num_swaps):
         raw = edge_error(graph, path[i], path[i + 1])
-        success *= (1 - raw * variable_forgiveness_ratio(raw)) ** GATES_PER_SWAP
+        survive *= (1 - raw) ** GATES_PER_SWAP
     raw_final = edge_error(graph, path[-2], path[-1])
-    success *= (1 - raw_final * variable_forgiveness_ratio(raw_final))
+    survive *= (1 - raw_final)
 
     # Decoherence term, integrated along the CARRIER path only. The state
     # occupies path[j] for the duration of SWAP j, then moves on.
@@ -112,32 +140,43 @@ def route_cost(graph, coh, q1, q2):
     for j in range(num_swaps):
         held = GATES_PER_SWAP * gate_duration(coh, path[j], path[j + 1])
         d = dephasing(coh, path[j], held)
-        success *= (1 - d)
+        deco_factor *= (1 - d)
         if d > worst[0]:
             worst = (d, path[j])
     carrier = path[-2] if num_swaps else path[0]
-    success *= (1 - dephasing(coh, carrier, gate_duration(coh, path[-2], path[-1])))
+    deco_factor *= (1 - dephasing(coh, carrier, gate_duration(coh, path[-2], path[-1])))
 
     if worst[1] is not None and worst[0] > 0.05:
         notes.append(f"dephasing dominated by q{worst[1]} "
                      f"(T2={coh['T2'][worst[1]] * 1e6:.1f}us, {worst[0] * 100:.1f}% loss)")
     notes.append(f"routed via {len(path) - 1} hops, {num_swaps} SWAPs")
-    return success, notes
+    return survive, deco_factor, notes
 
 
 def predict(circuit, graph, coh, measured_qubits=None, include_readout=True):
-    """Predicted success probability for a logical circuit."""
-    p = 1.0
+    """Predicted success probability for a logical circuit.
+
+    Entry 027: gate error across all two-qubit gates in the circuit is
+    accumulated as a single survival product and converted to a success
+    probability exactly once via the absorbing-state closed form (Entry 025),
+    rather than being "forgiveness-ratio" corrected gate-by-gate. Decoherence,
+    single-qubit gate cost, and readout remain ordinary per-event probabilities."""
+    survive = 1.0
+    other = 1.0
     for inst in circuit.data:
         gate = inst.operation
         if gate.name in ("measure", "barrier"):
             continue
         idx = [circuit.find_bit(q).index for q in inst.qubits]
         if gate.num_qubits == 2:
-            sp, _ = route_cost(graph, coh, idx[0], idx[1])
-            p *= sp
+            sp, deco, _ = route_cost(graph, coh, idx[0], idx[1])
+            survive *= sp
+            other *= deco
         elif gate.num_qubits == 1:
-            p *= (1 - SQ_GATE_COST)
+            other *= (1 - SQ_GATE_COST)
+
+    floor = ideal_set_floor(len(measured_qubits) if measured_qubits else 2)
+    p = (floor + (1 - floor) * survive) * other
 
     if include_readout and measured_qubits:
         for q in measured_qubits:

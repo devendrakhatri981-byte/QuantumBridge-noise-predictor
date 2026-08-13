@@ -36,7 +36,7 @@ import collections
 from qiskit import transpile
 
 import emulator_v4 as v4
-from emulator_v3_routing import edge_error, is_calibrated, variable_forgiveness_ratio
+from emulator_v3_routing import edge_error, is_calibrated
 
 
 def route_with_explicit_swaps(circuit, backend, seed=1):
@@ -67,7 +67,8 @@ def exact_dwell_cost(logical_circuit, backend, graph, coh, pairs, measured_qubit
 
     loc = {q: q for pair in pairs for q in pair}  # logical -> current physical
     pending = list(pairs)
-    success = 1.0
+    survive = 1.0   # depolarizing-channel survival product (Entry 027)
+    other = 1.0      # decoherence / SQ-gate / readout, ordinary probabilities
     notes = []
     swap_legs = 0
     dwell_log = []  # (physical_qubit, duration, dephasing) for the writeup
@@ -89,15 +90,20 @@ def exact_dwell_cost(logical_circuit, backend, graph, coh, pairs, measured_qubit
             # 83.42% against an actual 48.74%, i.e. worse than the BFS
             # heuristic it was meant to replace. Caught by comparing against
             # the Entry 022 reference before trusting the result.
+            #
+            # Entry 027: gate error is no longer forgiveness-ratio corrected
+            # gate-by-gate. It's tracked as a raw survival product and turned
+            # into a success probability once, at the very end, via the
+            # absorbing-state closed form (Entry 025) -- Entry 026 found no
+            # residual chip physics beyond that baseline.
             raw = edge_error(graph, p, q)
-            gate_err = raw * variable_forgiveness_ratio(raw)
-            success *= (1 - gate_err) ** v4.GATES_PER_SWAP
+            survive *= (1 - raw) ** v4.GATES_PER_SWAP
 
             swap_duration = v4.GATES_PER_SWAP * d
             deco_p = v4.dephasing(coh, p, swap_duration)
             deco_q = v4.dephasing(coh, q, swap_duration)
-            success *= (1 - deco_p) * (1 - deco_q)
-            dwell_log.append((p, q, swap_duration, gate_err, max(deco_p, deco_q)))
+            other *= (1 - deco_p) * (1 - deco_q)
+            dwell_log.append((p, q, swap_duration, raw, max(deco_p, deco_q)))
 
             if not is_calibrated(p, q):
                 notes.append(f"uncalibrated swap edge ({p},{q})")
@@ -116,8 +122,8 @@ def exact_dwell_cost(logical_circuit, backend, graph, coh, pairs, measured_qubit
             a, b = pair
             if {loc.get(a), loc.get(b)} == {p, q}:
                 raw = edge_error(graph, p, q)
-                success *= (1 - raw * variable_forgiveness_ratio(raw))
-                success *= (1 - v4.dephasing(coh, p, d)) * (1 - v4.dephasing(coh, q, d))
+                survive *= (1 - raw)
+                other *= (1 - v4.dephasing(coh, p, d)) * (1 - v4.dephasing(coh, q, d))
                 if not is_calibrated(p, q):
                     notes.append(f"uncalibrated entangling edge ({p},{q})")
                 pending.remove(pair)
@@ -129,7 +135,10 @@ def exact_dwell_cost(logical_circuit, backend, graph, coh, pairs, measured_qubit
     sq_gates = sum(1 for inst in logical_circuit.data
                   if inst.operation.num_qubits == 1
                   and inst.operation.name not in ("measure", "barrier"))
-    success *= (1 - v4.SQ_GATE_COST) ** sq_gates
+    other *= (1 - v4.SQ_GATE_COST) ** sq_gates
+
+    floor = v4.ideal_set_floor(len(measured_qubits))
+    success = (floor + (1 - floor) * survive) * other
 
     for lq in measured_qubits:
         phys = loc.get(lq, lq)
