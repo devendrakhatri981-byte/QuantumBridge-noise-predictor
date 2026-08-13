@@ -99,11 +99,29 @@ def exact_dwell_cost(logical_circuit, backend, graph, coh, pairs, measured_qubit
             raw = edge_error(graph, p, q)
             survive *= (1 - raw) ** v4.GATES_PER_SWAP
 
+            # SECOND BUG FOUND, ENTRY 028: a SWAP exchanges the contents of
+            # TWO physical qubits, but on every route in this project only
+            # ONE of them is actually carrying a logical qubit's payload --
+            # the other is an idle ancilla being swapped into position. v4's
+            # own BFS model (route_cost, emulator_v4.py) charges decoherence
+            # to a single carrier qubit per hop, per Entry 023's stated
+            # design ("integrate decoherence along the CARRIER path only").
+            # This function charged BOTH swap endpoints instead, which
+            # double-penalizes every SWAP and compounds badly on long
+            # routes: isolating decoherence alone via Aer against
+            # bell_mid_77_100's real 5-leg route gave 94.80% survival, but
+            # this bug's formula predicted 77.6% -- a 17-point overcharge
+            # from a single circuit's decoherence term. Found by ablating
+            # gate-error, decoherence, and readout separately against Aer
+            # and comparing each in isolation, rather than trusting the
+            # combined prediction.
+            carriers = [ph for ph in (p, q) if ph in loc.values()]
             swap_duration = v4.GATES_PER_SWAP * d
-            deco_p = v4.dephasing(coh, p, swap_duration)
-            deco_q = v4.dephasing(coh, q, swap_duration)
-            other *= (1 - deco_p) * (1 - deco_q)
-            dwell_log.append((p, q, swap_duration, raw, max(deco_p, deco_q)))
+            deco_this_leg = 1.0
+            for ph in carriers:
+                deco_this_leg *= (1 - v4.dephasing(coh, ph, swap_duration))
+            other *= deco_this_leg
+            dwell_log.append((p, q, swap_duration, raw, 1 - deco_this_leg))
 
             if not is_calibrated(p, q):
                 notes.append(f"uncalibrated swap edge ({p},{q})")

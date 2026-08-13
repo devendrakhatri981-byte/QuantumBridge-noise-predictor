@@ -74,16 +74,31 @@ def gate_duration(coh, a, b):
 
 
 def dephasing(coh, qubit, seconds):
-    """Probability the state on `qubit` has dephased after `seconds`.
+    """Probability the state on `qubit` has decohered enough to corrupt the
+    measured outcome, after `seconds`.
 
-    Uses 1 - exp(-t/T2). T2 rather than T1 because the states this project
-    measures (Bell, GHZ) carry their information in the phase, so dephasing is
-    the channel that destroys the measured outcome."""
-    t2 = coh["T2"].get(qubit)
-    if not t2:
+    Entry 028 CORRECTION: this used T2 from Entry 023 through Entry 027, on
+    the reasoning that Bell/GHZ states carry their information in phase, so
+    T2 dephasing should be the channel that destroys the measured outcome.
+    That reasoning is backwards. Pure T2 dephasing kills OFF-DIAGONAL
+    coherence in the computational basis -- but every circuit in this
+    project measures success as population in {00...0, 11...1}, which are
+    diagonal elements. Verified directly: an isolated Aer run with T1 set
+    to ~infinity and T2 = 20us (aggressive dephasing, no relaxation) gave
+    100.00% Bell-pair success -- pure dephasing was completely invisible to
+    this measurement. It's T1 relaxation (population leaking toward |0>)
+    that actually corrupts {00,11} outcomes, by leaking probability into
+    {01,10}. The same isolated test with T1 = 20us (T2 = 2*T1, i.e. no
+    dephasing beyond the T1 limit) gave 97.6% -- T1 alone reproduces real
+    loss at roughly the expected t/T1 order of magnitude.
+
+    This function keeps its name (still called from every route_cost/
+    exact_dwell_cost call site) but now uses T1."""
+    t1 = coh["T1"].get(qubit)
+    if not t1:
         return 0.0
     import math
-    return 1 - math.exp(-seconds / t2)
+    return 1 - math.exp(-seconds / t1)
 
 
 def route_cost(graph, coh, q1, q2):
