@@ -1,0 +1,11 @@
+{
+  "experiment_1": "entry034_batch_dataset.json (seed=7, 116 circuits)",
+  "experiment_2": "entry035_replication_dataset.json (seed=99, 122 circuits, non-overlapping sample)",
+  "floor_collapse_exp1_n": 7,
+  "floor_collapse_exp2_n": 5,
+  "qubit_overlap_between_experiments": [],
+  "verdict": "Zero qubit overlap between the two experiments -- floor-collapse is NOT specific to qubits 5/6 or any fixed set of qubits. It recurs on entirely different, independently-sampled qubit pairs in experiment 2, at a similar overall rate. This rules out \"bad qubit\" as the explanation and points to a general, chip-level phenomenon.",
+  "sherbrooke_short_route_rate_pct": 14.5,
+  "kyiv_short_route_rate_pct": 3.1,
+  "rate_ratio_sherbrooke_over_kyiv": 4.7
+}
