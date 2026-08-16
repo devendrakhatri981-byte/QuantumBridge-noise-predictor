@@ -1,0 +1,2750 @@
+[
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      50,
+      51
+    ],
+    "logical_pairs": [
+      [
+        50,
+        51
+      ]
+    ],
+    "bfs_hop_distance": 1,
+    "n_real_edges_used": 1,
+    "n_2q_gates_total": 1,
+    "worst_raw_edge_error_on_bfs_path": 0.013108181349176407,
+    "worst_t1_on_bfs_path": 0.00025780816089543683,
+    "aer_ground_truth": 0.88653564453125,
+    "v4_1_prediction": 0.8861402857423342,
+    "gap": 0.00039535878891583387,
+    "runtime_s": 2.12
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      68,
+      69
+    ],
+    "logical_pairs": [
+      [
+        68,
+        69
+      ]
+    ],
+    "bfs_hop_distance": 1,
+    "n_real_edges_used": 1,
+    "n_2q_gates_total": 1,
+    "worst_raw_edge_error_on_bfs_path": 0.013661049460693298,
+    "worst_t1_on_bfs_path": 0.00028560493553863307,
+    "aer_ground_truth": 0.963623046875,
+    "v4_1_prediction": 0.9634832904904067,
+    "gap": 0.00013975638459329254,
+    "runtime_s": 2.13
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      2,
+      1
+    ],
+    "logical_pairs": [
+      [
+        2,
+        1
+      ]
+    ],
+    "bfs_hop_distance": 1,
+    "n_real_edges_used": 1,
+    "n_2q_gates_total": 1,
+    "worst_raw_edge_error_on_bfs_path": 0.013470305507750857,
+    "worst_t1_on_bfs_path": 0.00026172491258921754,
+    "aer_ground_truth": 0.967529296875,
+    "v4_1_prediction": 0.9664722323891185,
+    "gap": 0.0010570644858814982,
+    "runtime_s": 2.15
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      92,
+      83
+    ],
+    "logical_pairs": [
+      [
+        92,
+        83
+      ]
+    ],
+    "bfs_hop_distance": 1,
+    "n_real_edges_used": 1,
+    "n_2q_gates_total": 1,
+    "worst_raw_edge_error_on_bfs_path": 0.006852777349636796,
+    "worst_t1_on_bfs_path": 0.000291091977696789,
+    "aer_ground_truth": 0.958984375,
+    "v4_1_prediction": 0.9569504179971675,
+    "gap": 0.002033957002832487,
+    "runtime_s": 2.07
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      60,
+      53
+    ],
+    "logical_pairs": [
+      [
+        60,
+        53
+      ]
+    ],
+    "bfs_hop_distance": 1,
+    "n_real_edges_used": 1,
+    "n_2q_gates_total": 1,
+    "worst_raw_edge_error_on_bfs_path": 0.004406038786782196,
+    "worst_t1_on_bfs_path": 0.00032622308964220696,
+    "aer_ground_truth": 0.982177734375,
+    "v4_1_prediction": 0.9804203966277087,
+    "gap": 0.0017573377472912544,
+    "runtime_s": 2.16
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      101,
+      110
+    ],
+    "logical_pairs": [
+      [
+        101,
+        110
+      ]
+    ],
+    "bfs_hop_distance": 2,
+    "n_real_edges_used": 2,
+    "n_2q_gates_total": 4,
+    "worst_raw_edge_error_on_bfs_path": 0.01461746900055183,
+    "worst_t1_on_bfs_path": 0.00020823934199040419,
+    "aer_ground_truth": 0.9788818359375,
+    "v4_1_prediction": 0.9682623042212737,
+    "gap": 0.010619531716226316,
+    "runtime_s": 2.23
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      49,
+      51
+    ],
+    "logical_pairs": [
+      [
+        49,
+        51
+      ]
+    ],
+    "bfs_hop_distance": 2,
+    "n_real_edges_used": 2,
+    "n_2q_gates_total": 4,
+    "worst_raw_edge_error_on_bfs_path": 0.013538294884227253,
+    "worst_t1_on_bfs_path": 0.00025780816089543683,
+    "aer_ground_truth": 0.896240234375,
+    "v4_1_prediction": 0.880574433040285,
+    "gap": 0.015665801334714957,
+    "runtime_s": 2.39
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      97,
+      114
+    ],
+    "logical_pairs": [
+      [
+        97,
+        114
+      ]
+    ],
+    "bfs_hop_distance": 3,
+    "n_real_edges_used": 3,
+    "n_2q_gates_total": 7,
+    "worst_raw_edge_error_on_bfs_path": 0.18576175191569186,
+    "worst_t1_on_bfs_path": 0.00013848014827677615,
+    "aer_ground_truth": 0.49505615234375,
+    "v4_1_prediction": 0.48996712472346304,
+    "gap": 0.005089027620286957,
+    "runtime_s": 2.5
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      12,
+      9
+    ],
+    "logical_pairs": [
+      [
+        12,
+        9
+      ]
+    ],
+    "bfs_hop_distance": 3,
+    "n_real_edges_used": 3,
+    "n_2q_gates_total": 7,
+    "worst_raw_edge_error_on_bfs_path": 0.008519377752825186,
+    "worst_t1_on_bfs_path": 0.00023043445753846212,
+    "aer_ground_truth": 0.968017578125,
+    "v4_1_prediction": 0.957278993241919,
+    "gap": 0.010738584883080993,
+    "runtime_s": 2.5
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      32,
+      29
+    ],
+    "logical_pairs": [
+      [
+        32,
+        29
+      ]
+    ],
+    "bfs_hop_distance": 3,
+    "n_real_edges_used": 3,
+    "n_2q_gates_total": 7,
+    "worst_raw_edge_error_on_bfs_path": 0.014874713629739023,
+    "worst_t1_on_bfs_path": 0.0002613830133972855,
+    "aer_ground_truth": 0.87255859375,
+    "v4_1_prediction": 0.8670923631042735,
+    "gap": 0.005466230645726489,
+    "runtime_s": 2.59
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      48,
+      45
+    ],
+    "logical_pairs": [
+      [
+        48,
+        45
+      ]
+    ],
+    "bfs_hop_distance": 3,
+    "n_real_edges_used": 3,
+    "n_2q_gates_total": 7,
+    "worst_raw_edge_error_on_bfs_path": 0.027768382578170492,
+    "worst_t1_on_bfs_path": 0.00026548170604365635,
+    "aer_ground_truth": 0.919921875,
+    "v4_1_prediction": 0.9166905188934416,
+    "gap": 0.0032313561065584473,
+    "runtime_s": 2.52
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      80,
+      98
+    ],
+    "logical_pairs": [
+      [
+        80,
+        98
+      ]
+    ],
+    "bfs_hop_distance": 3,
+    "n_real_edges_used": 3,
+    "n_2q_gates_total": 7,
+    "worst_raw_edge_error_on_bfs_path": 0.01669863042419867,
+    "worst_t1_on_bfs_path": 5.021048881124914e-06,
+    "aer_ground_truth": 0.90234375,
+    "v4_1_prediction": 0.6319866383473863,
+    "gap": 0.27035711165261367,
+    "runtime_s": 2.61
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      64,
+      67
+    ],
+    "logical_pairs": [
+      [
+        64,
+        67
+      ]
+    ],
+    "bfs_hop_distance": 3,
+    "n_real_edges_used": 3,
+    "n_2q_gates_total": 7,
+    "worst_raw_edge_error_on_bfs_path": 0.026181241777627817,
+    "worst_t1_on_bfs_path": 0.0002960169852694308,
+    "aer_ground_truth": 0.9007568359375,
+    "v4_1_prediction": 0.904029348742177,
+    "gap": 0.003272512804676997,
+    "runtime_s": 2.8
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      15,
+      6
+    ],
+    "logical_pairs": [
+      [
+        15,
+        6
+      ]
+    ],
+    "bfs_hop_distance": 3,
+    "n_real_edges_used": 3,
+    "n_2q_gates_total": 7,
+    "worst_raw_edge_error_on_bfs_path": 0.010206582251858276,
+    "worst_t1_on_bfs_path": 0.00032996191158652435,
+    "aer_ground_truth": 0.88934326171875,
+    "v4_1_prediction": 0.8829195768274603,
+    "gap": 0.006423684891289749,
+    "runtime_s": 2.68
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      57,
+      77
+    ],
+    "logical_pairs": [
+      [
+        57,
+        77
+      ]
+    ],
+    "bfs_hop_distance": 3,
+    "n_real_edges_used": 3,
+    "n_2q_gates_total": 7,
+    "worst_raw_edge_error_on_bfs_path": 0.030331658428965458,
+    "worst_t1_on_bfs_path": 0.0002391027303255787,
+    "aer_ground_truth": 0.900634765625,
+    "v4_1_prediction": 0.8861808950939248,
+    "gap": 0.014453870531075164,
+    "runtime_s": 2.66
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      99,
+      85
+    ],
+    "logical_pairs": [
+      [
+        99,
+        85
+      ]
+    ],
+    "bfs_hop_distance": 7,
+    "n_real_edges_used": 7,
+    "n_2q_gates_total": 19,
+    "worst_raw_edge_error_on_bfs_path": 0.04334539784680547,
+    "worst_t1_on_bfs_path": 0.0002229000655659968,
+    "aer_ground_truth": 0.80377197265625,
+    "v4_1_prediction": 0.8003507656267177,
+    "gap": 0.0034212070295323027,
+    "runtime_s": 4.5
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      27,
+      4
+    ],
+    "logical_pairs": [
+      [
+        27,
+        4
+      ]
+    ],
+    "bfs_hop_distance": 7,
+    "n_real_edges_used": 7,
+    "n_2q_gates_total": 19,
+    "worst_raw_edge_error_on_bfs_path": 0.012498376470469585,
+    "worst_t1_on_bfs_path": 0.0002123685240606272,
+    "aer_ground_truth": 0.873046875,
+    "v4_1_prediction": 0.8634127458563055,
+    "gap": 0.009634129143694548,
+    "runtime_s": 3.93
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      47,
+      43
+    ],
+    "logical_pairs": [
+      [
+        47,
+        43
+      ]
+    ],
+    "bfs_hop_distance": 4,
+    "n_real_edges_used": 4,
+    "n_2q_gates_total": 10,
+    "worst_raw_edge_error_on_bfs_path": 0.027768382578170492,
+    "worst_t1_on_bfs_path": 3.9695210169803034e-05,
+    "aer_ground_truth": 0.915771484375,
+    "v4_1_prediction": 0.8937278440757164,
+    "gap": 0.02204364029928363,
+    "runtime_s": 2.71
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      18,
+      5
+    ],
+    "logical_pairs": [
+      [
+        18,
+        5
+      ]
+    ],
+    "bfs_hop_distance": 7,
+    "n_real_edges_used": 7,
+    "n_2q_gates_total": 19,
+    "worst_raw_edge_error_on_bfs_path": 0.01375449643358212,
+    "worst_t1_on_bfs_path": 0.00026172491258921754,
+    "aer_ground_truth": 0.82012939453125,
+    "v4_1_prediction": 0.8053310085759845,
+    "gap": 0.014798385955265503,
+    "runtime_s": 4.77
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      26,
+      32
+    ],
+    "logical_pairs": [
+      [
+        26,
+        32
+      ]
+    ],
+    "bfs_hop_distance": 6,
+    "n_real_edges_used": 6,
+    "n_2q_gates_total": 16,
+    "worst_raw_edge_error_on_bfs_path": 0.014874713629739023,
+    "worst_t1_on_bfs_path": 0.00017650370444673331,
+    "aer_ground_truth": 0.81219482421875,
+    "v4_1_prediction": 0.8500623469329603,
+    "gap": 0.037867522714210344,
+    "runtime_s": 3.92
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      93,
+      83
+    ],
+    "logical_pairs": [
+      [
+        93,
+        83
+      ]
+    ],
+    "bfs_hop_distance": 5,
+    "n_real_edges_used": 5,
+    "n_2q_gates_total": 13,
+    "worst_raw_edge_error_on_bfs_path": 0.026550464004720498,
+    "worst_t1_on_bfs_path": 0.00016365268560981198,
+    "aer_ground_truth": 0.85980224609375,
+    "v4_1_prediction": 0.8463316221570502,
+    "gap": 0.013470623936699844,
+    "runtime_s": 3.17
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      47,
+      23
+    ],
+    "logical_pairs": [
+      [
+        47,
+        23
+      ]
+    ],
+    "bfs_hop_distance": 7,
+    "n_real_edges_used": 7,
+    "n_2q_gates_total": 19,
+    "worst_raw_edge_error_on_bfs_path": 0.043229200554619096,
+    "worst_t1_on_bfs_path": 0.00017650370444673331,
+    "aer_ground_truth": 0.78955078125,
+    "v4_1_prediction": 0.7871514170420969,
+    "gap": 0.0023993642079030986,
+    "runtime_s": 3.91
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      63,
+      70
+    ],
+    "logical_pairs": [
+      [
+        63,
+        70
+      ]
+    ],
+    "bfs_hop_distance": 7,
+    "n_real_edges_used": 7,
+    "n_2q_gates_total": 19,
+    "worst_raw_edge_error_on_bfs_path": 0.026181241777627817,
+    "worst_t1_on_bfs_path": 0.0002442620779312336,
+    "aer_ground_truth": 0.836181640625,
+    "v4_1_prediction": 0.8153031532614835,
+    "gap": 0.020878487363516496,
+    "runtime_s": 4.16
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      84,
+      70
+    ],
+    "logical_pairs": [
+      [
+        84,
+        70
+      ]
+    ],
+    "bfs_hop_distance": 7,
+    "n_real_edges_used": 7,
+    "n_2q_gates_total": 19,
+    "worst_raw_edge_error_on_bfs_path": 0.026181241777627817,
+    "worst_t1_on_bfs_path": 0.0002658963059899375,
+    "aer_ground_truth": 0.83172607421875,
+    "v4_1_prediction": 0.8099292028543231,
+    "gap": 0.021796871364426873,
+    "runtime_s": 4.21
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      50,
+      89
+    ],
+    "logical_pairs": [
+      [
+        50,
+        89
+      ]
+    ],
+    "bfs_hop_distance": 7,
+    "n_real_edges_used": 7,
+    "n_2q_gates_total": 19,
+    "worst_raw_edge_error_on_bfs_path": 0.013661049460693298,
+    "worst_t1_on_bfs_path": 0.00022060066681851888,
+    "aer_ground_truth": 0.872802734375,
+    "v4_1_prediction": 0.8630457818529732,
+    "gap": 0.009756952522026796,
+    "runtime_s": 4.21
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      34,
+      52
+    ],
+    "logical_pairs": [
+      [
+        34,
+        52
+      ]
+    ],
+    "bfs_hop_distance": 8,
+    "n_real_edges_used": 8,
+    "n_2q_gates_total": 22,
+    "worst_raw_edge_error_on_bfs_path": 0.029934123150621272,
+    "worst_t1_on_bfs_path": 0.0002458185923136908,
+    "aer_ground_truth": 0.81121826171875,
+    "v4_1_prediction": 0.8150959660693957,
+    "gap": 0.0038777043506457165,
+    "runtime_s": 4.82
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      85,
+      39
+    ],
+    "logical_pairs": [
+      [
+        85,
+        39
+      ]
+    ],
+    "bfs_hop_distance": 12,
+    "n_real_edges_used": 12,
+    "n_2q_gates_total": 34,
+    "worst_raw_edge_error_on_bfs_path": 0.018701072836028287,
+    "worst_t1_on_bfs_path": 3.9695210169803034e-05,
+    "aer_ground_truth": 0.838134765625,
+    "v4_1_prediction": 0.8032096042042819,
+    "gap": 0.03492516142071811,
+    "runtime_s": 7.02
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      53,
+      122
+    ],
+    "logical_pairs": [
+      [
+        53,
+        122
+      ]
+    ],
+    "bfs_hop_distance": 13,
+    "n_real_edges_used": 13,
+    "n_2q_gates_total": 37,
+    "worst_raw_edge_error_on_bfs_path": 0.04334539784680547,
+    "worst_t1_on_bfs_path": 0.00019636664438770927,
+    "aer_ground_truth": 0.779296875,
+    "v4_1_prediction": 0.7461278870225356,
+    "gap": 0.03316898797746437,
+    "runtime_s": 7.31
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      6,
+      39
+    ],
+    "logical_pairs": [
+      [
+        6,
+        39
+      ]
+    ],
+    "bfs_hop_distance": 8,
+    "n_real_edges_used": 8,
+    "n_2q_gates_total": 22,
+    "worst_raw_edge_error_on_bfs_path": 0.017531299060357275,
+    "worst_t1_on_bfs_path": 0.00032996191158652435,
+    "aer_ground_truth": 0.79730224609375,
+    "v4_1_prediction": 0.7883375632402767,
+    "gap": 0.008964682853473294,
+    "runtime_s": 5.09
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      95,
+      72
+    ],
+    "logical_pairs": [
+      [
+        95,
+        72
+      ]
+    ],
+    "bfs_hop_distance": 8,
+    "n_real_edges_used": 8,
+    "n_2q_gates_total": 22,
+    "worst_raw_edge_error_on_bfs_path": 0.01669863042419867,
+    "worst_t1_on_bfs_path": 5.021048881124914e-06,
+    "aer_ground_truth": 0.50030517578125,
+    "v4_1_prediction": 0.6088235680348283,
+    "gap": 0.10851839225357829,
+    "runtime_s": 4.37
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      113,
+      45
+    ],
+    "logical_pairs": [
+      [
+        113,
+        45
+      ]
+    ],
+    "bfs_hop_distance": 15,
+    "n_real_edges_used": 15,
+    "n_2q_gates_total": 43,
+    "worst_raw_edge_error_on_bfs_path": 0.18576175191569186,
+    "worst_t1_on_bfs_path": 5.021048881124914e-06,
+    "aer_ground_truth": 0.4945068359375,
+    "v4_1_prediction": 0.5384926957697964,
+    "gap": 0.043985859832296414,
+    "runtime_s": 6.69
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      46,
+      82
+    ],
+    "logical_pairs": [
+      [
+        46,
+        82
+      ]
+    ],
+    "bfs_hop_distance": 8,
+    "n_real_edges_used": 8,
+    "n_2q_gates_total": 22,
+    "worst_raw_edge_error_on_bfs_path": 0.018023906364629305,
+    "worst_t1_on_bfs_path": 0.0001976300007356132,
+    "aer_ground_truth": 0.84088134765625,
+    "v4_1_prediction": 0.828093316068665,
+    "gap": 0.012788031587585014,
+    "runtime_s": 4.98
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      25,
+      50
+    ],
+    "logical_pairs": [
+      [
+        25,
+        50
+      ]
+    ],
+    "bfs_hop_distance": 8,
+    "n_real_edges_used": 8,
+    "n_2q_gates_total": 22,
+    "worst_raw_edge_error_on_bfs_path": 0.01794032149388447,
+    "worst_t1_on_bfs_path": 0.00017650370444673331,
+    "aer_ground_truth": 0.80450439453125,
+    "v4_1_prediction": 0.8163007256678565,
+    "gap": 0.011796331136606497,
+    "runtime_s": 4.73
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      93,
+      51
+    ],
+    "logical_pairs": [
+      [
+        93,
+        51
+      ]
+    ],
+    "bfs_hop_distance": 11,
+    "n_real_edges_used": 11,
+    "n_2q_gates_total": 31,
+    "worst_raw_edge_error_on_bfs_path": 0.026550464004720498,
+    "worst_t1_on_bfs_path": 0.00016365268560981198,
+    "aer_ground_truth": 0.83441162109375,
+    "v4_1_prediction": 0.793134466052317,
+    "gap": 0.041277155041433033,
+    "runtime_s": 7.13
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      54,
+      14
+    ],
+    "logical_pairs": [
+      [
+        54,
+        14
+      ]
+    ],
+    "bfs_hop_distance": 12,
+    "n_real_edges_used": 12,
+    "n_2q_gates_total": 34,
+    "worst_raw_edge_error_on_bfs_path": 0.043229200554619096,
+    "worst_t1_on_bfs_path": 3.9695210169803034e-05,
+    "aer_ground_truth": 0.79962158203125,
+    "v4_1_prediction": 0.7508150232619896,
+    "gap": 0.04880655876926043,
+    "runtime_s": 7.19
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      105,
+      11
+    ],
+    "logical_pairs": [
+      [
+        105,
+        11
+      ]
+    ],
+    "bfs_hop_distance": 20,
+    "n_real_edges_used": 20,
+    "n_2q_gates_total": 58,
+    "worst_raw_edge_error_on_bfs_path": 0.09540252160757023,
+    "worst_t1_on_bfs_path": 7.008541235407526e-05,
+    "aer_ground_truth": 0.62188720703125,
+    "v4_1_prediction": 0.5800551684332691,
+    "gap": 0.0418320385979809,
+    "runtime_s": 12.22
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      113,
+      46
+    ],
+    "logical_pairs": [
+      [
+        113,
+        46
+      ]
+    ],
+    "bfs_hop_distance": 16,
+    "n_real_edges_used": 16,
+    "n_2q_gates_total": 46,
+    "worst_raw_edge_error_on_bfs_path": 0.18576175191569186,
+    "worst_t1_on_bfs_path": 5.021048881124914e-06,
+    "aer_ground_truth": 0.49981689453125,
+    "v4_1_prediction": 0.5253181767527365,
+    "gap": 0.02550128222148651,
+    "runtime_s": 12.01
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      70,
+      18
+    ],
+    "logical_pairs": [
+      [
+        70,
+        18
+      ]
+    ],
+    "bfs_hop_distance": 18,
+    "n_real_edges_used": 18,
+    "n_2q_gates_total": 52,
+    "worst_raw_edge_error_on_bfs_path": 0.043229200554619096,
+    "worst_t1_on_bfs_path": 0.00017650370444673331,
+    "aer_ground_truth": 0.781982421875,
+    "v4_1_prediction": 0.7353080475364622,
+    "gap": 0.04667437433853783,
+    "runtime_s": 11.91
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      116,
+      50
+    ],
+    "logical_pairs": [
+      [
+        116,
+        50
+      ]
+    ],
+    "bfs_hop_distance": 17,
+    "n_real_edges_used": 17,
+    "n_2q_gates_total": 49,
+    "worst_raw_edge_error_on_bfs_path": 0.04334539784680547,
+    "worst_t1_on_bfs_path": 0.00010692778436257922,
+    "aer_ground_truth": 0.70074462890625,
+    "v4_1_prediction": 0.6668374587812511,
+    "gap": 0.03390717012499889,
+    "runtime_s": 13.53
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      47,
+      94
+    ],
+    "logical_pairs": [
+      [
+        47,
+        94
+      ]
+    ],
+    "bfs_hop_distance": 16,
+    "n_real_edges_used": 16,
+    "n_2q_gates_total": 46,
+    "worst_raw_edge_error_on_bfs_path": 0.027768382578170492,
+    "worst_t1_on_bfs_path": 3.9695210169803034e-05,
+    "aer_ground_truth": 0.49176025390625,
+    "v4_1_prediction": 0.5290234393150032,
+    "gap": 0.037263185408753174,
+    "runtime_s": 12.17
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      118,
+      8
+    ],
+    "logical_pairs": [
+      [
+        118,
+        8
+      ]
+    ],
+    "bfs_hop_distance": 22,
+    "n_real_edges_used": 22,
+    "n_2q_gates_total": 64,
+    "worst_raw_edge_error_on_bfs_path": 0.029311876362206002,
+    "worst_t1_on_bfs_path": 0.00020823934199040419,
+    "aer_ground_truth": 0.71954345703125,
+    "v4_1_prediction": 0.6588619872392895,
+    "gap": 0.06068146979196054,
+    "runtime_s": 15.0
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      16,
+      107
+    ],
+    "logical_pairs": [
+      [
+        16,
+        107
+      ]
+    ],
+    "bfs_hop_distance": 18,
+    "n_real_edges_used": 18,
+    "n_2q_gates_total": 52,
+    "worst_raw_edge_error_on_bfs_path": 0.029311876362206002,
+    "worst_t1_on_bfs_path": 3.9695210169803034e-05,
+    "aer_ground_truth": 0.69757080078125,
+    "v4_1_prediction": 0.6353848829405666,
+    "gap": 0.06218591784068339,
+    "runtime_s": 11.76
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      120,
+      5
+    ],
+    "logical_pairs": [
+      [
+        120,
+        5
+      ]
+    ],
+    "bfs_hop_distance": 25,
+    "n_real_edges_used": 25,
+    "n_2q_gates_total": 73,
+    "worst_raw_edge_error_on_bfs_path": 0.030331658428965458,
+    "worst_t1_on_bfs_path": 0.00020823934199040419,
+    "aer_ground_truth": 0.7239990234375,
+    "v4_1_prediction": 0.6587559646872779,
+    "gap": 0.06524305875022207,
+    "runtime_s": 22.77
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      6,
+      77
+    ],
+    "logical_pairs": [
+      [
+        6,
+        77
+      ]
+    ],
+    "bfs_hop_distance": 16,
+    "n_real_edges_used": 16,
+    "n_2q_gates_total": 46,
+    "worst_raw_edge_error_on_bfs_path": 0.030331658428965458,
+    "worst_t1_on_bfs_path": 0.0002391027303255787,
+    "aer_ground_truth": 0.75390625,
+    "v4_1_prediction": 0.7409701055175426,
+    "gap": 0.01293614448245739,
+    "runtime_s": 11.76
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      108,
+      25
+    ],
+    "logical_pairs": [
+      [
+        108,
+        25
+      ]
+    ],
+    "bfs_hop_distance": 17,
+    "n_real_edges_used": 17,
+    "n_2q_gates_total": 49,
+    "worst_raw_edge_error_on_bfs_path": 0.029311876362206002,
+    "worst_t1_on_bfs_path": 3.9695210169803034e-05,
+    "aer_ground_truth": 0.68597412109375,
+    "v4_1_prediction": 0.6267376518941519,
+    "gap": 0.05923646919959813,
+    "runtime_s": 15.07
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      78,
+      48,
+      18
+    ],
+    "logical_pairs": [
+      [
+        78,
+        48
+      ],
+      [
+        78,
+        18
+      ]
+    ],
+    "bfs_hop_distance": 13,
+    "n_real_edges_used": 22,
+    "n_2q_gates_total": 62,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.69207763671875,
+    "v4_1_prediction": 0.3782045538541539,
+    "gap": 0.3138730828645961,
+    "runtime_s": 19.03
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      80,
+      86,
+      89
+    ],
+    "logical_pairs": [
+      [
+        80,
+        86
+      ],
+      [
+        80,
+        89
+      ]
+    ],
+    "bfs_hop_distance": 9,
+    "n_real_edges_used": 9,
+    "n_2q_gates_total": 27,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.75054931640625,
+    "v4_1_prediction": 0.4431891546409971,
+    "gap": 0.3073601617652529,
+    "runtime_s": 5.8
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      88,
+      76,
+      112
+    ],
+    "logical_pairs": [
+      [
+        88,
+        76
+      ],
+      [
+        88,
+        112
+      ]
+    ],
+    "bfs_hop_distance": 12,
+    "n_real_edges_used": 17,
+    "n_2q_gates_total": 50,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.42864990234375,
+    "v4_1_prediction": 0.38886331127819024,
+    "gap": 0.03978659106555976,
+    "runtime_s": 8.49
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      87,
+      10,
+      27
+    ],
+    "logical_pairs": [
+      [
+        87,
+        10
+      ],
+      [
+        87,
+        27
+      ]
+    ],
+    "bfs_hop_distance": 18,
+    "n_real_edges_used": 19,
+    "n_2q_gates_total": 53,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.707763671875,
+    "v4_1_prediction": 0.4479024011896406,
+    "gap": 0.2598612706853594,
+    "runtime_s": 13.61
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      5,
+      85,
+      81
+    ],
+    "logical_pairs": [
+      [
+        5,
+        85
+      ],
+      [
+        5,
+        81
+      ]
+    ],
+    "bfs_hop_distance": 15,
+    "n_real_edges_used": 19,
+    "n_2q_gates_total": 53,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.78125,
+    "v4_1_prediction": 0.4796635974475957,
+    "gap": 0.3015864025524043,
+    "runtime_s": 19.05
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      58,
+      80,
+      97
+    ],
+    "logical_pairs": [
+      [
+        58,
+        80
+      ],
+      [
+        58,
+        97
+      ]
+    ],
+    "bfs_hop_distance": 7,
+    "n_real_edges_used": 8,
+    "n_2q_gates_total": 20,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.4412841796875,
+    "v4_1_prediction": 0.4268557602051856,
+    "gap": 0.01442841948231438,
+    "runtime_s": 4.27
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      22,
+      12,
+      84
+    ],
+    "logical_pairs": [
+      [
+        22,
+        12
+      ],
+      [
+        22,
+        84
+      ]
+    ],
+    "bfs_hop_distance": 13,
+    "n_real_edges_used": 21,
+    "n_2q_gates_total": 59,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.51556396484375,
+    "v4_1_prediction": 0.40349222496157194,
+    "gap": 0.11207173988217806,
+    "runtime_s": 14.28
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      23,
+      111,
+      4
+    ],
+    "logical_pairs": [
+      [
+        23,
+        111
+      ],
+      [
+        23,
+        4
+      ]
+    ],
+    "bfs_hop_distance": 18,
+    "n_real_edges_used": 21,
+    "n_2q_gates_total": 68,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.56610107421875,
+    "v4_1_prediction": 0.3557132961092092,
+    "gap": 0.2103877781095408,
+    "runtime_s": 18.91
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      53,
+      99,
+      12
+    ],
+    "logical_pairs": [
+      [
+        53,
+        99
+      ],
+      [
+        53,
+        12
+      ]
+    ],
+    "bfs_hop_distance": 13,
+    "n_real_edges_used": 22,
+    "n_2q_gates_total": 62,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.3485107421875,
+    "v4_1_prediction": 0.3249351095882391,
+    "gap": 0.023575632599260876,
+    "runtime_s": 13.74
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      117,
+      119,
+      83
+    ],
+    "logical_pairs": [
+      [
+        117,
+        119
+      ],
+      [
+        117,
+        83
+      ]
+    ],
+    "bfs_hop_distance": 7,
+    "n_real_edges_used": 8,
+    "n_2q_gates_total": 20,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.80487060546875,
+    "v4_1_prediction": 0.7317923525487887,
+    "gap": 0.07307825291996128,
+    "runtime_s": 4.41
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      76,
+      75
+    ],
+    "logical_pairs": [
+      [
+        76,
+        75
+      ]
+    ],
+    "bfs_hop_distance": 1,
+    "n_real_edges_used": 1,
+    "n_2q_gates_total": 1,
+    "worst_raw_edge_error_on_bfs_path": 0.00843910434012407,
+    "worst_t1_on_bfs_path": 0.0002642586598249237,
+    "aer_ground_truth": 0.920654296875,
+    "v4_1_prediction": 0.9242991025691139,
+    "gap": 0.0036448056941138507,
+    "runtime_s": 2.13
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      0,
+      1
+    ],
+    "logical_pairs": [
+      [
+        0,
+        1
+      ]
+    ],
+    "bfs_hop_distance": 1,
+    "n_real_edges_used": 1,
+    "n_2q_gates_total": 1,
+    "worst_raw_edge_error_on_bfs_path": 0.007494257741828603,
+    "worst_t1_on_bfs_path": 0.0002337908986939142,
+    "aer_ground_truth": 0.955322265625,
+    "v4_1_prediction": 0.9553412304420565,
+    "gap": 1.8964817056543737e-05,
+    "runtime_s": 1.98
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      48,
+      49
+    ],
+    "logical_pairs": [
+      [
+        48,
+        49
+      ]
+    ],
+    "bfs_hop_distance": 1,
+    "n_real_edges_used": 1,
+    "n_2q_gates_total": 1,
+    "worst_raw_edge_error_on_bfs_path": 0.011890757711695621,
+    "worst_t1_on_bfs_path": 0.00021627588978017566,
+    "aer_ground_truth": 0.910400390625,
+    "v4_1_prediction": 0.9141367766639334,
+    "gap": 0.003736386038933448,
+    "runtime_s": 2.13
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      102,
+      103
+    ],
+    "logical_pairs": [
+      [
+        102,
+        103
+      ]
+    ],
+    "bfs_hop_distance": 1,
+    "n_real_edges_used": 1,
+    "n_2q_gates_total": 1,
+    "worst_raw_edge_error_on_bfs_path": 0.006272881926972396,
+    "worst_t1_on_bfs_path": 0.0002064310861537035,
+    "aer_ground_truth": 0.92437744140625,
+    "v4_1_prediction": 0.9223994104811853,
+    "gap": 0.0019780309250646555,
+    "runtime_s": 1.93
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      69,
+      70
+    ],
+    "logical_pairs": [
+      [
+        69,
+        70
+      ]
+    ],
+    "bfs_hop_distance": 1,
+    "n_real_edges_used": 1,
+    "n_2q_gates_total": 1,
+    "worst_raw_edge_error_on_bfs_path": 0.004948298825224351,
+    "worst_t1_on_bfs_path": 0.00018467132983030697,
+    "aer_ground_truth": 0.81671142578125,
+    "v4_1_prediction": 0.8132492165340066,
+    "gap": 0.0034622092472433863,
+    "runtime_s": 1.95
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      25,
+      24
+    ],
+    "logical_pairs": [
+      [
+        25,
+        24
+      ]
+    ],
+    "bfs_hop_distance": 1,
+    "n_real_edges_used": 1,
+    "n_2q_gates_total": 1,
+    "worst_raw_edge_error_on_bfs_path": 0.008044963004075922,
+    "worst_t1_on_bfs_path": 0.00028829424378555774,
+    "aer_ground_truth": 0.94287109375,
+    "v4_1_prediction": 0.9405588140214971,
+    "gap": 0.0023122797285028973,
+    "runtime_s": 1.95
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      3,
+      2
+    ],
+    "logical_pairs": [
+      [
+        3,
+        2
+      ]
+    ],
+    "bfs_hop_distance": 1,
+    "n_real_edges_used": 1,
+    "n_2q_gates_total": 1,
+    "worst_raw_edge_error_on_bfs_path": 0.008694694119090962,
+    "worst_t1_on_bfs_path": 0.00027038813239310157,
+    "aer_ground_truth": 0.955322265625,
+    "v4_1_prediction": 0.957004160981538,
+    "gap": 0.0016818953565379546,
+    "runtime_s": 1.96
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      5,
+      4
+    ],
+    "logical_pairs": [
+      [
+        5,
+        4
+      ]
+    ],
+    "bfs_hop_distance": 1,
+    "n_real_edges_used": 1,
+    "n_2q_gates_total": 1,
+    "worst_raw_edge_error_on_bfs_path": 0.010012484974233293,
+    "worst_t1_on_bfs_path": 0.00017275909991425791,
+    "aer_ground_truth": 0.91021728515625,
+    "v4_1_prediction": 0.9088236600760198,
+    "gap": 0.0013936250802302208,
+    "runtime_s": 1.96
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      61,
+      60
+    ],
+    "logical_pairs": [
+      [
+        61,
+        60
+      ]
+    ],
+    "bfs_hop_distance": 1,
+    "n_real_edges_used": 1,
+    "n_2q_gates_total": 1,
+    "worst_raw_edge_error_on_bfs_path": 0.0034699998496582896,
+    "worst_t1_on_bfs_path": 0.0002991904681649518,
+    "aer_ground_truth": 0.95556640625,
+    "v4_1_prediction": 0.9524176410649252,
+    "gap": 0.0031487651850747866,
+    "runtime_s": 1.96
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      112,
+      126
+    ],
+    "logical_pairs": [
+      [
+        112,
+        126
+      ]
+    ],
+    "bfs_hop_distance": 1,
+    "n_real_edges_used": 1,
+    "n_2q_gates_total": 1,
+    "worst_raw_edge_error_on_bfs_path": 0.004596410663873007,
+    "worst_t1_on_bfs_path": 0.0002618181514271377,
+    "aer_ground_truth": 0.95166015625,
+    "v4_1_prediction": 0.9507434810682258,
+    "gap": 0.0009166751817741847,
+    "runtime_s": 2.0
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      53,
+      43
+    ],
+    "logical_pairs": [
+      [
+        53,
+        43
+      ]
+    ],
+    "bfs_hop_distance": 3,
+    "n_real_edges_used": 3,
+    "n_2q_gates_total": 7,
+    "worst_raw_edge_error_on_bfs_path": 0.01196664015782678,
+    "worst_t1_on_bfs_path": 0.00024905308533607187,
+    "aer_ground_truth": 0.929931640625,
+    "v4_1_prediction": 0.9226732905142541,
+    "gap": 0.007258350110745937,
+    "runtime_s": 2.66
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      109,
+      95
+    ],
+    "logical_pairs": [
+      [
+        109,
+        95
+      ]
+    ],
+    "bfs_hop_distance": 2,
+    "n_real_edges_used": 2,
+    "n_2q_gates_total": 4,
+    "worst_raw_edge_error_on_bfs_path": 0.013084065493193742,
+    "worst_t1_on_bfs_path": 0.00022669675028103646,
+    "aer_ground_truth": 0.884765625,
+    "v4_1_prediction": 0.8755370886776288,
+    "gap": 0.009228536322371195,
+    "runtime_s": 2.51
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      79,
+      77
+    ],
+    "logical_pairs": [
+      [
+        79,
+        77
+      ]
+    ],
+    "bfs_hop_distance": 2,
+    "n_real_edges_used": 2,
+    "n_2q_gates_total": 4,
+    "worst_raw_edge_error_on_bfs_path": 0.006150040115171007,
+    "worst_t1_on_bfs_path": 0.00023063643632809298,
+    "aer_ground_truth": 0.970947265625,
+    "v4_1_prediction": 0.9593432113811593,
+    "gap": 0.0116040542438407,
+    "runtime_s": 2.22
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      114,
+      116
+    ],
+    "logical_pairs": [
+      [
+        114,
+        116
+      ]
+    ],
+    "bfs_hop_distance": 2,
+    "n_real_edges_used": 2,
+    "n_2q_gates_total": 4,
+    "worst_raw_edge_error_on_bfs_path": 0.008535250992055654,
+    "worst_t1_on_bfs_path": 0.00017583368566998246,
+    "aer_ground_truth": 0.95794677734375,
+    "v4_1_prediction": 0.9574368890219133,
+    "gap": 0.0005098883218367378,
+    "runtime_s": 2.17
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      3,
+      6
+    ],
+    "logical_pairs": [
+      [
+        3,
+        6
+      ]
+    ],
+    "bfs_hop_distance": 3,
+    "n_real_edges_used": 3,
+    "n_2q_gates_total": 7,
+    "worst_raw_edge_error_on_bfs_path": 0.010012484974233293,
+    "worst_t1_on_bfs_path": 0.00017275909991425791,
+    "aer_ground_truth": 0.49993896484375,
+    "v4_1_prediction": 0.8850630806056105,
+    "gap": 0.38512411576186045,
+    "runtime_s": 2.51
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      72,
+      80
+    ],
+    "logical_pairs": [
+      [
+        72,
+        80
+      ]
+    ],
+    "bfs_hop_distance": 2,
+    "n_real_edges_used": 2,
+    "n_2q_gates_total": 4,
+    "worst_raw_edge_error_on_bfs_path": 0.008316168208496233,
+    "worst_t1_on_bfs_path": 0.0001469928637936869,
+    "aer_ground_truth": 0.9779052734375,
+    "v4_1_prediction": 0.9663760775511538,
+    "gap": 0.011529195886346155,
+    "runtime_s": 2.2
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      81,
+      92
+    ],
+    "logical_pairs": [
+      [
+        81,
+        92
+      ]
+    ],
+    "bfs_hop_distance": 3,
+    "n_real_edges_used": 3,
+    "n_2q_gates_total": 7,
+    "worst_raw_edge_error_on_bfs_path": 0.01918331990734612,
+    "worst_t1_on_bfs_path": 0.0002016005662716495,
+    "aer_ground_truth": 0.918212890625,
+    "v4_1_prediction": 0.9119657282775788,
+    "gap": 0.006247162347421176,
+    "runtime_s": 2.37
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      88,
+      70
+    ],
+    "logical_pairs": [
+      [
+        88,
+        70
+      ]
+    ],
+    "bfs_hop_distance": 3,
+    "n_real_edges_used": 3,
+    "n_2q_gates_total": 7,
+    "worst_raw_edge_error_on_bfs_path": 0.01117419936357733,
+    "worst_t1_on_bfs_path": 0.00018127809195453833,
+    "aer_ground_truth": 0.962646484375,
+    "v4_1_prediction": 0.9470691351340595,
+    "gap": 0.015577349240940452,
+    "runtime_s": 2.32
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      25,
+      22
+    ],
+    "logical_pairs": [
+      [
+        25,
+        22
+      ]
+    ],
+    "bfs_hop_distance": 3,
+    "n_real_edges_used": 3,
+    "n_2q_gates_total": 7,
+    "worst_raw_edge_error_on_bfs_path": 0.01994202941922424,
+    "worst_t1_on_bfs_path": 0.00011059051310535338,
+    "aer_ground_truth": 0.89630126953125,
+    "v4_1_prediction": 0.9080289615697934,
+    "gap": 0.011727692038543402,
+    "runtime_s": 2.44
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      68,
+      65
+    ],
+    "logical_pairs": [
+      [
+        68,
+        65
+      ]
+    ],
+    "bfs_hop_distance": 3,
+    "n_real_edges_used": 3,
+    "n_2q_gates_total": 7,
+    "worst_raw_edge_error_on_bfs_path": 0.014919502282319308,
+    "worst_t1_on_bfs_path": 0.0002387001918524563,
+    "aer_ground_truth": 0.928466796875,
+    "v4_1_prediction": 0.9230870396508845,
+    "gap": 0.0053797572241155445,
+    "runtime_s": 2.49
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      59,
+      78
+    ],
+    "logical_pairs": [
+      [
+        59,
+        78
+      ]
+    ],
+    "bfs_hop_distance": 4,
+    "n_real_edges_used": 4,
+    "n_2q_gates_total": 10,
+    "worst_raw_edge_error_on_bfs_path": 0.007731650573851945,
+    "worst_t1_on_bfs_path": 0.00022879595524938841,
+    "aer_ground_truth": 0.935546875,
+    "v4_1_prediction": 0.9324192022318868,
+    "gap": 0.00312767276811321,
+    "runtime_s": 2.86
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      30,
+      45
+    ],
+    "logical_pairs": [
+      [
+        30,
+        45
+      ]
+    ],
+    "bfs_hop_distance": 6,
+    "n_real_edges_used": 6,
+    "n_2q_gates_total": 16,
+    "worst_raw_edge_error_on_bfs_path": 0.023940844660705507,
+    "worst_t1_on_bfs_path": 0.00022217743196100196,
+    "aer_ground_truth": 0.8519287109375,
+    "v4_1_prediction": 0.8444959897668478,
+    "gap": 0.00743272117065219,
+    "runtime_s": 3.83
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      4,
+      34
+    ],
+    "logical_pairs": [
+      [
+        4,
+        34
+      ]
+    ],
+    "bfs_hop_distance": 5,
+    "n_real_edges_used": 5,
+    "n_2q_gates_total": 13,
+    "worst_raw_edge_error_on_bfs_path": 0.01994202941922424,
+    "worst_t1_on_bfs_path": 0.00011059051310535338,
+    "aer_ground_truth": 0.8154296875,
+    "v4_1_prediction": 0.798239447889369,
+    "gap": 0.017190239610631042,
+    "runtime_s": 3.67
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      8,
+      44
+    ],
+    "logical_pairs": [
+      [
+        8,
+        44
+      ]
+    ],
+    "bfs_hop_distance": 7,
+    "n_real_edges_used": 7,
+    "n_2q_gates_total": 19,
+    "worst_raw_edge_error_on_bfs_path": 0.019673884817254017,
+    "worst_t1_on_bfs_path": 0.00013824687653823698,
+    "aer_ground_truth": 0.79351806640625,
+    "v4_1_prediction": 0.7948566954990037,
+    "gap": 0.0013386290927537292,
+    "runtime_s": 4.86
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      2,
+      6
+    ],
+    "logical_pairs": [
+      [
+        2,
+        6
+      ]
+    ],
+    "bfs_hop_distance": 4,
+    "n_real_edges_used": 4,
+    "n_2q_gates_total": 10,
+    "worst_raw_edge_error_on_bfs_path": 0.010012484974233293,
+    "worst_t1_on_bfs_path": 0.00017275909991425791,
+    "aer_ground_truth": 0.5015869140625,
+    "v4_1_prediction": 0.9105332903080467,
+    "gap": 0.40894637624554675,
+    "runtime_s": 2.74
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      50,
+      74
+    ],
+    "logical_pairs": [
+      [
+        50,
+        74
+      ]
+    ],
+    "bfs_hop_distance": 6,
+    "n_real_edges_used": 6,
+    "n_2q_gates_total": 16,
+    "worst_raw_edge_error_on_bfs_path": 0.008617942112713162,
+    "worst_t1_on_bfs_path": 0.00018127809195453833,
+    "aer_ground_truth": 0.8514404296875,
+    "v4_1_prediction": 0.8197054538059048,
+    "gap": 0.03173497588159524,
+    "runtime_s": 3.82
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      28,
+      5
+    ],
+    "logical_pairs": [
+      [
+        28,
+        5
+      ]
+    ],
+    "bfs_hop_distance": 7,
+    "n_real_edges_used": 7,
+    "n_2q_gates_total": 19,
+    "worst_raw_edge_error_on_bfs_path": 0.024145723386242213,
+    "worst_t1_on_bfs_path": 0.00017275909991425791,
+    "aer_ground_truth": 0.50286865234375,
+    "v4_1_prediction": 0.848270737730433,
+    "gap": 0.34540208538668304,
+    "runtime_s": 3.5
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      75,
+      109
+    ],
+    "logical_pairs": [
+      [
+        75,
+        109
+      ]
+    ],
+    "bfs_hop_distance": 5,
+    "n_real_edges_used": 5,
+    "n_2q_gates_total": 13,
+    "worst_raw_edge_error_on_bfs_path": 0.024110089676432467,
+    "worst_t1_on_bfs_path": 0.00022634879072995666,
+    "aer_ground_truth": 0.913330078125,
+    "v4_1_prediction": 0.9102365209589316,
+    "gap": 0.003093557166068406,
+    "runtime_s": 3.04
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      22,
+      40
+    ],
+    "logical_pairs": [
+      [
+        22,
+        40
+      ]
+    ],
+    "bfs_hop_distance": 5,
+    "n_real_edges_used": 5,
+    "n_2q_gates_total": 13,
+    "worst_raw_edge_error_on_bfs_path": 0.009819558723137167,
+    "worst_t1_on_bfs_path": 0.00032407470321102873,
+    "aer_ground_truth": 0.9072265625,
+    "v4_1_prediction": 0.8891176861449418,
+    "gap": 0.0181088763550582,
+    "runtime_s": 3.18
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      110,
+      104
+    ],
+    "logical_pairs": [
+      [
+        110,
+        104
+      ]
+    ],
+    "bfs_hop_distance": 5,
+    "n_real_edges_used": 5,
+    "n_2q_gates_total": 13,
+    "worst_raw_edge_error_on_bfs_path": 0.007666633104996878,
+    "worst_t1_on_bfs_path": 0.00013252953230862786,
+    "aer_ground_truth": 0.941162109375,
+    "v4_1_prediction": 0.924036730967696,
+    "gap": 0.017125378407303993,
+    "runtime_s": 3.21
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      113,
+      63
+    ],
+    "logical_pairs": [
+      [
+        113,
+        63
+      ]
+    ],
+    "bfs_hop_distance": 12,
+    "n_real_edges_used": 12,
+    "n_2q_gates_total": 34,
+    "worst_raw_edge_error_on_bfs_path": 0.013125555666023414,
+    "worst_t1_on_bfs_path": 0.0001469928637936869,
+    "aer_ground_truth": 0.8304443359375,
+    "v4_1_prediction": 0.8185775967320008,
+    "gap": 0.011866739205499188,
+    "runtime_s": 7.74
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      86,
+      91
+    ],
+    "logical_pairs": [
+      [
+        86,
+        91
+      ]
+    ],
+    "bfs_hop_distance": 8,
+    "n_real_edges_used": 8,
+    "n_2q_gates_total": 22,
+    "worst_raw_edge_error_on_bfs_path": 0.01918331990734612,
+    "worst_t1_on_bfs_path": 0.0001469928637936869,
+    "aer_ground_truth": 0.49737548828125,
+    "v4_1_prediction": 0.4247701028866252,
+    "gap": 0.0726053853946248,
+    "runtime_s": 5.45
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      74,
+      28
+    ],
+    "logical_pairs": [
+      [
+        74,
+        28
+      ]
+    ],
+    "bfs_hop_distance": 9,
+    "n_real_edges_used": 9,
+    "n_2q_gates_total": 25,
+    "worst_raw_edge_error_on_bfs_path": 0.01219428314209653,
+    "worst_t1_on_bfs_path": 0.00018127809195453833,
+    "aer_ground_truth": 0.84320068359375,
+    "v4_1_prediction": 0.8115616083880506,
+    "gap": 0.03163907520569942,
+    "runtime_s": 4.64
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      51,
+      112
+    ],
+    "logical_pairs": [
+      [
+        51,
+        112
+      ]
+    ],
+    "bfs_hop_distance": 15,
+    "n_real_edges_used": 15,
+    "n_2q_gates_total": 43,
+    "worst_raw_edge_error_on_bfs_path": 0.030667210494451147,
+    "worst_t1_on_bfs_path": 0.00014966741484017624,
+    "aer_ground_truth": 0.766357421875,
+    "v4_1_prediction": 0.725406361081237,
+    "gap": 0.04095106079376298,
+    "runtime_s": 10.35
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      11,
+      22
+    ],
+    "logical_pairs": [
+      [
+        11,
+        22
+      ]
+    ],
+    "bfs_hop_distance": 9,
+    "n_real_edges_used": 9,
+    "n_2q_gates_total": 25,
+    "worst_raw_edge_error_on_bfs_path": 0.11735762347185197,
+    "worst_t1_on_bfs_path": 0.00017275909991425791,
+    "aer_ground_truth": 0.48858642578125,
+    "v4_1_prediction": 0.7721707784132941,
+    "gap": 0.28358435263204407,
+    "runtime_s": 6.84
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      48,
+      23
+    ],
+    "logical_pairs": [
+      [
+        48,
+        23
+      ]
+    ],
+    "bfs_hop_distance": 8,
+    "n_real_edges_used": 8,
+    "n_2q_gates_total": 22,
+    "worst_raw_edge_error_on_bfs_path": 0.024145723386242213,
+    "worst_t1_on_bfs_path": 0.00011059051310535338,
+    "aer_ground_truth": 0.8240966796875,
+    "v4_1_prediction": 0.8027168969998276,
+    "gap": 0.021379782687672377,
+    "runtime_s": 4.59
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      50,
+      71
+    ],
+    "logical_pairs": [
+      [
+        50,
+        71
+      ]
+    ],
+    "bfs_hop_distance": 14,
+    "n_real_edges_used": 14,
+    "n_2q_gates_total": 40,
+    "worst_raw_edge_error_on_bfs_path": 0.023940844660705507,
+    "worst_t1_on_bfs_path": 0.00021627588978017566,
+    "aer_ground_truth": 0.81634521484375,
+    "v4_1_prediction": 0.7851415635419431,
+    "gap": 0.03120365130180691,
+    "runtime_s": 13.04
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      46,
+      14
+    ],
+    "logical_pairs": [
+      [
+        46,
+        14
+      ]
+    ],
+    "bfs_hop_distance": 12,
+    "n_real_edges_used": 12,
+    "n_2q_gates_total": 34,
+    "worst_raw_edge_error_on_bfs_path": 0.023940844660705507,
+    "worst_t1_on_bfs_path": 0.00011059051310535338,
+    "aer_ground_truth": 0.741455078125,
+    "v4_1_prediction": 0.7180298086374083,
+    "gap": 0.023425269487591716,
+    "runtime_s": 7.59
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      42,
+      68
+    ],
+    "logical_pairs": [
+      [
+        42,
+        68
+      ]
+    ],
+    "bfs_hop_distance": 9,
+    "n_real_edges_used": 9,
+    "n_2q_gates_total": 25,
+    "worst_raw_edge_error_on_bfs_path": 0.023940844660705507,
+    "worst_t1_on_bfs_path": 0.00021627588978017566,
+    "aer_ground_truth": 0.8416748046875,
+    "v4_1_prediction": 0.8268207837392733,
+    "gap": 0.014854020948226743,
+    "runtime_s": 4.76
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      111,
+      49
+    ],
+    "logical_pairs": [
+      [
+        111,
+        49
+      ]
+    ],
+    "bfs_hop_distance": 13,
+    "n_real_edges_used": 13,
+    "n_2q_gates_total": 37,
+    "worst_raw_edge_error_on_bfs_path": 0.030667210494451147,
+    "worst_t1_on_bfs_path": 0.00016771136230027628,
+    "aer_ground_truth": 0.86663818359375,
+    "v4_1_prediction": 0.827829608310005,
+    "gap": 0.03880857528374504,
+    "runtime_s": 7.14
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      83,
+      8
+    ],
+    "logical_pairs": [
+      [
+        83,
+        8
+      ]
+    ],
+    "bfs_hop_distance": 16,
+    "n_real_edges_used": 16,
+    "n_2q_gates_total": 46,
+    "worst_raw_edge_error_on_bfs_path": 0.019673884817254017,
+    "worst_t1_on_bfs_path": 0.00013824687653823698,
+    "aer_ground_truth": 0.507080078125,
+    "v4_1_prediction": 0.7312623477683032,
+    "gap": 0.22418226964330323,
+    "runtime_s": 9.44
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      123,
+      15
+    ],
+    "logical_pairs": [
+      [
+        123,
+        15
+      ]
+    ],
+    "bfs_hop_distance": 22,
+    "n_real_edges_used": 22,
+    "n_2q_gates_total": 64,
+    "worst_raw_edge_error_on_bfs_path": 0.01918331990734612,
+    "worst_t1_on_bfs_path": 0.00016771136230027628,
+    "aer_ground_truth": 0.72650146484375,
+    "v4_1_prediction": 0.678685423633503,
+    "gap": 0.04781604121024696,
+    "runtime_s": 15.12
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      116,
+      44
+    ],
+    "logical_pairs": [
+      [
+        116,
+        44
+      ]
+    ],
+    "bfs_hop_distance": 17,
+    "n_real_edges_used": 17,
+    "n_2q_gates_total": 49,
+    "worst_raw_edge_error_on_bfs_path": 0.013125555666023414,
+    "worst_t1_on_bfs_path": 7.321640665178645e-05,
+    "aer_ground_truth": 0.78582763671875,
+    "v4_1_prediction": 0.755925593798474,
+    "gap": 0.029902042920275984,
+    "runtime_s": 11.21
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      103,
+      19
+    ],
+    "logical_pairs": [
+      [
+        103,
+        19
+      ]
+    ],
+    "bfs_hop_distance": 16,
+    "n_real_edges_used": 16,
+    "n_2q_gates_total": 46,
+    "worst_raw_edge_error_on_bfs_path": 0.01918331990734612,
+    "worst_t1_on_bfs_path": 0.0002016005662716495,
+    "aer_ground_truth": 0.816162109375,
+    "v4_1_prediction": 0.8019421261083172,
+    "gap": 0.014219983266682834,
+    "runtime_s": 9.45
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      30,
+      90
+    ],
+    "logical_pairs": [
+      [
+        30,
+        90
+      ]
+    ],
+    "bfs_hop_distance": 19,
+    "n_real_edges_used": 19,
+    "n_2q_gates_total": 55,
+    "worst_raw_edge_error_on_bfs_path": 0.024145723386242213,
+    "worst_t1_on_bfs_path": 0.00013824687653823698,
+    "aer_ground_truth": 0.79705810546875,
+    "v4_1_prediction": 0.7509385326549001,
+    "gap": 0.04611957281384993,
+    "runtime_s": 15.43
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      100,
+      16
+    ],
+    "logical_pairs": [
+      [
+        100,
+        16
+      ]
+    ],
+    "bfs_hop_distance": 19,
+    "n_real_edges_used": 19,
+    "n_2q_gates_total": 55,
+    "worst_raw_edge_error_on_bfs_path": 0.019673884817254017,
+    "worst_t1_on_bfs_path": 0.00013252953230862786,
+    "aer_ground_truth": 0.51715087890625,
+    "v4_1_prediction": 0.3161820499569942,
+    "gap": 0.20096882894925577,
+    "runtime_s": 11.9
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      38,
+      121
+    ],
+    "logical_pairs": [
+      [
+        38,
+        121
+      ]
+    ],
+    "bfs_hop_distance": 18,
+    "n_real_edges_used": 18,
+    "n_2q_gates_total": 52,
+    "worst_raw_edge_error_on_bfs_path": 0.1168008787547794,
+    "worst_t1_on_bfs_path": 0.00010624371349403595,
+    "aer_ground_truth": 0.48321533203125,
+    "v4_1_prediction": 0.7418976921720846,
+    "gap": 0.25868236014083457,
+    "runtime_s": 9.51
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      75,
+      126
+    ],
+    "logical_pairs": [
+      [
+        75,
+        126
+      ]
+    ],
+    "bfs_hop_distance": 18,
+    "n_real_edges_used": 18,
+    "n_2q_gates_total": 52,
+    "worst_raw_edge_error_on_bfs_path": 0.01918331990734612,
+    "worst_t1_on_bfs_path": 0.0001469928637936869,
+    "aer_ground_truth": 0.81329345703125,
+    "v4_1_prediction": 0.7620815451300651,
+    "gap": 0.0512119119011849,
+    "runtime_s": 12.06
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      69,
+      109
+    ],
+    "logical_pairs": [
+      [
+        69,
+        109
+      ]
+    ],
+    "bfs_hop_distance": 16,
+    "n_real_edges_used": 16,
+    "n_2q_gates_total": 46,
+    "worst_raw_edge_error_on_bfs_path": 0.014919502282319308,
+    "worst_t1_on_bfs_path": 7.321640665178645e-05,
+    "aer_ground_truth": 0.6904296875,
+    "v4_1_prediction": 0.6187239421194682,
+    "gap": 0.07170574538053176,
+    "runtime_s": 15.56
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      49,
+      90
+    ],
+    "logical_pairs": [
+      [
+        49,
+        90
+      ]
+    ],
+    "bfs_hop_distance": 17,
+    "n_real_edges_used": 17,
+    "n_2q_gates_total": 49,
+    "worst_raw_edge_error_on_bfs_path": 0.024110089676432467,
+    "worst_t1_on_bfs_path": 0.00021627588978017566,
+    "aer_ground_truth": 0.78948974609375,
+    "v4_1_prediction": 0.751265682408908,
+    "gap": 0.03822406368484199,
+    "runtime_s": 17.24
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "pairs_flat": [
+      6,
+      120
+    ],
+    "logical_pairs": [
+      [
+        6,
+        120
+      ]
+    ],
+    "bfs_hop_distance": 26,
+    "n_real_edges_used": 26,
+    "n_2q_gates_total": 76,
+    "worst_raw_edge_error_on_bfs_path": 0.1168008787547794,
+    "worst_t1_on_bfs_path": 0.00010624371349403595,
+    "aer_ground_truth": 0.68829345703125,
+    "v4_1_prediction": 0.6246210550084649,
+    "gap": 0.06367240202278512,
+    "runtime_s": 18.6
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "ghz",
+    "pairs_flat": [
+      113,
+      100,
+      26
+    ],
+    "logical_pairs": [
+      [
+        113,
+        100
+      ],
+      [
+        113,
+        26
+      ]
+    ],
+    "bfs_hop_distance": 21,
+    "n_real_edges_used": 23,
+    "n_2q_gates_total": 65,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.7315673828125,
+    "v4_1_prediction": 0.5755435896633241,
+    "gap": 0.15602379314917592,
+    "runtime_s": 20.96
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "ghz",
+    "pairs_flat": [
+      108,
+      113,
+      94
+    ],
+    "logical_pairs": [
+      [
+        108,
+        113
+      ],
+      [
+        108,
+        94
+      ]
+    ],
+    "bfs_hop_distance": 15,
+    "n_real_edges_used": 17,
+    "n_2q_gates_total": 47,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.81158447265625,
+    "v4_1_prediction": 0.5929306486689866,
+    "gap": 0.2186538239872634,
+    "runtime_s": 12.6
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "ghz",
+    "pairs_flat": [
+      46,
+      5,
+      99
+    ],
+    "logical_pairs": [
+      [
+        46,
+        5
+      ],
+      [
+        46,
+        99
+      ]
+    ],
+    "bfs_hop_distance": 12,
+    "n_real_edges_used": 21,
+    "n_2q_gates_total": 59,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.6986083984375,
+    "v4_1_prediction": 0.5485783304262979,
+    "gap": 0.1500300680112021,
+    "runtime_s": 18.52
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "ghz",
+    "pairs_flat": [
+      99,
+      110,
+      56
+    ],
+    "logical_pairs": [
+      [
+        99,
+        110
+      ],
+      [
+        99,
+        56
+      ]
+    ],
+    "bfs_hop_distance": 9,
+    "n_real_edges_used": 11,
+    "n_2q_gates_total": 29,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.44091796875,
+    "v4_1_prediction": 0.609633128159302,
+    "gap": 0.16871515940930204,
+    "runtime_s": 5.67
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "ghz",
+    "pairs_flat": [
+      23,
+      55,
+      110
+    ],
+    "logical_pairs": [
+      [
+        23,
+        55
+      ],
+      [
+        23,
+        110
+      ]
+    ],
+    "bfs_hop_distance": 18,
+    "n_real_edges_used": 23,
+    "n_2q_gates_total": 65,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.66131591796875,
+    "v4_1_prediction": 0.4936568434245959,
+    "gap": 0.16765907454415407,
+    "runtime_s": 17.64
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "ghz",
+    "pairs_flat": [
+      17,
+      119,
+      38
+    ],
+    "logical_pairs": [
+      [
+        17,
+        119
+      ],
+      [
+        17,
+        38
+      ]
+    ],
+    "bfs_hop_distance": 22,
+    "n_real_edges_used": 29,
+    "n_2q_gates_total": 83,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.714599609375,
+    "v4_1_prediction": 0.4746090082968692,
+    "gap": 0.2399906010781308,
+    "runtime_s": 51.27
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "ghz",
+    "pairs_flat": [
+      87,
+      3,
+      103
+    ],
+    "logical_pairs": [
+      [
+        87,
+        3
+      ],
+      [
+        87,
+        103
+      ]
+    ],
+    "bfs_hop_distance": 17,
+    "n_real_edges_used": 22,
+    "n_2q_gates_total": 68,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.2479248046875,
+    "v4_1_prediction": 0.2462308148343378,
+    "gap": 0.0016939898531621866,
+    "runtime_s": 21.51
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "ghz",
+    "pairs_flat": [
+      14,
+      19,
+      124
+    ],
+    "logical_pairs": [
+      [
+        14,
+        19
+      ],
+      [
+        14,
+        124
+      ]
+    ],
+    "bfs_hop_distance": 23,
+    "n_real_edges_used": 23,
+    "n_2q_gates_total": 66,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.40118408203125,
+    "v4_1_prediction": 0.542338770557088,
+    "gap": 0.141154688525838,
+    "runtime_s": 12.75
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "ghz",
+    "pairs_flat": [
+      116,
+      1,
+      17
+    ],
+    "logical_pairs": [
+      [
+        116,
+        1
+      ],
+      [
+        116,
+        17
+      ]
+    ],
+    "bfs_hop_distance": 25,
+    "n_real_edges_used": 36,
+    "n_2q_gates_total": 107,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.66656494140625,
+    "v4_1_prediction": 0.44288605055959024,
+    "gap": 0.22367889084665976,
+    "runtime_s": 65.04
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "ghz",
+    "pairs_flat": [
+      116,
+      38,
+      19
+    ],
+    "logical_pairs": [
+      [
+        116,
+        38
+      ],
+      [
+        116,
+        19
+      ]
+    ],
+    "bfs_hop_distance": 21,
+    "n_real_edges_used": 21,
+    "n_2q_gates_total": 69,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.45233154296875,
+    "v4_1_prediction": 0.31175254675601516,
+    "gap": 0.14057899621273484,
+    "runtime_s": 18.19
+  }
+]

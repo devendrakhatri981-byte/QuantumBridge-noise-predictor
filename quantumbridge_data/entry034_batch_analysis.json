@@ -1,0 +1,268 @@
+{
+  "total_circuits": 116,
+  "bell_circuits": 96,
+  "ghz_circuits": 20,
+  "chips": {
+    "kyiv": 55,
+    "sherbrooke": 61
+  },
+  "overall_mean_gap_pts": 6.484077715834086,
+  "overall_median_gap_pts": 2.1588327026049625,
+  "overall_worst_gap_pts": 40.894637624554676,
+  "gap_by_hop_distance_bin": [
+    {
+      "bin": "1-1",
+      "chip": "kyiv",
+      "n": 5,
+      "mean_gap": 0.10766948819028732,
+      "median_gap": 0.10570644858814982,
+      "worst_gap": 0.20339570028324871
+    },
+    {
+      "bin": "1-1",
+      "chip": "sherbrooke",
+      "n": 10,
+      "mean_gap": 0.22293637254531928,
+      "median_gap": 0.21451553267837764,
+      "worst_gap": 0.3736386038933448
+    },
+    {
+      "bin": "2-3",
+      "chip": "kyiv",
+      "n": 10,
+      "mean_gap": 3.4531771218624976,
+      "median_gap": 0.8521608303758033,
+      "worst_gap": 27.035711165261368
+    },
+    {
+      "bin": "2-3",
+      "chip": "sherbrooke",
+      "n": 10,
+      "mean_gap": 4.641861014980218,
+      "median_gap": 1.0378866104358675,
+      "worst_gap": 38.51241157618605
+    },
+    {
+      "bin": "4-7",
+      "chip": "kyiv",
+      "n": 10,
+      "mean_gap": 1.5606718453655943,
+      "median_gap": 1.4134504945982673,
+      "worst_gap": 3.7867522714210344
+    },
+    {
+      "bin": "4-7",
+      "chip": "sherbrooke",
+      "n": 10,
+      "mean_gap": 8.535005120844058,
+      "median_gap": 1.7157809008967517,
+      "worst_gap": 40.894637624554676
+    },
+    {
+      "bin": "8-15",
+      "chip": "kyiv",
+      "n": 10,
+      "mean_gap": 3.481088652230612,
+      "median_gap": 3.404707469909124,
+      "worst_gap": 10.851839225357828
+    },
+    {
+      "bin": "8-15",
+      "chip": "sherbrooke",
+      "n": 10,
+      "mean_gap": 5.703179129406733,
+      "median_gap": 3.1421363253753167,
+      "worst_gap": 28.358435263204406
+    },
+    {
+      "bin": "16-25",
+      "chip": "kyiv",
+      "n": 10,
+      "mean_gap": 4.454611107566789,
+      "median_gap": 4.425320646825936,
+      "worst_gap": 6.524305875022208
+    },
+    {
+      "bin": "16-25",
+      "chip": "sherbrooke",
+      "n": 10,
+      "mean_gap": 9.83032819911008,
+      "median_gap": 4.9513976555715935,
+      "worst_gap": 25.868236014083458
+    },
+    {
+      "bin": "26-999",
+      "chip": "sherbrooke",
+      "n": 1,
+      "mean_gap": 6.367240202278513,
+      "median_gap": 6.367240202278513,
+      "worst_gap": 6.367240202278513
+    }
+  ],
+  "corr_gap_vs_hop_distance": 0.19537140630847574,
+  "corr_gap_vs_worst_edge_error": 0.13781137288266843,
+  "corr_gap_vs_worst_t1": -0.30123891684099785,
+  "short_route_floor_collapse_outliers": [
+    {
+      "chip": "kyiv",
+      "kind": "bell",
+      "pairs_flat": [
+        97,
+        114
+      ],
+      "logical_pairs": [
+        [
+          97,
+          114
+        ]
+      ],
+      "bfs_hop_distance": 3,
+      "n_real_edges_used": 3,
+      "n_2q_gates_total": 7,
+      "worst_raw_edge_error_on_bfs_path": 0.18576175191569186,
+      "worst_t1_on_bfs_path": 0.00013848014827677615,
+      "aer_ground_truth": 0.49505615234375,
+      "v4_1_prediction": 0.48996712472346304,
+      "gap": 0.005089027620286957,
+      "runtime_s": 2.5
+    },
+    {
+      "chip": "kyiv",
+      "kind": "bell",
+      "pairs_flat": [
+        95,
+        72
+      ],
+      "logical_pairs": [
+        [
+          95,
+          72
+        ]
+      ],
+      "bfs_hop_distance": 8,
+      "n_real_edges_used": 8,
+      "n_2q_gates_total": 22,
+      "worst_raw_edge_error_on_bfs_path": 0.01669863042419867,
+      "worst_t1_on_bfs_path": 5.021048881124914e-06,
+      "aer_ground_truth": 0.50030517578125,
+      "v4_1_prediction": 0.6088235680348283,
+      "gap": 0.10851839225357829,
+      "runtime_s": 4.37
+    },
+    {
+      "chip": "sherbrooke",
+      "kind": "bell",
+      "pairs_flat": [
+        3,
+        6
+      ],
+      "logical_pairs": [
+        [
+          3,
+          6
+        ]
+      ],
+      "bfs_hop_distance": 3,
+      "n_real_edges_used": 3,
+      "n_2q_gates_total": 7,
+      "worst_raw_edge_error_on_bfs_path": 0.010012484974233293,
+      "worst_t1_on_bfs_path": 0.00017275909991425791,
+      "aer_ground_truth": 0.49993896484375,
+      "v4_1_prediction": 0.8850630806056105,
+      "gap": 0.38512411576186045,
+      "runtime_s": 2.51
+    },
+    {
+      "chip": "sherbrooke",
+      "kind": "bell",
+      "pairs_flat": [
+        2,
+        6
+      ],
+      "logical_pairs": [
+        [
+          2,
+          6
+        ]
+      ],
+      "bfs_hop_distance": 4,
+      "n_real_edges_used": 4,
+      "n_2q_gates_total": 10,
+      "worst_raw_edge_error_on_bfs_path": 0.010012484974233293,
+      "worst_t1_on_bfs_path": 0.00017275909991425791,
+      "aer_ground_truth": 0.5015869140625,
+      "v4_1_prediction": 0.9105332903080467,
+      "gap": 0.40894637624554675,
+      "runtime_s": 2.74
+    },
+    {
+      "chip": "sherbrooke",
+      "kind": "bell",
+      "pairs_flat": [
+        28,
+        5
+      ],
+      "logical_pairs": [
+        [
+          28,
+          5
+        ]
+      ],
+      "bfs_hop_distance": 7,
+      "n_real_edges_used": 7,
+      "n_2q_gates_total": 19,
+      "worst_raw_edge_error_on_bfs_path": 0.024145723386242213,
+      "worst_t1_on_bfs_path": 0.00017275909991425791,
+      "aer_ground_truth": 0.50286865234375,
+      "v4_1_prediction": 0.848270737730433,
+      "gap": 0.34540208538668304,
+      "runtime_s": 3.5
+    },
+    {
+      "chip": "sherbrooke",
+      "kind": "bell",
+      "pairs_flat": [
+        86,
+        91
+      ],
+      "logical_pairs": [
+        [
+          86,
+          91
+        ]
+      ],
+      "bfs_hop_distance": 8,
+      "n_real_edges_used": 8,
+      "n_2q_gates_total": 22,
+      "worst_raw_edge_error_on_bfs_path": 0.01918331990734612,
+      "worst_t1_on_bfs_path": 0.0001469928637936869,
+      "aer_ground_truth": 0.49737548828125,
+      "v4_1_prediction": 0.4247701028866252,
+      "gap": 0.0726053853946248,
+      "runtime_s": 5.45
+    },
+    {
+      "chip": "sherbrooke",
+      "kind": "bell",
+      "pairs_flat": [
+        11,
+        22
+      ],
+      "logical_pairs": [
+        [
+          11,
+          22
+        ]
+      ],
+      "bfs_hop_distance": 9,
+      "n_real_edges_used": 9,
+      "n_2q_gates_total": 25,
+      "worst_raw_edge_error_on_bfs_path": 0.11735762347185197,
+      "worst_t1_on_bfs_path": 0.00017275909991425791,
+      "aer_ground_truth": 0.48858642578125,
+      "v4_1_prediction": 0.7721707784132941,
+      "gap": 0.28358435263204407,
+      "runtime_s": 6.84
+    }
+  ]
+}
