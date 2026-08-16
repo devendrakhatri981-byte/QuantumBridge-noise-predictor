@@ -1,0 +1,21 @@
+{
+  "chip": "sherbrooke",
+  "circuit": "bell_far_0_126",
+  "n_edges": 26,
+  "gate_error": {
+    "predicted": 0.8451,
+    "aer": 0.83282470703125
+  },
+  "decoherence": {
+    "predicted": 0.8644,
+    "aer": 0.897216796875
+  },
+  "readout": {
+    "predicted": 0.9590631723403931,
+    "aer": 0.95703125
+  },
+  "naive_product_predicted": 0.7005999056351423,
+  "naive_product_aer_isolated": 0.7151170211727731,
+  "real_combined_aer": 0.4951,
+  "verdict": "Every individual channel formula is verified correct (largest gap 3.3 points, on decoherence). But multiplying even Aer's own perfectly isolated per-channel results together overshoots the real combined result by 22 points. This is Entry 029's channel-independence finding, confirmed on a second, unrelated route (25 SWAP legs here, vs. one catastrophic-T1 qubit on Kyiv's bell_near_77_82). Not a formula bug -- a structural limit of multiplicative channel composition, general enough now to treat as a known property rather than chase further this session."
+}

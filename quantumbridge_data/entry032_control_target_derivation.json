@@ -1,0 +1,43 @@
+{
+  "chip": "sherbrooke",
+  "p_target_leg1": 0.0034699998496582896,
+  "p_target_leg2": 0.0040762133584472116,
+  "p_final": 0.004645537844357506,
+  "target_survive": 0.9924679312516355,
+  "predicted": 0.9939286919588475,
+  "control_sweep_results": [
+    {
+      "p_control": 0.01,
+      "aer": 0.992889404296875,
+      "predicted": 0.9939286919588475,
+      "diff_pts": -0.10392876619724767
+    },
+    {
+      "p_control": 0.05,
+      "aer": 0.992889404296875,
+      "predicted": 0.9939286919588475,
+      "diff_pts": -0.10392876619724767
+    },
+    {
+      "p_control": 0.1168,
+      "aer": 0.992889404296875,
+      "predicted": 0.9939286919588475,
+      "diff_pts": -0.10392876619724767
+    },
+    {
+      "p_control": 0.3,
+      "aer": 0.992889404296875,
+      "predicted": 0.9939286919588475,
+      "diff_pts": -0.10392876619724767
+    },
+    {
+      "p_control": 0.6,
+      "aer": 0.992889404296875,
+      "predicted": 0.9939286919588475,
+      "diff_pts": -0.10392876619724767
+    }
+  ],
+  "spread_pts": 0.0,
+  "mean_abs_diff_pts": 0.10392876619724767,
+  "verdict": "Aer's result varies by only 0.0000 points as the control-side edge error is swept from 1% to 60% -- confirming the derivation: control-side routing survival has no measurable effect on final success. The control-independent closed form matches to within 0.104 points on average. Shipped in exact_dwell_cost() for single-pair circuits."
+}

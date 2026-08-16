@@ -67,11 +67,33 @@ def exact_dwell_cost(logical_circuit, backend, graph, coh, pairs, measured_qubit
 
     loc = {q: q for pair in pairs for q in pair}  # logical -> current physical
     pending = list(pairs)
-    survive = 1.0   # depolarizing-channel survival product (Entry 027)
     other = 1.0      # decoherence / SQ-gate / readout, ordinary probabilities
     notes = []
     swap_legs = 0
     dwell_log = []  # (physical_qubit, duration, dephasing) for the writeup
+
+    # Entry 032: for a single-pair circuit (a plain Bell prep -- 4 of the 5
+    # circuits in every reference set used so far), the transpiler routes
+    # BOTH qubits toward each other BEFORE creating any entanglement (Entry
+    # 031) -- there is exactly one real entangling gate, at the end. pairs[0]
+    # is (control, target) where control is whichever qubit the logical
+    # circuit applies H to first (see build() below) and target starts
+    # |0>. Entry 032 derives and verifies (via Kraus operators and an Aer
+    # sweep showing zero sensitivity to the control edge's error, 1%-60%)
+    # that the CONTROL qubit's pre-entanglement routing survival has NO
+    # effect on final {00,11} success -- corrupting a classical-basis
+    # qubit before it controls a clean CX/ECR still produces a correlated
+    # (if randomized) pair. Only the TARGET's routing survival and the
+    # final entangling gate's own error matter. This does not extend
+    # cleanly to multi-pair (GHZ-style) circuits, where later gates act on
+    # already-entangled qubits -- those keep the old floor-based model.
+    single_pair = len(pairs) == 1
+    if single_pair:
+        control_logical, target_logical = pairs[0]
+        target_survive = 1.0
+        final_raw = None
+    else:
+        survive = 1.0   # depolarizing-channel survival product (Entry 027)
 
     for inst in t.data:
         op = inst.operation
@@ -97,7 +119,13 @@ def exact_dwell_cost(logical_circuit, backend, graph, coh, pairs, measured_qubit
             # absorbing-state closed form (Entry 025) -- Entry 026 found no
             # residual chip physics beyond that baseline.
             raw = edge_error(graph, p, q)
-            survive *= (1 - raw) ** v4.GATES_PER_SWAP
+            if single_pair:
+                if loc[target_logical] in (p, q):
+                    target_survive *= (1 - raw) ** v4.GATES_PER_SWAP
+                # else: this leg is on the control's path -- Entry 032 found
+                # its gate error does not affect final success. Not charged.
+            else:
+                survive *= (1 - raw) ** v4.GATES_PER_SWAP
 
             # SECOND BUG FOUND, ENTRY 028: a SWAP exchanges the contents of
             # TWO physical qubits, but on every route in this project only
@@ -140,7 +168,10 @@ def exact_dwell_cost(logical_circuit, backend, graph, coh, pairs, measured_qubit
             a, b = pair
             if {loc.get(a), loc.get(b)} == {p, q}:
                 raw = edge_error(graph, p, q)
-                survive *= (1 - raw)
+                if single_pair:
+                    final_raw = raw
+                else:
+                    survive *= (1 - raw)
                 other *= (1 - v4.dephasing(coh, p, d)) * (1 - v4.dephasing(coh, q, d))
                 if not is_calibrated(p, q):
                     notes.append(f"uncalibrated entangling edge ({p},{q})")
@@ -155,8 +186,25 @@ def exact_dwell_cost(logical_circuit, backend, graph, coh, pairs, measured_qubit
                   and inst.operation.name not in ("measure", "barrier"))
     other *= (1 - v4.SQ_GATE_COST) ** sq_gates
 
-    floor = v4.ideal_set_floor(len(measured_qubits))
-    success = (floor + (1 - floor) * survive) * other
+    if single_pair:
+        # Entry 032 closed form: success = target_survive*(1 - final_raw/2)
+        #                                  + (1-target_survive)*0.5
+        # Derived via Kraus operators on the final entangling gate: if the
+        # target arrived clean (prob target_survive), the pair is a genuine
+        # Bell state and only the final gate's OWN depolarizing risk can
+        # hurt it (Entry 025's single-gate closed form, 1 - p/2). If the
+        # target arrived corrupted (prob 1-target_survive, now maximally
+        # mixed), combining it with a clean control via any 2-qubit gate
+        # yields exactly a 50/50 mixture of the two "good" and "bad" Bell
+        # bases regardless of the final gate's own error -- the floor,
+        # unconditionally. In the no-routing limit (target_survive=1) this
+        # reduces exactly to Entry 025's 0.5 + 0.5*(1-p) for a single gate.
+        gate_success = target_survive * (1 - 0.5 * (final_raw or 0.0)) \
+            + (1 - target_survive) * 0.5
+    else:
+        floor = v4.ideal_set_floor(len(measured_qubits))
+        gate_success = floor + (1 - floor) * survive
+    success = gate_success * other
 
     for lq in measured_qubits:
         phys = loc.get(lq, lq)
