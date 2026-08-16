@@ -1,0 +1,44 @@
+[
+  {
+    "chip": "sherbrooke",
+    "a": 3,
+    "b": 6,
+    "n_edges": 3,
+    "n_2q_gates": 7,
+    "aer_gate_only": 0.977294921875,
+    "aer_decoherence_only": 0.977294921875,
+    "aer_readout_only": 0.9193115234375,
+    "naive_product_of_isolated": 0.8780393675187952,
+    "real_combined_aer": 0.49993896484375,
+    "v4_1_prediction": 0.8850630806056105,
+    "gap_naive_product_vs_real": 0.3781004026750452
+  },
+  {
+    "chip": "sherbrooke",
+    "a": 40,
+    "b": 56,
+    "n_edges": 5,
+    "n_2q_gates": 13,
+    "aer_gate_only": 0.93292236328125,
+    "aer_decoherence_only": 0.845703125,
+    "aer_readout_only": 0.9075927734375,
+    "naive_product_of_isolated": 0.7160683333495399,
+    "real_combined_aer": 0.506591796875,
+    "v4_1_prediction": 0.8192952465435929,
+    "gap_naive_product_vs_real": 0.2094765364745399
+  },
+  {
+    "chip": "kyiv",
+    "a": 95,
+    "b": 72,
+    "n_edges": 8,
+    "n_2q_gates": 22,
+    "aer_gate_only": 0.903564453125,
+    "aer_decoherence_only": 0.7149658203125,
+    "aer_readout_only": 0.99365234375,
+    "naive_product_of_isolated": 0.6419170021399623,
+    "real_combined_aer": 0.50030517578125,
+    "v4_1_prediction": 0.6088235680348283,
+    "gap_naive_product_vs_real": 0.14161182635871228
+  }
+]
