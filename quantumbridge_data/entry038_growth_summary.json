@@ -1,0 +1,30 @@
+{
+  "entry034_035_n": 238,
+  "entry038_new_n": 320,
+  "combined_n": 558,
+  "floor_collapse_n_before": 12,
+  "floor_collapse_n_after": 37,
+  "kyiv_short_route_rate_pct_before": 3.1,
+  "sherbrooke_short_route_rate_pct_before": 14.5,
+  "kyiv_short_route_rate_pct_after": 6.1,
+  "sherbrooke_short_route_rate_pct_after": 12.5,
+  "note": "Rate ratio narrowed from an unstable 4.7x (n=134) to a more reliable 2.05x (n=396) with more data -- the early estimate was noisy from a small sample, not wrong in direction.",
+  "ml_baseline_before": {
+    "v41_mae_all": 6.29,
+    "v41_mae_fc": 20.85,
+    "gb_mae_all": 6.48,
+    "gb_mae_fc": 16.21,
+    "rf_mae_all": 6.39,
+    "rf_mae_fc": 18.81,
+    "n_fc": 12
+  },
+  "ml_baseline_after": {
+    "v41_mae_all": 4.6,
+    "v41_mae_fc": 18.2,
+    "gb_mae_all": 4.57,
+    "gb_mae_fc": 14.79,
+    "rf_mae_all": 4.36,
+    "rf_mae_fc": 15.34,
+    "n_fc": 37
+  }
+}
