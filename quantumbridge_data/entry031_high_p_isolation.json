@@ -1,0 +1,102 @@
+{
+  "chip": "sherbrooke",
+  "edge": [
+    57,
+    58
+  ],
+  "raw_calibrated_error": 0.1168008787547794,
+  "shots": 8192,
+  "seeds": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "gate_counts": [
+    1,
+    3,
+    5,
+    9,
+    13,
+    21,
+    33,
+    51,
+    75
+  ],
+  "results": [
+    {
+      "n": 1,
+      "aer": 0.93994140625,
+      "naive": 0.8831991212452206,
+      "closed_form": 0.9415995606226103,
+      "diff_naive_pts": 5.67422850047794,
+      "diff_closed_pts": -0.16581543726102987
+    },
+    {
+      "n": 3,
+      "aer": 0.840667724609375,
+      "naive": 0.6889312499725064,
+      "closed_form": 0.8444656249862532,
+      "diff_naive_pts": 15.173647463686857,
+      "diff_closed_pts": -0.3797900376878216
+    },
+    {
+      "n": 5,
+      "aer": 0.767547607421875,
+      "naive": 0.5373944060536491,
+      "closed_form": 0.7686972030268245,
+      "diff_naive_pts": 23.01532013682259,
+      "diff_closed_pts": -0.11495956049495382
+    },
+    {
+      "n": 9,
+      "aer": 0.66290283203125,
+      "naive": 0.32698486752408223,
+      "closed_form": 0.6634924337620411,
+      "diff_naive_pts": 33.59179645071678,
+      "diff_closed_pts": -0.0589601730791145
+    },
+    {
+      "n": 13,
+      "aer": 0.59808349609375,
+      "naive": 0.1989583486268513,
+      "closed_form": 0.5994791743134257,
+      "diff_naive_pts": 39.91251474668987,
+      "diff_closed_pts": -0.13956782196756778
+    },
+    {
+      "n": 21,
+      "aer": 0.536224365234375,
+      "naive": 0.07365991168202059,
+      "closed_form": 0.5368299558410103,
+      "diff_naive_pts": 46.25644535523544,
+      "diff_closed_pts": -0.060559060663534225
+    },
+    {
+      "n": 33,
+      "aer": 0.50775146484375,
+      "naive": 0.016593375192212732,
+      "closed_form": 0.5082966875961064,
+      "diff_naive_pts": 49.11580896515373,
+      "diff_closed_pts": -0.054522275235635576
+    },
+    {
+      "n": 51,
+      "aer": 0.49981689453125,
+      "naive": 0.0017741488010796418,
+      "closed_form": 0.5008870744005398,
+      "diff_naive_pts": 49.80427457301704,
+      "diff_closed_pts": -0.10701798692898112
+    },
+    {
+      "n": 75,
+      "aer": 0.498809814453125,
+      "naive": 9.003204621070336e-05,
+      "closed_form": 0.5000450160231054,
+      "diff_naive_pts": 49.871978240691426,
+      "diff_closed_pts": -0.12352015699803598
+    }
+  ],
+  "mean_abs_closed_form_error_pts": 0.1338569455907416,
+  "verdict": "MATCH: the closed-form baseline (0.5 + 0.5*(1-p)^n) still holds at p=11.68% to within 0.13 points on average -- the formula is NOT the source of Entry 030's bell_near_57_61 gap. The 83.5%-vs-98.71% mismatch found there must come from something else: how the isolated single-edge result combines with the rest of the route (the SWAP-power-3 compounding, or an interaction with decoherence/readout), not from the baseline formula breaking down at high p in isolation."
+}

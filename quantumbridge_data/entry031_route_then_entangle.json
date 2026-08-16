@@ -1,0 +1,27 @@
+{
+  "chip": "sherbrooke",
+  "route_edges": {
+    "p1": 0.1168008787547794,
+    "p2": 0.0034699998496582896,
+    "p3": 0.0040762133584472116,
+    "p4": 0.004645537844357506
+  },
+  "old_model_closed_form_prediction": 0.9362373866958553,
+  "toy1_wrong_structure": {
+    "ideal_counts": {
+      "01": 2063,
+      "00": 2033
+    },
+    "aer": 0.50323486328125
+  },
+  "toy2_correct_structure": {
+    "ideal_counts": {
+      "11": 2063,
+      "00": 2033
+    },
+    "aer": 0.992889404296875
+  },
+  "real_route_gate_error_only_aer": 0.987060546875,
+  "real_route_gate_error_only_predicted": 0.8351761475375721,
+  "verdict": "The correct-structure toy (Toy 2) under-predicts by +5.67 points -- same direction and comparable scale to the real bell_near_57_61 route's gate-error-only gap (+15.19 points, Entry 030/031). The wrong-structure toy (Toy 1) shows this is not a small effect: getting the entanglement timing wrong doesn't shift the prediction slightly, it inverts it (-43.30 points). CONCLUSION: every gate-error model since Entry 023 assumes every SWAP carries an already-entangled payload. Real transpiled circuits for these Bell/GHZ preparations route qubits into position FIRST and entangle LAST -- most SWAP legs on a long route are moving unentangled product-state information, which is measurably less vulnerable to depolarizing damage than the model assumes. This is the real cause of the persistent over-prediction on long routes (bell_mid, bell_far, and now bell_near_57_61) across every chip tested. Not fixed in this entry -- the correct closed form for a pre-entanglement SWAP needs its own derivation, left for Entry 032."
+}
