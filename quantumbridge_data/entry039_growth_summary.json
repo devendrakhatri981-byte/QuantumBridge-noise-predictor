@@ -1,0 +1,32 @@
+{
+  "entry038_combined_n": 558,
+  "entry039_new_n": 232,
+  "combined_n": 790,
+  "floor_collapse_n_before": 37,
+  "floor_collapse_n_after": 47,
+  "kyiv_short_route_rate_pct_before": 6.1,
+  "sherbrooke_short_route_rate_pct_before": 12.5,
+  "kyiv_short_route_rate_pct_after": 6.0,
+  "sherbrooke_short_route_rate_pct_after": 11.6,
+  "ratio_before": 2.05,
+  "ratio_after": 1.93,
+  "ml_baseline_before": {
+    "v41_mae_all": 4.6,
+    "v41_mae_fc": 18.2,
+    "gb_mae_all": 4.57,
+    "gb_mae_fc": 14.79,
+    "rf_mae_all": 4.36,
+    "rf_mae_fc": 15.34,
+    "n_fc": 37
+  },
+  "ml_baseline_after": {
+    "v41_mae_all": 4.68,
+    "v41_mae_fc": 17.59,
+    "gb_mae_all": 4.52,
+    "gb_mae_fc": 14.07,
+    "rf_mae_all": 4.5,
+    "rf_mae_fc": 15.7,
+    "n_fc": 47
+  },
+  "note": "Ratio and ML advantage have now stabilized across two independent growth rounds (558->790) -- both are converging rather than drifting, a good sign the estimates are becoming reliable."
+}
