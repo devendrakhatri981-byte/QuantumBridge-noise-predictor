@@ -1,0 +1,34 @@
+{
+  "entry039_combined_n": 790,
+  "entry040_new_n": 586,
+  "combined_n": 1376,
+  "floor_collapse_n_before": 47,
+  "floor_collapse_n_after": 70,
+  "kyiv_short_route_rate_pct_before": 6.0,
+  "sherbrooke_short_route_rate_pct_before": 11.6,
+  "kyiv_short_route_rate_pct_after": 5.7,
+  "sherbrooke_short_route_rate_pct_after": 9.3,
+  "ratio_before": 1.93,
+  "ratio_after": 1.63,
+  "ml_baseline_before": {
+    "v41_mae_all": 4.68,
+    "v41_mae_fc": 17.59,
+    "gb_mae_all": 4.52,
+    "gb_mae_fc": 14.07,
+    "rf_mae_all": 4.5,
+    "rf_mae_fc": 15.7,
+    "cv_r2_gb": 0.725,
+    "n_fc": 47
+  },
+  "ml_baseline_after": {
+    "v41_mae_all": 4.5,
+    "v41_mae_fc": 17.01,
+    "gb_mae_all": 3.92,
+    "gb_mae_fc": 13.78,
+    "rf_mae_all": 4.0,
+    "rf_mae_fc": 15.45,
+    "cv_r2_gb": 0.785,
+    "n_fc": 70
+  },
+  "note": "Contrary to Entry 039s plateau read, this round of growth (790->1376) moved the numbers again: GB CV R2 rose from 0.725 to 0.785 and overall MAE improved 4.52->3.92 -- more data is still helping, the plateau was premature."
+}
