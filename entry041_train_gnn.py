@@ -34,6 +34,8 @@ import optax
 
 MAX_N, MAX_E = 40, 40
 IN_PATH = "quantumbridge_data/entry041_graph_dataset.json"
+FOLD_CKPT_OVERRIDE = None
+RESULTS_PATH_OVERRIDE = None
 
 raw = json.load(open(IN_PATH))
 
