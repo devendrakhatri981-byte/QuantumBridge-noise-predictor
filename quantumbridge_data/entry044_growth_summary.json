@@ -1,0 +1,24 @@
+{
+  "baseline_2288_old_features": {
+    "cv_mae": 2.17,
+    "cv_r2": 0.869,
+    "mae_fc": 6.07,
+    "n_features_node": 3,
+    "n_features_edge": 2
+  },
+  "same_2288_new_features": {
+    "cv_mae": 1.05,
+    "cv_r2": 0.976,
+    "mae_fc": 1.34,
+    "n_features_node": 6,
+    "n_features_edge": 4
+  },
+  "new_features": [
+    "T1/T2 ratio per node",
+    "is_control role flag",
+    "is_target role flag",
+    "normalized route position per edge",
+    "is_final_entangling_gate flag per edge"
+  ],
+  "verdict": "Adding 3 targeted features (derived directly from Entries 032 and 034/036 findings) on the exact same 2288 circuits cut CV MAE by 52% and floor-collapse MAE by 78%, far outpacing anything volume growth achieved (1376->2198, a 60% data increase, only cut floor-collapse MAE by 15%). Confirms feature engineering was the higher-leverage move."
+}
