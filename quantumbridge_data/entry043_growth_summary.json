@@ -1,0 +1,21 @@
+{
+  "n_1376": {
+    "cv_mae": 2.64,
+    "cv_r2": 0.868,
+    "mae_fc": 6.22,
+    "n_fc": 70
+  },
+  "n_2198": {
+    "cv_mae": 2.04,
+    "cv_r2": 0.881,
+    "mae_fc": 5.31,
+    "n_fc": 112
+  },
+  "n_2288": {
+    "cv_mae": 2.17,
+    "cv_r2": 0.869,
+    "mae_fc": 6.07,
+    "n_fc": 117
+  },
+  "verdict": "The 1376->2198 jump (+60%) showed clear improvement. The 2198->2288 jump (+4%) showed a small REGRESSION in both metrics -- but this increment is too small relative to normal neural-net training variance (different random fold splits, different init per fold) to call a real plateau. Distinguishing signal from noise at this scale would need either a bigger increment or averaging multiple training seeds per checkpoint."
+}
