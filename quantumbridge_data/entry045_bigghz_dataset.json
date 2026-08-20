@@ -1,0 +1,1094 @@
+[
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      101,
+      118,
+      7,
+      97
+    ],
+    "logical_pairs": [
+      [
+        101,
+        118
+      ],
+      [
+        101,
+        7
+      ],
+      [
+        101,
+        97
+      ]
+    ],
+    "n_logical_qubits": 4,
+    "bfs_hop_distance": 20,
+    "n_real_edges_used": 28,
+    "n_2q_gates_total": 81,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.27069091796875,
+    "v4_1_prediction": 0.20737332342389683,
+    "gap": 0.06331759454485317,
+    "runtime_s": 24.76
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      97,
+      25,
+      110,
+      120
+    ],
+    "logical_pairs": [
+      [
+        97,
+        25
+      ],
+      [
+        97,
+        110
+      ],
+      [
+        97,
+        120
+      ]
+    ],
+    "n_logical_qubits": 4,
+    "bfs_hop_distance": 16,
+    "n_real_edges_used": 22,
+    "n_2q_gates_total": 67,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.46087646484375,
+    "v4_1_prediction": 0.22207464336980098,
+    "gap": 0.23880182147394902,
+    "runtime_s": 23.04
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      11,
+      71,
+      115,
+      48
+    ],
+    "logical_pairs": [
+      [
+        11,
+        71
+      ],
+      [
+        11,
+        115
+      ],
+      [
+        11,
+        48
+      ]
+    ],
+    "n_logical_qubits": 4,
+    "bfs_hop_distance": 24,
+    "n_real_edges_used": 36,
+    "n_2q_gates_total": 106,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.35784912109375,
+    "v4_1_prediction": 0.13479235090348748,
+    "gap": 0.22305677019026252,
+    "runtime_s": 60.67
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      74,
+      25,
+      26,
+      94
+    ],
+    "logical_pairs": [
+      [
+        74,
+        25
+      ],
+      [
+        74,
+        26
+      ],
+      [
+        74,
+        94
+      ]
+    ],
+    "n_logical_qubits": 4,
+    "bfs_hop_distance": 17,
+    "n_real_edges_used": 27,
+    "n_2q_gates_total": 83,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.63775634765625,
+    "v4_1_prediction": 0.3526275898769118,
+    "gap": 0.2851287577793382,
+    "runtime_s": 36.38
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      82,
+      125,
+      121,
+      25
+    ],
+    "logical_pairs": [
+      [
+        82,
+        125
+      ],
+      [
+        82,
+        121
+      ],
+      [
+        82,
+        25
+      ]
+    ],
+    "n_logical_qubits": 4,
+    "bfs_hop_distance": 12,
+    "n_real_edges_used": 23,
+    "n_2q_gates_total": 84,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.20745849609375,
+    "v4_1_prediction": 0.1296507089025925,
+    "gap": 0.0778077871911575,
+    "runtime_s": 21.97
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      5,
+      24,
+      57,
+      51
+    ],
+    "logical_pairs": [
+      [
+        5,
+        24
+      ],
+      [
+        5,
+        57
+      ],
+      [
+        5,
+        51
+      ]
+    ],
+    "n_logical_qubits": 4,
+    "bfs_hop_distance": 13,
+    "n_real_edges_used": 24,
+    "n_2q_gates_total": 75,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.42633056640625,
+    "v4_1_prediction": 0.2679273647731556,
+    "gap": 0.1584032016330944,
+    "runtime_s": 40.53
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      45,
+      120,
+      36,
+      103,
+      112
+    ],
+    "logical_pairs": [
+      [
+        45,
+        120
+      ],
+      [
+        45,
+        36
+      ],
+      [
+        45,
+        103
+      ],
+      [
+        45,
+        112
+      ]
+    ],
+    "n_logical_qubits": 5,
+    "bfs_hop_distance": 16,
+    "n_real_edges_used": 32,
+    "n_2q_gates_total": 97,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.3077392578125,
+    "v4_1_prediction": 0.21259126950886348,
+    "gap": 0.09514798830363652,
+    "runtime_s": 53.91
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      26,
+      105,
+      118,
+      101
+    ],
+    "logical_pairs": [
+      [
+        26,
+        105
+      ],
+      [
+        26,
+        118
+      ],
+      [
+        26,
+        101
+      ]
+    ],
+    "n_logical_qubits": 4,
+    "bfs_hop_distance": 20,
+    "n_real_edges_used": 25,
+    "n_2q_gates_total": 72,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.61688232421875,
+    "v4_1_prediction": 0.2974554227459831,
+    "gap": 0.3194269014727669,
+    "runtime_s": 35.72
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      48,
+      62,
+      106,
+      26
+    ],
+    "logical_pairs": [
+      [
+        48,
+        62
+      ],
+      [
+        48,
+        106
+      ],
+      [
+        48,
+        26
+      ]
+    ],
+    "n_logical_qubits": 4,
+    "bfs_hop_distance": 11,
+    "n_real_edges_used": 19,
+    "n_2q_gates_total": 66,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.5802001953125,
+    "v4_1_prediction": 0.3541651001371405,
+    "gap": 0.22603509517535952,
+    "runtime_s": 24.0
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      56,
+      65,
+      0,
+      113
+    ],
+    "logical_pairs": [
+      [
+        56,
+        65
+      ],
+      [
+        56,
+        0
+      ],
+      [
+        56,
+        113
+      ]
+    ],
+    "n_logical_qubits": 4,
+    "bfs_hop_distance": 13,
+    "n_real_edges_used": 30,
+    "n_2q_gates_total": 96,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.2542724609375,
+    "v4_1_prediction": 0.19401368192013146,
+    "gap": 0.060258779017368536,
+    "runtime_s": 32.33
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      57,
+      33,
+      100,
+      50,
+      54
+    ],
+    "logical_pairs": [
+      [
+        57,
+        33
+      ],
+      [
+        57,
+        100
+      ],
+      [
+        57,
+        50
+      ],
+      [
+        57,
+        54
+      ]
+    ],
+    "n_logical_qubits": 5,
+    "bfs_hop_distance": 14,
+    "n_real_edges_used": 28,
+    "n_2q_gates_total": 82,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.42462158203125,
+    "v4_1_prediction": 0.22956539585185295,
+    "gap": 0.19505618617939705,
+    "runtime_s": 39.53
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      120,
+      83,
+      81,
+      74,
+      88
+    ],
+    "logical_pairs": [
+      [
+        120,
+        83
+      ],
+      [
+        120,
+        81
+      ],
+      [
+        120,
+        74
+      ],
+      [
+        120,
+        88
+      ]
+    ],
+    "n_logical_qubits": 5,
+    "bfs_hop_distance": 11,
+    "n_real_edges_used": 17,
+    "n_2q_gates_total": 50,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.6590576171875,
+    "v4_1_prediction": 0.3879151501817405,
+    "gap": 0.2711424670057595,
+    "runtime_s": 19.02
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      32,
+      108,
+      6,
+      67
+    ],
+    "logical_pairs": [
+      [
+        32,
+        108
+      ],
+      [
+        32,
+        6
+      ],
+      [
+        32,
+        67
+      ]
+    ],
+    "n_logical_qubits": 4,
+    "bfs_hop_distance": 16,
+    "n_real_edges_used": 27,
+    "n_2q_gates_total": 87,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.5712890625,
+    "v4_1_prediction": 0.3384803540914701,
+    "gap": 0.2328087084085299,
+    "runtime_s": 30.96
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      57,
+      12,
+      113,
+      76
+    ],
+    "logical_pairs": [
+      [
+        57,
+        12
+      ],
+      [
+        57,
+        113
+      ],
+      [
+        57,
+        76
+      ]
+    ],
+    "n_logical_qubits": 4,
+    "bfs_hop_distance": 17,
+    "n_real_edges_used": 28,
+    "n_2q_gates_total": 87,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.2886962890625,
+    "v4_1_prediction": 0.1907884791677945,
+    "gap": 0.09790780989470549,
+    "runtime_s": 27.37
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      32,
+      117,
+      33,
+      69
+    ],
+    "logical_pairs": [
+      [
+        32,
+        117
+      ],
+      [
+        32,
+        33
+      ],
+      [
+        32,
+        69
+      ]
+    ],
+    "n_logical_qubits": 4,
+    "bfs_hop_distance": 19,
+    "n_real_edges_used": 31,
+    "n_2q_gates_total": 99,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.52752685546875,
+    "v4_1_prediction": 0.2712047594026189,
+    "gap": 0.2563220960661311,
+    "runtime_s": 42.88
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      101,
+      121,
+      62,
+      71
+    ],
+    "logical_pairs": [
+      [
+        101,
+        121
+      ],
+      [
+        101,
+        62
+      ],
+      [
+        101,
+        71
+      ]
+    ],
+    "n_logical_qubits": 4,
+    "bfs_hop_distance": 8,
+    "n_real_edges_used": 17,
+    "n_2q_gates_total": 45,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.12322998046875,
+    "v4_1_prediction": 0.2754721583839929,
+    "gap": 0.15224217791524292,
+    "runtime_s": 10.4
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      72,
+      83,
+      125,
+      62
+    ],
+    "logical_pairs": [
+      [
+        72,
+        83
+      ],
+      [
+        72,
+        125
+      ],
+      [
+        72,
+        62
+      ]
+    ],
+    "n_logical_qubits": 4,
+    "bfs_hop_distance": 12,
+    "n_real_edges_used": 13,
+    "n_2q_gates_total": 46,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.66070556640625,
+    "v4_1_prediction": 0.4820875504412332,
+    "gap": 0.1786180159650168,
+    "runtime_s": 8.3
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      38,
+      97,
+      46,
+      120
+    ],
+    "logical_pairs": [
+      [
+        38,
+        97
+      ],
+      [
+        38,
+        46
+      ],
+      [
+        38,
+        120
+      ]
+    ],
+    "n_logical_qubits": 4,
+    "bfs_hop_distance": 17,
+    "n_real_edges_used": 26,
+    "n_2q_gates_total": 111,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.35302734375,
+    "v4_1_prediction": 0.18433501210234846,
+    "gap": 0.16869233164765154,
+    "runtime_s": 67.62
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      29,
+      12,
+      100,
+      51
+    ],
+    "logical_pairs": [
+      [
+        29,
+        12
+      ],
+      [
+        29,
+        100
+      ],
+      [
+        29,
+        51
+      ]
+    ],
+    "n_logical_qubits": 4,
+    "bfs_hop_distance": 17,
+    "n_real_edges_used": 22,
+    "n_2q_gates_total": 63,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.46734619140625,
+    "v4_1_prediction": 0.31258478684870067,
+    "gap": 0.15476140455754933,
+    "runtime_s": 15.7
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      81,
+      91,
+      86,
+      114,
+      118
+    ],
+    "logical_pairs": [
+      [
+        81,
+        91
+      ],
+      [
+        81,
+        86
+      ],
+      [
+        81,
+        114
+      ],
+      [
+        81,
+        118
+      ]
+    ],
+    "n_logical_qubits": 5,
+    "bfs_hop_distance": 8,
+    "n_real_edges_used": 17,
+    "n_2q_gates_total": 52,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.112060546875,
+    "v4_1_prediction": 0.1216643409495186,
+    "gap": 0.009603794074518598,
+    "runtime_s": 11.1
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      71,
+      34,
+      90,
+      45,
+      57
+    ],
+    "logical_pairs": [
+      [
+        71,
+        34
+      ],
+      [
+        71,
+        90
+      ],
+      [
+        71,
+        45
+      ],
+      [
+        71,
+        57
+      ]
+    ],
+    "n_logical_qubits": 5,
+    "bfs_hop_distance": 9,
+    "n_real_edges_used": 15,
+    "n_2q_gates_total": 61,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.58197021484375,
+    "v4_1_prediction": 0.4271876157848739,
+    "gap": 0.1547825990588761,
+    "runtime_s": 29.71
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      93,
+      123,
+      57,
+      48,
+      15,
+      98
+    ],
+    "logical_pairs": [
+      [
+        93,
+        123
+      ],
+      [
+        93,
+        57
+      ],
+      [
+        93,
+        48
+      ],
+      [
+        93,
+        15
+      ],
+      [
+        93,
+        98
+      ]
+    ],
+    "n_logical_qubits": 6,
+    "bfs_hop_distance": 16,
+    "n_real_edges_used": 37,
+    "n_2q_gates_total": 122,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.11029052734375,
+    "v4_1_prediction": 0.07333382538669775,
+    "gap": 0.03695670195705225,
+    "runtime_s": 92.06
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      101,
+      40,
+      81,
+      30,
+      97,
+      64
+    ],
+    "logical_pairs": [
+      [
+        101,
+        40
+      ],
+      [
+        101,
+        81
+      ],
+      [
+        101,
+        30
+      ],
+      [
+        101,
+        97
+      ],
+      [
+        101,
+        64
+      ]
+    ],
+    "n_logical_qubits": 6,
+    "bfs_hop_distance": 17,
+    "n_real_edges_used": 27,
+    "n_2q_gates_total": 98,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.13104248046875,
+    "v4_1_prediction": 0.0896274396538954,
+    "gap": 0.0414150408148546,
+    "runtime_s": 45.97
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      119,
+      90,
+      22,
+      75,
+      77,
+      103
+    ],
+    "logical_pairs": [
+      [
+        119,
+        90
+      ],
+      [
+        119,
+        22
+      ],
+      [
+        119,
+        75
+      ],
+      [
+        119,
+        77
+      ],
+      [
+        119,
+        103
+      ]
+    ],
+    "n_logical_qubits": 6,
+    "bfs_hop_distance": 21,
+    "n_real_edges_used": 31,
+    "n_2q_gates_total": 105,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.47509765625,
+    "v4_1_prediction": 0.2287812184723695,
+    "gap": 0.2463164377776305,
+    "runtime_s": 107.11
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      93,
+      123,
+      57,
+      48,
+      15,
+      98,
+      101
+    ],
+    "logical_pairs": [
+      [
+        93,
+        123
+      ],
+      [
+        93,
+        57
+      ],
+      [
+        93,
+        48
+      ],
+      [
+        93,
+        15
+      ],
+      [
+        93,
+        98
+      ],
+      [
+        93,
+        101
+      ]
+    ],
+    "n_logical_qubits": 7,
+    "bfs_hop_distance": 16,
+    "n_real_edges_used": 38,
+    "n_2q_gates_total": 135,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.097412109375,
+    "v4_1_prediction": 0.050475546340491444,
+    "gap": 0.046936563034508556,
+    "runtime_s": 40.37
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      93,
+      123,
+      57,
+      48,
+      15,
+      98,
+      101,
+      40
+    ],
+    "logical_pairs": [
+      [
+        93,
+        123
+      ],
+      [
+        93,
+        57
+      ],
+      [
+        93,
+        48
+      ],
+      [
+        93,
+        15
+      ],
+      [
+        93,
+        98
+      ],
+      [
+        93,
+        101
+      ],
+      [
+        93,
+        40
+      ]
+    ],
+    "n_logical_qubits": 8,
+    "bfs_hop_distance": 16,
+    "n_real_edges_used": 41,
+    "n_2q_gates_total": 154,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.067138671875,
+    "v4_1_prediction": 0.03704803208593018,
+    "gap": 0.03009063978906982,
+    "runtime_s": 155.1
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "ghz",
+    "pairs_flat": [
+      78,
+      74,
+      31,
+      96,
+      77,
+      105
+    ],
+    "logical_pairs": [
+      [
+        78,
+        74
+      ],
+      [
+        78,
+        31
+      ],
+      [
+        78,
+        96
+      ],
+      [
+        78,
+        77
+      ],
+      [
+        78,
+        105
+      ]
+    ],
+    "n_logical_qubits": 6,
+    "bfs_hop_distance": 16,
+    "n_real_edges_used": 41,
+    "n_2q_gates_total": 128,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.4892578125,
+    "v4_1_prediction": 0.24996037242581232,
+    "gap": 0.23929744007418768,
+    "runtime_s": 41.67
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "ghz",
+    "pairs_flat": [
+      4,
+      35,
+      85,
+      73,
+      80,
+      10,
+      44
+    ],
+    "logical_pairs": [
+      [
+        4,
+        35
+      ],
+      [
+        4,
+        85
+      ],
+      [
+        4,
+        73
+      ],
+      [
+        4,
+        80
+      ],
+      [
+        4,
+        10
+      ],
+      [
+        4,
+        44
+      ]
+    ],
+    "n_logical_qubits": 7,
+    "bfs_hop_distance": 15,
+    "n_real_edges_used": 28,
+    "n_2q_gates_total": 111,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.24267578125,
+    "v4_1_prediction": 0.13968422843491224,
+    "gap": 0.10299155281508776,
+    "runtime_s": 70.01
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "ghz",
+    "pairs_flat": [
+      30,
+      4,
+      49,
+      92,
+      8,
+      7,
+      15,
+      6
+    ],
+    "logical_pairs": [
+      [
+        30,
+        4
+      ],
+      [
+        30,
+        49
+      ],
+      [
+        30,
+        92
+      ],
+      [
+        30,
+        8
+      ],
+      [
+        30,
+        7
+      ],
+      [
+        30,
+        15
+      ],
+      [
+        30,
+        6
+      ]
+    ],
+    "n_logical_qubits": 8,
+    "bfs_hop_distance": 15,
+    "n_real_edges_used": 29,
+    "n_2q_gates_total": 103,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.01318359375,
+    "v4_1_prediction": 0.1212229669314616,
+    "gap": 0.1080393731814616,
+    "runtime_s": 18.99
+  }
+]
