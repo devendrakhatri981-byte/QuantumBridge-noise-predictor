@@ -6,3 +6,4 @@ __pycache__/
 .venv/
 quantumbridge_data/entry046_all_pairs.json
 quantumbridge_data/entry046_train_checkpoint.json
+quantumbridge_data/entry047_*_ckpt.json

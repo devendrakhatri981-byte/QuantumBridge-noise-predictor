@@ -1,0 +1,58 @@
+{
+  "cross_kyiv_to_sherbrooke": {
+    "name": "cross_kyiv_to_sherbrooke",
+    "mae": 0.12874481081962585,
+    "r2": 0.03717273473739624,
+    "mae_fc": 0.08202757686376572,
+    "n_test": 781,
+    "n_fc": 50
+  },
+  "cross_sherbrooke_to_kyiv": {
+    "name": "cross_sherbrooke_to_kyiv",
+    "mae": 0.10305935889482498,
+    "r2": 0.373285174369812,
+    "mae_fc": 0.028139954432845116,
+    "n_test": 1536,
+    "n_fc": 67
+  },
+  "ablation_full": {
+    "name": "ablation_full",
+    "mae": 0.01230195164680481,
+    "r2": 0.9765781164169312,
+    "mae_fc": 0.010902252979576588,
+    "n_test": 464,
+    "n_fc": 34
+  },
+  "ablation_no_role": {
+    "name": "ablation_no_role",
+    "mae": 0.01928645372390747,
+    "r2": 0.9328749179840088,
+    "mae_fc": 0.03181133046746254,
+    "n_test": 464,
+    "n_fc": 34
+  },
+  "ablation_no_ratio": {
+    "name": "ablation_no_ratio",
+    "mae": 0.011682488024234772,
+    "r2": 0.9727060794830322,
+    "mae_fc": 0.00946708396077156,
+    "n_test": 464,
+    "n_fc": 34
+  },
+  "ablation_no_routepos": {
+    "name": "ablation_no_routepos",
+    "mae": 0.012036321684718132,
+    "r2": 0.973569393157959,
+    "mae_fc": 0.01015249453485012,
+    "n_test": 464,
+    "n_fc": 34
+  },
+  "ablation_no_mp": {
+    "name": "ablation_no_mp",
+    "mae": 0.02277185581624508,
+    "r2": 0.9196398854255676,
+    "mae_fc": 0.08434606343507767,
+    "n_test": 464,
+    "n_fc": 34
+  }
+}
