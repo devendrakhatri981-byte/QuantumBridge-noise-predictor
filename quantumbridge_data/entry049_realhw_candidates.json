@@ -1,0 +1,161 @@
+[
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "a": 104,
+    "b": 121,
+    "hop": 3,
+    "v4_1": 0.9348,
+    "gnn": 0.4967,
+    "aer_sim": 0.5024,
+    "tag": "floor_collapse"
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "a": 104,
+    "b": 120,
+    "hop": 4,
+    "v4_1": 0.9152,
+    "gnn": 0.5014,
+    "aer_sim": 0.5029,
+    "tag": "floor_collapse"
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "a": 96,
+    "b": 97,
+    "hop": 1,
+    "v4_1": 0.9842,
+    "gnn": 0.9831,
+    "aer_sim": 0.989,
+    "tag": "high_fidelity_adjacent"
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "a": 97,
+    "b": 98,
+    "hop": 1,
+    "v4_1": 0.983,
+    "gnn": 0.9847,
+    "aer_sim": 0.9868,
+    "tag": "high_fidelity_adjacent"
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "a": 61,
+    "b": 85,
+    "hop": 7,
+    "v4_1": 0.8268,
+    "gnn": 0.83,
+    "aer_sim": 0.8527,
+    "tag": "medium_distance"
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "a": 79,
+    "b": 110,
+    "hop": 5,
+    "v4_1": 0.8907,
+    "gnn": 0.9218,
+    "aer_sim": 0.8879,
+    "tag": "medium_distance"
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "a": 81,
+    "b": 84,
+    "hop": 3,
+    "v4_1": 0.9062,
+    "gnn": 0.4899,
+    "aer_sim": 0.4945,
+    "tag": "floor_collapse"
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "a": 2,
+    "b": 6,
+    "hop": 4,
+    "v4_1": 0.9105,
+    "gnn": 0.498,
+    "aer_sim": 0.5016,
+    "tag": "floor_collapse"
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "a": 123,
+    "b": 124,
+    "hop": 1,
+    "v4_1": 0.9793,
+    "gnn": 0.9723,
+    "aer_sim": 0.9817,
+    "tag": "high_fidelity_adjacent"
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "a": 100,
+    "b": 101,
+    "hop": 1,
+    "v4_1": 0.9711,
+    "gnn": 0.968,
+    "aer_sim": 0.9775,
+    "tag": "high_fidelity_adjacent"
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "a": 5,
+    "b": 28,
+    "hop": 7,
+    "v4_1": 0.5986,
+    "gnn": 0.486,
+    "aer_sim": 0.5029,
+    "tag": "medium_distance"
+  },
+  {
+    "chip": "sherbrooke",
+    "kind": "bell",
+    "a": 87,
+    "b": 111,
+    "hop": 5,
+    "v4_1": 0.9176,
+    "gnn": 0.9426,
+    "aer_sim": 0.9456,
+    "tag": "medium_distance"
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "qubits": [
+      101,
+      118,
+      7,
+      97
+    ],
+    "logical_pairs": [
+      [
+        101,
+        118
+      ],
+      [
+        101,
+        7
+      ],
+      [
+        101,
+        97
+      ]
+    ],
+    "v4_1": 0.20737332342389683,
+    "aer_sim": 0.27069091796875,
+    "tag": "small_ghz"
+  }
+]

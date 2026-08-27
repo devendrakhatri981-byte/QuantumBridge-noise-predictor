@@ -7,3 +7,6 @@ __pycache__/
 quantumbridge_data/entry046_all_pairs.json
 quantumbridge_data/entry046_train_checkpoint.json
 quantumbridge_data/entry047_*_ckpt.json
+quantumbridge_data/entry048_*_ckpt.json
+quantumbridge_data/entry049_job_ids.json
+*ibm_token*

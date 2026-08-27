@@ -1,0 +1,15 @@
+{
+  "warm": {
+    "chip": "kyiv_heldout",
+    "mae": 0.008972982876002789,
+    "mean_std": 0.005677232053130865,
+    "corr_std_error": 0.6401665605905883
+  },
+  "cold": {
+    "chip": "sherbrooke_all_unseen",
+    "mae": 0.046256281435489655,
+    "mean_std": 0.015712283551692963,
+    "corr_std_error": 0.4886050442106823
+  },
+  "widening_ratio": 2.7675957679748535
+}

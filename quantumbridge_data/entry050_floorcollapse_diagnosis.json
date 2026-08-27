@@ -1,0 +1,10 @@
+{
+  "kyiv_trained_fc_mean_pred": 0.4973187,
+  "kyiv_trained_fc_mean_real": 0.49780637,
+  "kyiv_trained_fc_corr_v41": 0.08288625340527905,
+  "n_kyiv_fc": 67,
+  "sherbrooke_cold_fc_mean_pred": 0.6153063,
+  "sherbrooke_cold_fc_mean_real": 0.49846923,
+  "sherbrooke_cold_fc_corr_v41": 0.45585013770057764,
+  "n_sherbrooke_fc": 50
+}

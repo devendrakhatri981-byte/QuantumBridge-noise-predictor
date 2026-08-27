@@ -1,0 +1,18 @@
+{
+  "kyiv_to_sherbrooke": {
+    "name": "kyiv_to_sherbrooke",
+    "mae": 0.04591070115566254,
+    "r2": 0.7690483927726746,
+    "mae_fc": 0.09666244685649872,
+    "n_test": 787,
+    "n_fc": 50
+  },
+  "sherbrooke_to_kyiv": {
+    "name": "sherbrooke_to_kyiv",
+    "mae": 0.02956278622150421,
+    "r2": 0.8906899690628052,
+    "mae_fc": 0.041486889123916626,
+    "n_test": 1542,
+    "n_fc": 67
+  }
+}

@@ -1,0 +1,121 @@
+[
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      40,
+      43
+    ],
+    "logical_pairs": [
+      [
+        40,
+        43
+      ]
+    ],
+    "bfs_hop_distance": 3,
+    "n_real_edges_used": 3,
+    "n_2q_gates_total": 7,
+    "worst_raw_edge_error_on_bfs_path": 0.014262369925097718,
+    "worst_t1_on_bfs_path": 0.0002458185923136908,
+    "aer_ground_truth": 0.941650390625,
+    "v4_1_prediction": 0.9611890866591568,
+    "gap": 0.01953869603415681,
+    "runtime_s": 2.71
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      82,
+      73
+    ],
+    "logical_pairs": [
+      [
+        82,
+        73
+      ]
+    ],
+    "bfs_hop_distance": 4,
+    "n_real_edges_used": 4,
+    "n_2q_gates_total": 10,
+    "worst_raw_edge_error_on_bfs_path": 0.019679442853825058,
+    "worst_t1_on_bfs_path": 0.0002658963059899375,
+    "aer_ground_truth": 0.9326171875,
+    "v4_1_prediction": 0.9256028450045323,
+    "gap": 0.007014342495467729,
+    "runtime_s": 2.99
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      91,
+      49
+    ],
+    "logical_pairs": [
+      [
+        91,
+        49
+      ]
+    ],
+    "bfs_hop_distance": 13,
+    "n_real_edges_used": 13,
+    "n_2q_gates_total": 37,
+    "worst_raw_edge_error_on_bfs_path": 0.027768382578170492,
+    "worst_t1_on_bfs_path": 5.021048881124914e-06,
+    "aer_ground_truth": 0.7784423828125,
+    "v4_1_prediction": 0.5412430797422871,
+    "gap": 0.23719930307021286,
+    "runtime_s": 7.32
+  },
+  {
+    "chip": "kyiv",
+    "kind": "bell",
+    "pairs_flat": [
+      94,
+      31
+    ],
+    "logical_pairs": [
+      [
+        94,
+        31
+      ]
+    ],
+    "bfs_hop_distance": 21,
+    "n_real_edges_used": 21,
+    "n_2q_gates_total": 61,
+    "worst_raw_edge_error_on_bfs_path": 0.029311876362206002,
+    "worst_t1_on_bfs_path": 0.00015173940249392655,
+    "aer_ground_truth": 0.501953125,
+    "v4_1_prediction": 0.3863128327661152,
+    "gap": 0.11564029223388478,
+    "runtime_s": 16.24
+  },
+  {
+    "chip": "kyiv",
+    "kind": "ghz",
+    "pairs_flat": [
+      10,
+      18,
+      13
+    ],
+    "logical_pairs": [
+      [
+        10,
+        18
+      ],
+      [
+        10,
+        13
+      ]
+    ],
+    "bfs_hop_distance": 12,
+    "n_real_edges_used": 15,
+    "n_2q_gates_total": 47,
+    "worst_raw_edge_error_on_bfs_path": null,
+    "aer_ground_truth": 0.76104736328125,
+    "v4_1_prediction": 0.6226651324974275,
+    "gap": 0.1383822307838225,
+    "runtime_s": 21.5
+  }
+]

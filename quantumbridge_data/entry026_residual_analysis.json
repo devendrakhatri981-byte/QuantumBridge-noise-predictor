@@ -1,0 +1,151 @@
+{
+  "rows": [
+    {
+      "label": "cairo_017_low",
+      "edge": [
+        24,
+        25
+      ],
+      "raw_error": 0.006,
+      "k_measured": 0.003182283247047331,
+      "k_baseline": 0.002822164031059615,
+      "ratio_measured": 0.5303805411745551,
+      "ratio_baseline": 0.47036067184326913,
+      "residual_ratio": 0.060019869331286,
+      "D": 4.32
+    },
+    {
+      "label": "cairo_019_high",
+      "edge": [
+        19,
+        22
+      ],
+      "raw_error": 0.03132,
+      "k_measured": 0.010451494117980221,
+      "k_baseline": 0.010968226906481979,
+      "ratio_measured": 0.3337003230517312,
+      "ratio_baseline": 0.35019881566034416,
+      "residual_ratio": -0.01649849260861297,
+      "D": 0.31
+    },
+    {
+      "label": "sherbrooke_020_low",
+      "edge": [
+        60,
+        61
+      ],
+      "raw_error": 0.00347,
+      "k_measured": 0.00231265596486669,
+      "k_baseline": 0.0016755812182781453,
+      "ratio_measured": 0.6664714596157608,
+      "ratio_baseline": 0.4828764317804453,
+      "residual_ratio": 0.1835950278353155,
+      "D": 2.34
+    },
+    {
+      "label": "sherbrooke_020_high",
+      "edge": [
+        66,
+        73
+      ],
+      "raw_error": 0.030667,
+      "k_measured": 0.012879243199724126,
+      "k_baseline": 0.010827613515020035,
+      "ratio_measured": 0.4199707568306038,
+      "ratio_baseline": 0.35307051602765305,
+      "residual_ratio": 0.06690024080295076,
+      "D": 9.78
+    },
+    {
+      "label": "kyiv_021_very_low",
+      "edge": [
+        119,
+        120
+      ],
+      "raw_error": 0.003113,
+      "k_measured": 0.0013525841972712928,
+      "k_baseline": 0.0015086886980337263,
+      "ratio_measured": 0.4344954054838718,
+      "ratio_baseline": 0.4846414063712581,
+      "residual_ratio": -0.0501460008873863,
+      "D": 1.12
+    },
+    {
+      "label": "kyiv_021_low",
+      "edge": [
+        28,
+        29
+      ],
+      "raw_error": 0.006013,
+      "k_measured": 0.009562887837239643,
+      "k_baseline": 0.0028278919953479108,
+      "ratio_measured": 1.5903688403857712,
+      "ratio_baseline": 0.47029635711756373,
+      "residual_ratio": 1.1200724832682074,
+      "D": 0.14
+    },
+    {
+      "label": "kyiv_021_mid-low",
+      "edge": [
+        77,
+        78
+      ],
+      "raw_error": 0.00986,
+      "k_measured": 0.005277605527592937,
+      "k_baseline": 0.004449738027570371,
+      "ratio_measured": 0.5352541103035432,
+      "ratio_baseline": 0.45129188920591995,
+      "residual_ratio": 0.08396222109762325,
+      "D": 3.73
+    },
+    {
+      "label": "kyiv_021_mid",
+      "edge": [
+        45,
+        46
+      ],
+      "raw_error": 0.016181,
+      "k_measured": 0.006970892336337507,
+      "k_baseline": 0.006802256435274424,
+      "ratio_measured": 0.4308072638488045,
+      "ratio_baseline": 0.4203854171728832,
+      "residual_ratio": 0.010421846675921331,
+      "D": 1.65
+    },
+    {
+      "label": "kyiv_021_high",
+      "edge": [
+        66,
+        67
+      ],
+      "raw_error": 0.026181,
+      "k_measured": 0.010307376772484588,
+      "k_baseline": 0.009771312365558237,
+      "ratio_measured": 0.3936968325306363,
+      "ratio_baseline": 0.37322151046782925,
+      "residual_ratio": 0.020475322062807055,
+      "D": 4.03
+    },
+    {
+      "label": "kyiv_021_very_high",
+      "edge": [
+        23,
+        24
+      ],
+      "raw_error": 0.043229,
+      "k_measured": 0.012651621843388392,
+      "k_baseline": 0.013007246335287381,
+      "ratio_measured": 0.29266515171270197,
+      "ratio_baseline": 0.3008916776998631,
+      "residual_ratio": -0.008226525987161115,
+      "D": 5.01
+    }
+  ],
+  "usable_mean_residual": 0.05959257168839183,
+  "diagnosis_of_contaminated_outlier": {
+    "finding": "The D-screen prediction only partly held. kyiv(28,29), the most severe case (D=0.14, T2=12.7us), showed a residual of +1.12 -- consistent with large unmodeled decoherence. But cairo(19,22) (D=0.31) and kyiv(119,120) (D=1.12), also decoherence-affected, showed small NEGATIVE residuals instead of the predicted large positive ones.",
+    "cause": "residual_ratio divides by raw calibrated error p. kyiv(28,29)'s p=0.6013% is roughly 5x smaller than cairo(19,22)'s p=3.132%. The same absolute amount of unmodeled decoherence-driven decay, divided by a much smaller denominator, produces a residual an order of magnitude larger -- not because the physics differs by that much, but because the ratio metric is numerically unstable exactly where p is small. This is the same small-denominator fragility that motivated the D-screen in Entry 021, now shown to affect the residual analysis too, independent of whether decoherence contamination is present.",
+    "implication": "Ratio-based metrics (measured/nominal) should not be trusted at low raw error regardless of D. Absolute residuals (measured minus predicted, not divided by p) would be the numerically stable quantity for any future refit."
+  },
+  "verdict": "No clean power-law residual survives on the 7 D-screened usable edges: values range -0.008 to +0.184 with inconsistent sign, mean +0.060, and only 7 points across a 0.35%-4.32% error span. This is most consistent with noise, not a real hardware-physics trend -- meaning Entries 017-021's fitted power law was mostly re-deriving the Entry 025 geometric baseline, not discovering new chip physics on top of it. Recommendation for v4: retire the empirically fit variable_forgiveness_ratio() power law in favor of the closed-form baseline directly; let the already-implemented T2-based decoherence term (Entries 023-024) carry the real physical signal instead of asking a ratio fit to do it implicitly and unstably."
+}
