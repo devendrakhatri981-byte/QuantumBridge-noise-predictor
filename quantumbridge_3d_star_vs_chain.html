@@ -105,15 +105,16 @@ function addRouteTubes(edges, colorHex) {
     const geo = new THREE.TubeGeometry(path, 2, 0.006, 6, false);
     group.add(new THREE.Mesh(geo, mat));
   });
-  scene.add(group);
   return group;
 }
-addRouteTubes(DATA.star.edges, 0xff9c4a);
-addRouteTubes(DATA.chain.edges, 0x4adecb);
+const starTubes = addRouteTubes(DATA.star.edges, 0xff9c4a);
+const chainTubes = addRouteTubes(DATA.chain.edges, 0x4adecb);
 
 const wrapper = new THREE.Group();
 wrapper.add(nodeGroup);
 wrapper.add(baseEdgeGroup);
+wrapper.add(starTubes);
+wrapper.add(chainTubes);
 scene.add(wrapper);
 
 // on-screen qubit-ID labels for the route nodes only (kept to ~113 nodes max,
