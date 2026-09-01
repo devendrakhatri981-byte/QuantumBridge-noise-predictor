@@ -1,0 +1,11 @@
+{
+  "n": 3221,
+  "n_floor_collapse": 189,
+  "max_n_nodes": 67,
+  "max_n_edges": 106,
+  "gnn_cv_mae": 0.010858501307666302,
+  "gnn_cv_r2": 0.9771950840950012,
+  "gnn_cv_mae_floor_collapse": 0.006274078041315079,
+  "v41_mae": 0.038833629339933395,
+  "v41_mae_floor_collapse": 0.16270865499973297
+}

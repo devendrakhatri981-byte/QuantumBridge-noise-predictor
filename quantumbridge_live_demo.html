@@ -160,13 +160,22 @@ function render(row) {
     realEl.textContent = (real*100).toFixed(1) + '%';
   }
   let note = '';
+  const confidentOverride = Math.abs(gnn - v41) > 0.15 && gnnStd < 0.03;
   if (real !== null && real !== undefined && Math.abs(real-0.5) < 0.03 && hop <= 10) {
     note += '<span class="badge floor">floor-collapse case</span> This circuit\'s real success ' +
       'crashed to the 50% measurement floor despite a short route -- exactly the failure mode ' +
       'the closed-form v4.1 model structurally cannot see, and the GNN was built to catch. ';
+  } else if (confidentOverride) {
+    note += '<span class="badge floor">confident override</span> The GNN disagrees with v4.1 by ' +
+      'over 15 points here while reporting tight uncertainty (&plusmn;' + (gnnStd*100).toFixed(1) +
+      '%) -- it is not hedging, it has learned a specific reason to distrust the closed-form ' +
+      'estimate for this pair. ';
   }
   note += 'Route length and prediction shown are from the real Qiskit-transpiled circuit for this ' +
-    'exact pair on this chip -- not an approximation.';
+    'exact pair on this chip -- not an approximation. Validation note: this model was tested with ' +
+    'genuine cross-chip transfer (trained on one chip, evaluated cold on the other) -- accuracy and ' +
+    'uncertainty both hold up, though one transfer direction (Kyiv-trained &rarr; Sherbrooke-tested) ' +
+    'is measurably harder than the reverse; see the research log for the full numbers.';
   document.getElementById('note').innerHTML = note;
 }
 
