@@ -126,10 +126,13 @@
     But the underlying noise data comes from Qiskit's "fake backend" snapshots of real IBM device
     calibration, run through Aer's noise simulator — not live queued jobs on physical hardware.
     Ground truth is only available for the subset of pairs that were actually simulated
-    (about 1,600 of the 16,002 shown here); the rest show model predictions only, clearly marked.
+    (about 2,400 of the 24,003 shown here across all three chips); the rest show model predictions
+    only, clearly marked.
     The &plusmn; range next to the GNN prediction is a genuine uncertainty estimate (MC-Dropout,
-    20 stochastic forward passes per pair) -- it widens on circuit types and chip regions the
-    model is less confident about, not a cosmetic error bar.
+    20 stochastic forward passes per pair) for Kyiv and Sherbrooke -- it widens on circuit types and
+    chip regions the model is less confident about, not a cosmetic error bar. Brisbane predictions
+    come from a separate combined model that was never trained with dropout, so no uncertainty band
+    is shown for it (labeled explicitly in the result panel).
     This is an early-stage academic project (undergraduate research), not a production tool.
     Built with Qiskit, JAX/Optax, and a from-scratch graph neural network.
   </div>
@@ -150,6 +153,7 @@ function findRow(chip, a, b) {
 
 function render(row) {
   document.getElementById('results').style.display = 'grid';
+  const chip = document.getElementById('chip').value;
   const [a,b,hop,nn,ne,v41,gnn,gnnStd,real] = row;
   document.getElementById('r-hop').textContent = hop + ' hop' + (hop===1?'':'s') + ' (' + nn + ' nodes)';
   document.getElementById('r-v41').textContent = (v41*100).toFixed(1) + '%';
@@ -176,10 +180,18 @@ function render(row) {
       'estimate for this pair. ';
   }
   note += 'Route length and prediction shown are from the real Qiskit-transpiled circuit for this ' +
-    'exact pair on this chip -- not an approximation. Validation note: this model was tested with ' +
-    'genuine cross-chip transfer (trained on one chip, evaluated cold on the other) -- accuracy and ' +
-    'uncertainty both hold up, though one transfer direction (Kyiv-trained &rarr; Sherbrooke-tested) ' +
-    'is measurably harder than the reverse; see the research log for the full numbers.';
+    'exact pair on this chip -- not an approximation. ';
+  if (chip === 'brisbane') {
+    note += 'Validation note: Brisbane predictions come from a combined model trained on pooled ' +
+      'data from all three chips (including some Brisbane examples), not a cold zero-shot transfer -- ' +
+      'a true leave-Brisbane-out test showed a real, only partially closed gap; see the research log ' +
+      '(Entries 061-065) for the full numbers.';
+  } else {
+    note += 'Validation note: this model was tested with genuine cross-chip transfer (trained on one ' +
+      'chip, evaluated cold on the other) -- accuracy and uncertainty both hold up, though one ' +
+      'transfer direction (Kyiv-trained &rarr; Sherbrooke-tested) is measurably harder than the ' +
+      'reverse; see the research log for the full numbers.';
+  }
   document.getElementById('note').innerHTML = note;
 }
 
