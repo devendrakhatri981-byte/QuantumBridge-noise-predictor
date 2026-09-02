@@ -22,25 +22,32 @@ import os
 import time
 
 from qiskit import QuantumCircuit
-from qiskit_ibm_runtime.fake_provider import FakeKyiv, FakeSherbrooke
+from qiskit_ibm_runtime.fake_provider import FakeKyiv, FakeSherbrooke, FakeBrisbane
 
 import emulator_v3_routing as em
 import emulator_v4 as v4
 from exact_dwell_routing import exact_dwell_cost
 from entry044_build_graphs import graph_for_record
 
-BACKENDS = {"kyiv": FakeKyiv, "sherbrooke": FakeSherbrooke}
+BACKENDS = {"kyiv": FakeKyiv, "sherbrooke": FakeSherbrooke, "brisbane": FakeBrisbane}
 OUT_PATH = "quantumbridge_data/entry046_all_pairs.json"
 
 
 def load():
     if os.path.exists(OUT_PATH):
-        return json.load(open(OUT_PATH))
-    return {"kyiv": [], "sherbrooke": []}
+        d = json.load(open(OUT_PATH))
+        d.setdefault("brisbane", [])
+        return d
+    return {"kyiv": [], "sherbrooke": [], "brisbane": []}
 
 
 def save(d):
-    json.dump(d, open(OUT_PATH, "w"))
+    # Atomic write -- see entry061_grow_brisbane.py's _atomic_save for why
+    # (a kill mid-write elsewhere in this project corrupted a checkpoint
+    # and destroyed prior progress, not just the in-progress save).
+    tmp = OUT_PATH + ".tmp"
+    json.dump(d, open(tmp, "w"))
+    os.replace(tmp, OUT_PATH)
 
 
 def process(chip, d, time_budget_s=150):

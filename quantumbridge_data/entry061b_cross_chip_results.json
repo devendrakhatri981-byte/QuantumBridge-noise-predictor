@@ -1,0 +1,20 @@
+{
+  "kyiv_sherbrooke_to_brisbane": {
+    "name": "kyiv_sherbrooke_to_brisbane",
+    "mae": 0.05229857936501503,
+    "r2": 0.35412001609802246,
+    "mae_fc": 0.2511295676231384,
+    "n_train": 3241,
+    "n_test": 764,
+    "n_fc": 14
+  },
+  "brisbane_to_kyiv_sherbrooke": {
+    "name": "brisbane_to_kyiv_sherbrooke",
+    "mae": 0.0461929552257061,
+    "r2": 0.7183428406715393,
+    "mae_fc": 0.22850419580936432,
+    "n_train": 764,
+    "n_test": 3241,
+    "n_fc": 190
+  }
+}

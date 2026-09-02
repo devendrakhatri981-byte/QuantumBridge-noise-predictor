@@ -31,13 +31,13 @@ import json
 import os
 
 from qiskit import QuantumCircuit
-from qiskit_ibm_runtime.fake_provider import FakeKyiv, FakeSherbrooke
+from qiskit_ibm_runtime.fake_provider import FakeKyiv, FakeSherbrooke, FakeBrisbane
 
 import emulator_v3_routing as em
 import emulator_v4 as v4
 from exact_dwell_routing import route_with_explicit_swaps
 
-BACKENDS = {"kyiv": FakeKyiv, "sherbrooke": FakeSherbrooke}
+BACKENDS = {"kyiv": FakeKyiv, "sherbrooke": FakeSherbrooke, "brisbane": FakeBrisbane}
 IN_PATH = "quantumbridge_data/entry043_combined_dataset.json"
 OUT_PATH = "quantumbridge_data/entry044_graph_dataset.json"
 
