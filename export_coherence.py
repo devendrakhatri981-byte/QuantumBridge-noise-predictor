@@ -24,6 +24,7 @@ FAKE = {
     "sherbrooke": "FakeSherbrooke",
     "cairo": "FakeCairoV2",
     "brisbane": "FakeBrisbane",
+    "osaka": "FakeOsaka",
 }
 
 
