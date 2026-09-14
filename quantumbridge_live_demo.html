@@ -50,6 +50,8 @@
     margin-left: 6px;
   }
   .badge.floor { background: #3a1f1f; color: #eb9a9a; border-color: #5a2b2b; }
+  .badge.live { background: #1f3a24; color: #9aeba0; border-color: #2b5a35; }
+  .badge.cached { background: #2a2a3a; color: #a8a8d8; border-color: #3a3a5a; }
   .footer { color: var(--muted); font-size: 11.5px; margin-top: 24px; line-height: 1.7; }
   a { color: var(--accent); }
   .stats-strip { display: flex; gap: 22px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin-top: 6px; }
@@ -133,6 +135,10 @@
     error bar, and calibration was checked on a genuine held-out split before deployment.
     This is an early-stage academic project (undergraduate research), not a production tool.
     Built with Qiskit, JAX/Optax, and a from-scratch graph neural network.
+    Each prediction is marked <span class="badge live">live</span> (computed fresh by a real
+    backend, Entry 074) or <span class="badge cached">cached</span> (served from the precomputed
+    table) -- the demo automatically uses the live backend when one is configured and reachable,
+    and falls back to the precomputed table otherwise, so it always works either way.
   </div>
 </div>
 
@@ -149,10 +155,11 @@ function findRow(chip, a, b) {
   return null;
 }
 
-function render(row) {
+function render(row, source) {
   document.getElementById('results').style.display = 'grid';
   const chip = document.getElementById('chip').value;
   const [a,b,hop,nn,ne,v41,gnn,gnnStd,real] = row;
+  window.__lastSource = source || 'cached';
   document.getElementById('r-hop').textContent = hop + ' hop' + (hop===1?'':'s') + ' (' + nn + ' nodes)';
   document.getElementById('r-v41').textContent = (v41*100).toFixed(1) + '%';
   document.getElementById('r-gnn').textContent = (gnn*100).toFixed(1) + '%' + (gnnStd !== null && gnnStd !== undefined ? ' ± ' + (gnnStd*100).toFixed(1) + '%' : '');
@@ -165,7 +172,9 @@ function render(row) {
     realBox.classList.remove('missing');
     realEl.textContent = (real*100).toFixed(1) + '%';
   }
-  let note = '';
+  let note = source === 'live'
+    ? '<span class="badge live">live prediction</span> Computed just now by a real backend -- fresh Qiskit routing and model inference for this exact pair, not looked up. '
+    : '<span class="badge cached">cached / precomputed</span> Served from a precomputed table (the live backend was unavailable or not configured for this demo instance). ';
   const confidentOverride = gnnStd !== null && gnnStd !== undefined && Math.abs(gnn - v41) > 0.15 && gnnStd < 0.03;
   if (real !== null && real !== undefined && Math.abs(real-0.5) < 0.03 && hop <= 10) {
     note += '<span class="badge floor">floor-collapse case</span> This circuit\'s real success ' +
@@ -190,16 +199,53 @@ function render(row) {
   document.getElementById('note').innerHTML = note;
 }
 
-function predict() {
+// Set this to your deployed API's base URL (e.g. "https://your-app.onrender.com")
+// once you've deployed api/main.py -- see api/README.md. Leave empty ("") to
+// always use the precomputed table below; the demo works fully either way.
+const API_BASE_URL = "";
+const API_TIMEOUT_MS = 4000;
+
+async function fetchLive(chip, a, b) {
+  if (!API_BASE_URL) return null;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), API_TIMEOUT_MS);
+  try {
+    const res = await fetch(API_BASE_URL.replace(/\/$/, '') + '/predict', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chip, qubit_a: a, qubit_b: b }),
+      signal: controller.signal,
+    });
+    clearTimeout(timer);
+    if (!res.ok) return null;
+    const d = await res.json();
+    // Live API doesn't run Aer simulation per-request (too slow for a demo),
+    // so ground truth -- if this exact pair happens to have been actually
+    // simulated during training/eval -- still comes from the local table.
+    const cached = findRow(chip, a, b);
+    const real = cached ? cached[8] : null;
+    return [a, b, d.bfs_hop_distance, d.n_nodes, d.n_edges,
+           d.v4_1_prediction, d.gnn_prediction, d.gnn_uncertainty, real];
+  } catch (e) {
+    clearTimeout(timer);
+    return null;
+  }
+}
+
+async function predict() {
   const chip = document.getElementById('chip').value;
   let a = parseInt(document.getElementById('qa').value);
   let b = parseInt(document.getElementById('qb').value);
   if (isNaN(a) || isNaN(b) || a === b || a < 0 || b < 0 || a > 126 || b > 126) {
     alert('Pick two different qubits between 0 and 126.'); return;
   }
+
+  const liveRow = await fetchLive(chip, a, b);
+  if (liveRow) { render(liveRow, 'live'); return; }
+
   const row = findRow(chip, a, b);
   if (!row) { alert('No data for that pair (unexpected -- all pairs should be covered).'); return; }
-  render(row);
+  render(row, 'cached');
 }
 
 function randomPair() {
@@ -208,7 +254,7 @@ function randomPair() {
   const row = rows[Math.floor(Math.random()*rows.length)];
   document.getElementById('qa').value = row[0];
   document.getElementById('qb').value = row[1];
-  render(row);
+  render(row, 'cached');
 }
 
 function floorExample() {

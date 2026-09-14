@@ -102,6 +102,24 @@ Returns:
 is genuinely stochastic -- that variance is itself part of what the
 uncertainty estimate is measuring, not a bug.
 
+## Wiring up the live demo
+
+`quantumbridge_live_demo.html` already knows how to call this API -- once
+deployed, open the file and set the `API_BASE_URL` constant near the top
+of the `<script>` block:
+
+```js
+const API_BASE_URL = "https://your-app.onrender.com";
+```
+
+With this set, the demo tries a live request first (4s timeout) and shows
+a green "live prediction" badge; if the API is unreachable or
+`API_BASE_URL` is left empty, it falls back to the precomputed table with
+a "cached / precomputed" badge. The demo works correctly either way --
+this is a progressive upgrade, not a hard dependency. Don't forget CORS is
+already enabled (`allow_origins=["*"]` in `main.py`) so the browser fetch
+from GitHub Pages (or wherever the demo is hosted) will succeed.
+
 Unsupported chips, equal qubit indices, and out-of-range qubit indices
 all return `400` with a specific message rather than a generic error.
 

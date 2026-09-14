@@ -39,6 +39,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import numpy as np
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from qiskit import QuantumCircuit, transpile
@@ -216,6 +217,20 @@ app = FastAPI(
                 "demand rather than served from a precomputed table. Undergraduate research "
                 "project, not a production tool -- see /health for scope and caveats."),
     version="1.0.0",
+)
+
+# CORS: the live demo is a static page served from GitHub Pages
+# (devendrakhatri981-byte.github.io), a different origin than wherever this
+# API ends up hosted, so the browser's cross-origin fetch needs this to
+# succeed. This is a public, read-only, rate-limit-free prediction endpoint
+# with no auth and no user data involved, so a permissive origin policy is
+# an acceptable tradeoff here -- tighten this to the specific GitHub Pages
+# origin before adding anything that isn't purely read-only.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
 )
 
 
