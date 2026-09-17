@@ -1,0 +1,1013 @@
+{
+  "chip": "kyoto",
+  "two_qubit_gate_errors": [
+    {
+      "qubits": [
+        49,
+        55
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        73,
+        66
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        83,
+        92
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        99,
+        100
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        122,
+        111
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        16,
+        26
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        22,
+        15
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        30,
+        31
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        33,
+        39
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        34,
+        43
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        47,
+        35
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        53,
+        60
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        54,
+        64
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        77,
+        71
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        81,
+        72
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        87,
+        93
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        98,
+        91
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        104,
+        111
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        109,
+        114
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        4,
+        5
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        8,
+        16
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        17,
+        12
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        21,
+        20
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        28,
+        35
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        34,
+        24
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        40,
+        41
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        50,
+        51
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        54,
+        45
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        62,
+        61
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        68,
+        69
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        71,
+        58
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        73,
+        85
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        80,
+        79
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        89,
+        88
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        96,
+        109
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        102,
+        92
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        106,
+        107
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        118,
+        110
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        122,
+        121
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        0,
+        14
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        4,
+        3
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        8,
+        9
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        12,
+        13
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        23,
+        24
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        27,
+        28
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        31,
+        32
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        33,
+        20
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        42,
+        41
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        46,
+        45
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        50,
+        49
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        52,
+        37
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        59,
+        58
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        65,
+        66
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        70,
+        69
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        72,
+        62
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        75,
+        90
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        79,
+        78
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        84,
+        83
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        88,
+        87
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        96,
+        97
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        104,
+        103
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        110,
+        100
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        3,
+        2
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        7,
+        6
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        11,
+        10
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        18,
+        14
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        22,
+        21
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        25,
+        26
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        30,
+        29
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        39,
+        40
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        44,
+        43
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        48,
+        47
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        56,
+        52
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        59,
+        60
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        63,
+        64
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        67,
+        68
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        77,
+        78
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        82,
+        81
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        86,
+        85
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        94,
+        90
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        97,
+        98
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        101,
+        102
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        105,
+        106
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        115,
+        114
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        121,
+        120
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        125,
+        124
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        1,
+        2
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        6,
+        5
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        9,
+        10
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        17,
+        30
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        18,
+        19
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        22,
+        23
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        27,
+        26
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        38,
+        39
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        43,
+        42
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        47,
+        46
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        51,
+        36
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        55,
+        68
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        57,
+        56
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        61,
+        60
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        64,
+        65
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        76,
+        77
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        81,
+        80
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        84,
+        85
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        89,
+        74
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        93,
+        106
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        94,
+        95
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        98,
+        99
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        102,
+        103
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        113,
+        114
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        119,
+        118
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        122,
+        123
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        1,
+        0
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        8,
+        7
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        11,
+        12
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        15,
+        4
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        19,
+        20
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        25,
+        24
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        28,
+        29
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        32,
+        36
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        37,
+        38
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        44,
+        45
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        49,
+        48
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        53,
+        41
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        57,
+        58
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        62,
+        63
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        67,
+        66
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        74,
+        70
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        76,
+        75
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        79,
+        91
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        82,
+        83
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        87,
+        86
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        96,
+        95
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        101,
+        100
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        105,
+        104
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        116,
+        115
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        120,
+        119
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        124,
+        123
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        125,
+        126
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        107,
+        108
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        126,
+        112
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        112,
+        108
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        117,
+        116
+      ],
+      "gate_error": 1
+    },
+    {
+      "qubits": [
+        118,
+        117
+      ],
+      "gate_error": 1
+    }
+  ]
+}

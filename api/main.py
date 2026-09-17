@@ -1,11 +1,11 @@
 """
 QuantumBridge Live Inference API (v1 productization)
 
-Replaces the static demo's precomputed 24,003-row lookup table with a real
-backend: every request does a live Qiskit transpile + SABRE routing +
-feature extraction + v4.1 closed-form prediction + Entry 071 GNN inference
-(with calibrated MC-Dropout uncertainty), on demand, for any pair of
-qubits on any of the three trained chips (Kyiv, Sherbrooke, Brisbane).
+Replaces the static demo's precomputed lookup table with a real backend:
+every request does a live Qiskit transpile + SABRE routing + feature
+extraction + v4.1 closed-form prediction + Entry 077 GNN inference (with
+calibrated MC-Dropout uncertainty), on demand, for any pair of qubits on
+any of the four trained chips (Kyiv, Sherbrooke, Brisbane, Osaka).
 
 This is deliberately scoped, not the full "any circuit, any chip" vision:
 - Circuit type: Bell pairs only (H + CX between two qubits), matching what
@@ -13,10 +13,11 @@ This is deliberately scoped, not the full "any circuit, any chip" vision:
   is future work (the training data does include GHZ/star/chain circuits,
   but the live feature-extraction path here has only been wired and
   tested for bell pairs).
-- Chips: kyiv, sherbrooke, brisbane only -- the three chips the deployed
-  model was trained on. Requesting a fourth chip is refused with an
-  explicit message pointing at Entry 073's honest zero-shot findings,
-  rather than silently degrading.
+- Chips: kyiv, sherbrooke, brisbane, osaka -- the four chips the deployed
+  model was trained on. Quebec is the project's current zero-shot holdout
+  chip (Entry 076-078) and is refused here with an explicit message,
+  rather than silently degrading -- the live demo's Quebec option instead
+  uses a precomputed zero-shot lookup, clearly badged as such.
 - Validation: all noise data comes from Qiskit's fake-backend snapshots
   run through Aer's simulator, not live queued jobs on physical hardware.
   This is disclosed in every response, not just documentation.
@@ -43,7 +44,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from qiskit import QuantumCircuit, transpile
-from qiskit_ibm_runtime.fake_provider import FakeKyiv, FakeSherbrooke, FakeBrisbane
+from qiskit_ibm_runtime.fake_provider import FakeKyiv, FakeSherbrooke, FakeBrisbane, FakeOsaka
 
 import emulator_v3_routing as em
 import emulator_v4 as v4
@@ -56,10 +57,10 @@ H = 16
 DROPOUT_RATE = 0.15
 T_SAMPLES = 20
 
-BACKENDS = {"kyiv": FakeKyiv, "sherbrooke": FakeSherbrooke, "brisbane": FakeBrisbane}
+BACKENDS = {"kyiv": FakeKyiv, "sherbrooke": FakeSherbrooke, "brisbane": FakeBrisbane, "osaka": FakeOsaka}
 
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "..", "quantumbridge_data",
-                          "entry071_deploy_params.json")
+                          "entry077_deploy_params.json")
 
 
 # ---------------------------------------------------------------------------
@@ -200,9 +201,10 @@ def live_predict(chip, a, b):
         "gnn_uncertainty": round(gnn_std, 4),
         "note": ("Live prediction: real Qiskit SABRE-routed transpile for this exact pair on this "
                 "chip, real closed-form v4.1 formula, real GNN forward pass with calibrated "
-                "MC-Dropout uncertainty (Entry 071) -- nothing here is precomputed or approximated. "
-                "Noise data is from Qiskit's fake-backend snapshot run through Aer's simulator, not "
-                "live queued jobs on physical IBM hardware."),
+                "MC-Dropout uncertainty (Entry 077, trained on Kyiv+Sherbrooke+Brisbane+Osaka) -- "
+                "nothing here is precomputed or approximated. Noise data is from Qiskit's "
+                "fake-backend snapshot run through Aer's simulator, not live queued jobs on "
+                "physical IBM hardware."),
     }
 
 
@@ -235,7 +237,7 @@ app.add_middleware(
 
 
 class PredictRequest(BaseModel):
-    chip: str = Field(..., description="One of: kyiv, sherbrooke, brisbane")
+    chip: str = Field(..., description="One of: kyiv, sherbrooke, brisbane, osaka")
     qubit_a: int = Field(..., ge=0, description="First qubit index")
     qubit_b: int = Field(..., ge=0, description="Second qubit index")
 
@@ -246,13 +248,15 @@ def health():
         "status": "ok",
         "supported_chips": list(BACKENDS.keys()),
         "circuit_types_supported": ["bell"],
-        "model": "entry071_deploy_params.json (unified 3-chip MC-Dropout GNN)",
+        "model": "entry077_deploy_params.json (unified 4-chip MC-Dropout GNN)",
         "validation_note": ("Trained and validated against Qiskit fake-backend + Aer simulation "
-                            "only, not real IBM hardware. Leave-one-chip-out cross-chip transfer "
-                            "and a true zero-shot fourth-chip test (Entry 073) both show real, "
-                            "honestly-reported generalization gaps -- see the project's research "
-                            "log for full numbers before relying on this for a chip outside the "
-                            "three listed above."),
+                            "only, not real IBM hardware. Quebec is the current true zero-shot "
+                            "holdout chip (never trained on, by design) -- Entry 078 found this "
+                            "4-chip model beats the plain physics formula (v4.1) on Quebec by a wide "
+                            "margin (MAE=3.02 vs 5.35, R2=0.775 vs 0.589), a clearer win than the "
+                            "prior 3-chip model's roughly-tied Entry 073 result on Osaka. See the "
+                            "project's research log for full numbers before relying on this for a "
+                            "chip outside the four listed above."),
     }
 
 
@@ -272,10 +276,11 @@ def predict(req: PredictRequest):
         raise HTTPException(
             400,
             f"Unsupported chip '{req.chip}'. This deployment is trained on {list(BACKENDS.keys())} "
-            "only. Entry 073 tested a genuinely unseen fourth chip and found the model's accuracy "
-            "advantage over the simpler v4.1 formula does not clearly survive zero exposure -- "
-            "adding a new chip here would need either training data or an explicit, honestly-"
-            "labeled degraded mode, not silent extrapolation.")
+            "only. Quebec is this project's current zero-shot holdout chip (Entries 076-078) -- "
+            "deliberately excluded from every training run so it stays a clean test of true "
+            "generalization. It is not served live here; the public demo's Quebec option instead "
+            "uses a precomputed zero-shot lookup, clearly badged as such rather than presented as a "
+            "trained-chip prediction.")
     t0 = time.time()
     result = live_predict(chip, req.qubit_a, req.qubit_b)
     result["latency_ms"] = round((time.time() - t0) * 1000, 1)

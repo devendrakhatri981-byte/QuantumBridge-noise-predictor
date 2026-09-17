@@ -1,22 +1,23 @@
 # QuantumBridge Live Inference API
 
 A real backend for the QuantumBridge noise predictor, replacing the static
-demo's precomputed 24,003-row lookup table with live inference: every
-request runs an actual Qiskit SABRE-routed transpile, the v4.1 closed-form
-physics prediction, and an Entry 071 graph neural network forward pass
-(with calibrated MC-Dropout uncertainty), computed on demand.
+demo's precomputed lookup table with live inference: every request runs
+an actual Qiskit SABRE-routed transpile, the v4.1 closed-form physics
+prediction, and an Entry 077 graph neural network forward pass (with
+calibrated MC-Dropout uncertainty), computed on demand.
 
 This is a deliberately scoped v1, not the full "any circuit, any chip"
 vision:
 
 - **Circuit type:** Bell pairs only (H + CX between two qubits) -- what
   the model was trained and validated on.
-- **Chips:** `kyiv`, `sherbrooke`, `brisbane` -- the three chips the
-  deployed model (`entry071_deploy_params.json`) was trained on. A fourth
-  chip is refused with an explicit message rather than silently
-  extrapolated, since Entry 073's true zero-shot test found the model's
-  accuracy edge over the simpler v4.1 formula doesn't clearly survive a
-  genuinely unseen chip.
+- **Chips:** `kyiv`, `sherbrooke`, `brisbane`, `osaka` -- the four chips
+  the deployed model (`entry077_deploy_params.json`) was trained on.
+  `quebec` is refused with an explicit message: it's this project's
+  current zero-shot holdout chip (Entries 076-078), deliberately kept
+  out of every training run so it stays a clean generalization test. The
+  live demo's Quebec option uses a precomputed zero-shot lookup instead,
+  clearly badged as such.
 - **Validation:** noise data comes from Qiskit's fake-backend snapshots
   run through Aer's simulator, not live queued jobs on real IBM hardware.
   This is stated in every `/health` and `/predict` response, not just here.
@@ -40,10 +41,10 @@ QuantumBridge_backup/
   exact_dwell_routing.py
   entry044_build_graphs.py
   quantumbridge_data/
-    entry071_deploy_params.json
-    offline_calibration_{kyiv,sherbrooke,brisbane}_full.json
-    real_topology_{kyiv,sherbrooke,brisbane}.json
-    coherence_{kyiv,sherbrooke,brisbane}.json
+    entry077_deploy_params.json
+    offline_calibration_{kyiv,sherbrooke,brisbane,osaka}_full.json
+    real_topology_{kyiv,sherbrooke,brisbane,osaka}.json
+    coherence_{kyiv,sherbrooke,brisbane,osaka}.json
 ```
 
 ## Run locally
@@ -77,7 +78,7 @@ caveat.
 Returns qubit counts for each supported chip.
 
 **`POST /predict`**
-Body: `{"chip": "kyiv" | "sherbrooke" | "brisbane", "qubit_a": int, "qubit_b": int}`
+Body: `{"chip": "kyiv" | "sherbrooke" | "brisbane" | "osaka", "qubit_a": int, "qubit_b": int}`
 
 Returns:
 ```json
@@ -151,6 +152,7 @@ prediction).
   simulation, disclosed in every response.
 - No authentication, rate limiting, or request logging -- add these
   before exposing this publicly at any real traffic volume.
-- No support for a chip outside the three trained ones. See Entry 073 in
-  the research log before considering whether to add a new chip without
-  retraining.
+- No support for a chip outside the four trained ones. Quebec is the
+  current zero-shot holdout -- see Entries 076-078 in the research log
+  before considering whether to fold it into training (which would need
+  a new holdout chip in turn, per this project's established pattern).
