@@ -50,6 +50,8 @@ import emulator_v3_routing as em
 import emulator_v4 as v4
 from exact_dwell_routing import exact_dwell_cost
 from entry044_build_graphs import graph_for_record
+from entry092_decomposed_prediction import exact_dwell_cost_decomposed, summarize_failure_mode
+from entry093_recommend import recommend as _recommend
 
 MAX_N, MAX_E = 90, 130
 N_NODE_FEATS, N_EDGE_FEATS = 6, 4
@@ -285,3 +287,58 @@ def predict(req: PredictRequest):
     result = live_predict(chip, req.qubit_a, req.qubit_b)
     result["latency_ms"] = round((time.time() - t0) * 1000, 1)
     return result
+
+
+@app.post("/predict/breakdown")
+def predict_breakdown(req: PredictRequest):
+    """Entry 092: same live physics as /predict, but returns WHY, not just
+    the number -- which failure channel (gate error, decoherence, single-
+    qubit gates, readout) is costing the most probability mass, and which
+    specific physical edge in the route is the weak link. Validated to
+    reproduce exact_dwell_cost's total exactly (see entry092's own
+    self-check); this is exposition of existing physics, not a new model."""
+    chip = req.chip.lower().strip()
+    if chip not in BACKENDS:
+        raise HTTPException(400, f"Unsupported chip '{req.chip}'. Same four chips as /predict: "
+                            f"{list(BACKENDS.keys())}.")
+    backend, graph, coh = get_backend_ctx(chip)
+    nq = backend.num_qubits
+    a, b = req.qubit_a, req.qubit_b
+    if not (0 <= a < nq and 0 <= b < nq) or a == b:
+        raise HTTPException(400, f"qubit_a and qubit_b must be distinct integers in [0, {nq-1}] for {chip}")
+
+    from qiskit import QuantumCircuit
+    qc = QuantumCircuit(nq, 2)
+    qc.h(a); qc.cx(a, b)
+    breakdown = exact_dwell_cost_decomposed(qc, backend, graph, coh, [(a, b)], [a, b])
+    summary = summarize_failure_mode(breakdown)
+    return {
+        "chip": chip, "qubit_a": a, "qubit_b": b,
+        "total_success": round(breakdown["total_success"], 4),
+        "channel_survival": {
+            "gate_error": round(breakdown["gate_error_survival"], 4),
+            "decoherence": round(breakdown["decoherence_survival"], 4),
+            "single_qubit_gates": round(breakdown["sq_gate_survival"], 4),
+            "readout": round(breakdown["readout_survival"], 4),
+        },
+        "dominant_failure_mode": summary["dominant_failure_mode"],
+        "channel_loss_pts": {k: round(v * 100, 3) for k, v in summary["channel_loss"].items()},
+        "weak_link": summary["weak_link"],
+        "note": ("Physics-informed decomposition of the same v4.1 closed-form formula used "
+                "elsewhere (Entry 024-032), not a separate model -- validated to reproduce "
+                "the combined success prediction exactly (Entry 092)."),
+    }
+
+
+@app.get("/recommend")
+def recommend_endpoint(min_success: float = 0.0, max_hop: int = None,
+                       max_uncertainty: float = None, chips: str = None, top_k: int = 5):
+    """Entry 093: rank (chip, qubit_a, qubit_b) bell-pair candidates by
+    predicted success, built on the precomputed 5-chip lookup table --
+    ranking/filtering, not a new model. chips is a comma-separated list
+    (e.g. 'kyiv,sherbrooke'); omit for all 5 (including Quebec, flagged
+    is_zero_shot). The top result includes a live failure-mode breakdown."""
+    chip_list = [c.strip() for c in chips.split(",")] if chips else None
+    results = _recommend(min_success=min_success, max_hop=max_hop, max_uncertainty=max_uncertainty,
+                         chips=chip_list, top_k=top_k, explain_top=True)
+    return {"count": len(results), "candidates": results}

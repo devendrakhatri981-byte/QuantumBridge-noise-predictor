@@ -1,0 +1,41 @@
+[
+  {
+    "holdout": "kyiv",
+    "train_chips": [
+      "sherbrooke",
+      "brisbane"
+    ],
+    "n_train": 340,
+    "n_test": 310,
+    "gnn_mae": 0.07151184231042862,
+    "gnn_r2": 0.6509711742401123,
+    "baseline_mae": 0.10227398574352264,
+    "baseline_r2": 0.2789878249168396
+  },
+  {
+    "holdout": "sherbrooke",
+    "train_chips": [
+      "kyiv",
+      "brisbane"
+    ],
+    "n_train": 430,
+    "n_test": 220,
+    "gnn_mae": 0.2072153389453888,
+    "gnn_r2": -0.5152504444122314,
+    "baseline_mae": 0.12667010724544525,
+    "baseline_r2": 0.24766451120376587
+  },
+  {
+    "holdout": "brisbane",
+    "train_chips": [
+      "kyiv",
+      "sherbrooke"
+    ],
+    "n_train": 530,
+    "n_test": 120,
+    "gnn_mae": 0.08287286758422852,
+    "gnn_r2": 0.35139530897140503,
+    "baseline_mae": 0.10833016782999039,
+    "baseline_r2": 0.0005766749382019043
+  }
+]

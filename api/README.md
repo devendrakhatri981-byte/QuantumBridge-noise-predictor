@@ -124,6 +124,23 @@ from GitHub Pages (or wherever the demo is hosted) will succeed.
 Unsupported chips, equal qubit indices, and out-of-range qubit indices
 all return `400` with a specific message rather than a generic error.
 
+**`POST /predict/breakdown`** (Entry 092)
+Same body as `/predict`. Returns a failure-mode breakdown instead of just
+a single number: how much of the predicted loss comes from gate error,
+decoherence, single-qubit gates, and readout, which one dominates, and
+which specific physical edge in the route is the weak link. This is a
+decomposition of the same validated v4.1 closed-form formula (Entries
+024-032), not a separate model -- checked to reproduce `/predict`'s
+total exactly.
+
+**`GET /recommend`** (Entry 093)
+Query params: `min_success`, `max_hop`, `max_uncertainty`, `chips`
+(comma-separated, e.g. `kyiv,sherbrooke`), `top_k`. Ranks bell-pair
+candidates across chips by predicted success using the precomputed
+5-chip lookup table (Quebec included, flagged `is_zero_shot`) -- turns
+"grade this circuit" into "tell me where to run it." The top result
+includes a live failure-mode breakdown explaining the recommendation.
+
 ## Deployment
 
 This project was built and validated in a local/sandboxed environment;
