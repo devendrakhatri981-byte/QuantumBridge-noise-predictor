@@ -1,12 +1,20 @@
 """
 QuantumBridge — Entry 093: best chip/route recommender.
+Updated in Entry 097 to point at the 5-chip lookup table (Entry 097,
+scored with the entry085 model, which actually trains on Quebec) rather
+than Entry 081's 4-chip-trained + Quebec-zero-shot-fallback table --
+Quebec stopped being a zero-shot holdout once Entry 113 added Cusco as
+the project's 6th chip / new zero-shot holdout; this recommender had
+been left pointing at the stale table until this fix.
 
 Turns the model from "grade this specific circuit" into "help me pick
 where to run it." Built entirely on top of data we already have --
-entry081_lookup_with_uncertainty.json already holds GNN mean+uncertainty
-and v4.1 predictions for every possible pair on all 5 chips (kyiv,
-sherbrooke, brisbane, osaka trained; quebec zero-shot) -- so this is a
-ranking/filtering layer, not a new model.
+entry097_lookup_5chip.json already holds GNN mean+uncertainty and v4.1
+predictions for every possible pair on all 5 TRAINED chips (kyiv,
+sherbrooke, brisbane, osaka, quebec) -- so this is a ranking/filtering
+layer, not a new model. Cusco (the current zero-shot holdout, Entries
+087-088) is not in this lookup at all -- it's eval-only, never scored
+across all pairs the way trained chips are.
 
 Each recommendation is also annotated with a failure-mode breakdown
 (Entry 092) computed live for the winning candidate, so the answer isn't
@@ -15,7 +23,7 @@ route's biggest loss is decoherence at qubit 42."
 
 recommend() usage:
     recommend(min_success=0.85, max_hop=5, chips=["kyiv","sherbrooke"])
-    recommend(top_k=5)  # best pairs across all 5 chips, no filters
+    recommend(top_k=5)  # best pairs across all 5 trained chips, no filters
 """
 
 import json
@@ -26,10 +34,10 @@ from qiskit import QuantumCircuit
 from qiskit_ibm_runtime.fake_provider import FakeKyiv, FakeSherbrooke, FakeBrisbane, FakeOsaka, FakeQuebec
 from entry092_decomposed_prediction import exact_dwell_cost_decomposed, summarize_failure_mode
 
-LOOKUP_PATH = "quantumbridge_data/entry081_lookup_with_uncertainty.json"
+LOOKUP_PATH = "quantumbridge_data/entry097_lookup_5chip.json"
 BACKENDS = {"kyiv": FakeKyiv, "sherbrooke": FakeSherbrooke, "brisbane": FakeBrisbane,
            "osaka": FakeOsaka, "quebec": FakeQuebec}
-TRAINED_CHIPS = {"kyiv", "sherbrooke", "brisbane", "osaka"}  # quebec is zero-shot, flagged separately
+TRAINED_CHIPS = {"kyiv", "sherbrooke", "brisbane", "osaka", "quebec"}  # all 5 trained as of entry085
 
 _ctx_cache = {}
 
@@ -104,8 +112,10 @@ if __name__ == "__main__":
         print(f"  Channel loss breakdown: {exp['channel_loss']}")
         print(f"  Weak link: {exp['weak_link']}")
 
-    print("\n=== Realistic ask: 'success >= 80%, chip I haven't tried yet (Quebec)' ===")
+    print("\n=== Realistic ask: 'success >= 80% on Quebec' (now a trained chip, not zero-shot) ===")
     top = recommend(min_success=0.80, chips=["quebec"], top_k=3, explain_top=False)
     for c in top:
-        print(f"  quebec [ZERO-SHOT] ({c['qubit_a']},{c['qubit_b']}) hop={c['hop_distance']} "
+        print(f"  quebec ({c['qubit_a']},{c['qubit_b']}) hop={c['hop_distance']} "
              f"pred={c['predicted_success']*100:.2f}% +/-{(c['uncertainty'] or 0)*100:.2f}")
+    print("  (Cusco is the project's current zero-shot holdout, Entries 087-088 -- it isn't in "
+         "this lookup table since it's eval-only, not scored across every possible pair.)")

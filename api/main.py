@@ -3,9 +3,17 @@ QuantumBridge Live Inference API (v1 productization)
 
 Replaces the static demo's precomputed lookup table with a real backend:
 every request does a live Qiskit transpile + SABRE routing + feature
-extraction + v4.1 closed-form prediction + Entry 077 GNN inference (with
+extraction + v4.1 closed-form prediction + Entry 085 GNN inference (with
 calibrated MC-Dropout uncertainty), on demand, for any pair of qubits on
-any of the four trained chips (Kyiv, Sherbrooke, Brisbane, Osaka).
+any of the five trained chips (Kyiv, Sherbrooke, Brisbane, Osaka, Quebec).
+
+Updated in Entry 097: this was deployed on the 4-chip Entry 077 model
+for a while after the 5-chip Entry 085 model existed (Entries 108-112
+built and validated entry085, but the live API's MODEL_PATH was never
+bumped past entry077, and Quebec kept being refused as if it were still
+a zero-shot holdout after it had already been folded into training).
+Cusco is now the project's zero-shot holdout chip (Entries 087-088) and
+is refused with an explicit message in its place.
 
 This is deliberately scoped, not the full "any circuit, any chip" vision:
 - Circuit type: Bell pairs only (H + CX between two qubits), matching what
@@ -13,11 +21,10 @@ This is deliberately scoped, not the full "any circuit, any chip" vision:
   is future work (the training data does include GHZ/star/chain circuits,
   but the live feature-extraction path here has only been wired and
   tested for bell pairs).
-- Chips: kyiv, sherbrooke, brisbane, osaka -- the four chips the deployed
-  model was trained on. Quebec is the project's current zero-shot holdout
-  chip (Entry 076-078) and is refused here with an explicit message,
-  rather than silently degrading -- the live demo's Quebec option instead
-  uses a precomputed zero-shot lookup, clearly badged as such.
+- Chips: kyiv, sherbrooke, brisbane, osaka, quebec -- the five chips the
+  deployed model was trained on. Cusco is the project's current zero-shot
+  holdout chip (Entries 087-088) and is refused here with an explicit
+  message, rather than silently degrading.
 - Validation: all noise data comes from Qiskit's fake-backend snapshots
   run through Aer's simulator, not live queued jobs on physical hardware.
   This is disclosed in every response, not just documentation.
@@ -44,7 +51,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from qiskit import QuantumCircuit, transpile
-from qiskit_ibm_runtime.fake_provider import FakeKyiv, FakeSherbrooke, FakeBrisbane, FakeOsaka
+from qiskit_ibm_runtime.fake_provider import FakeKyiv, FakeSherbrooke, FakeBrisbane, FakeOsaka, FakeQuebec
 
 import emulator_v3_routing as em
 import emulator_v4 as v4
@@ -59,10 +66,11 @@ H = 16
 DROPOUT_RATE = 0.15
 T_SAMPLES = 20
 
-BACKENDS = {"kyiv": FakeKyiv, "sherbrooke": FakeSherbrooke, "brisbane": FakeBrisbane, "osaka": FakeOsaka}
+BACKENDS = {"kyiv": FakeKyiv, "sherbrooke": FakeSherbrooke, "brisbane": FakeBrisbane,
+           "osaka": FakeOsaka, "quebec": FakeQuebec}
 
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "..", "quantumbridge_data",
-                          "entry077_deploy_params.json")
+                          "entry085_deploy_params.json")
 
 
 # ---------------------------------------------------------------------------
@@ -203,10 +211,10 @@ def live_predict(chip, a, b):
         "gnn_uncertainty": round(gnn_std, 4),
         "note": ("Live prediction: real Qiskit SABRE-routed transpile for this exact pair on this "
                 "chip, real closed-form v4.1 formula, real GNN forward pass with calibrated "
-                "MC-Dropout uncertainty (Entry 077, trained on Kyiv+Sherbrooke+Brisbane+Osaka) -- "
-                "nothing here is precomputed or approximated. Noise data is from Qiskit's "
-                "fake-backend snapshot run through Aer's simulator, not live queued jobs on "
-                "physical IBM hardware."),
+                "MC-Dropout uncertainty (Entry 085, trained on Kyiv+Sherbrooke+Brisbane+Osaka+"
+                "Quebec) -- nothing here is precomputed or approximated. Noise data is from "
+                "Qiskit's fake-backend snapshot run through Aer's simulator, not live queued jobs "
+                "on physical IBM hardware."),
     }
 
 
@@ -239,7 +247,7 @@ app.add_middleware(
 
 
 class PredictRequest(BaseModel):
-    chip: str = Field(..., description="One of: kyiv, sherbrooke, brisbane, osaka")
+    chip: str = Field(..., description="One of: kyiv, sherbrooke, brisbane, osaka, quebec")
     qubit_a: int = Field(..., ge=0, description="First qubit index")
     qubit_b: int = Field(..., ge=0, description="Second qubit index")
 
@@ -250,15 +258,18 @@ def health():
         "status": "ok",
         "supported_chips": list(BACKENDS.keys()),
         "circuit_types_supported": ["bell"],
-        "model": "entry077_deploy_params.json (unified 4-chip MC-Dropout GNN)",
+        "model": "entry085_deploy_params.json (unified 5-chip MC-Dropout GNN)",
         "validation_note": ("Trained and validated against Qiskit fake-backend + Aer simulation "
-                            "only, not real IBM hardware. Quebec is the current true zero-shot "
-                            "holdout chip (never trained on, by design) -- Entry 078 found this "
-                            "4-chip model beats the plain physics formula (v4.1) on Quebec by a wide "
-                            "margin (MAE=3.02 vs 5.35, R2=0.775 vs 0.589), a clearer win than the "
-                            "prior 3-chip model's roughly-tied Entry 073 result on Osaka. See the "
-                            "project's research log for full numbers before relying on this for a "
-                            "chip outside the four listed above."),
+                            "only, not real IBM hardware. Cusco is the current true zero-shot "
+                            "holdout chip (never trained on, by design) -- Entry 088 found this "
+                            "5-chip model beats the plain physics formula (v4.1) on Cusco by a wide "
+                            "margin (MAE=4.01 vs 9.32, R2=0.784 vs 0.364), continuing a monotonic "
+                            "trend as training-chip count grows (3-chip: tied; 4-chip: 44% better; "
+                            "5-chip: 57% better on each new held-out chip). Quebec was this "
+                            "project's zero-shot holdout chip through Entries 076-078 and was later "
+                            "folded into training for this model -- it is now a normal trained chip, "
+                            "not a zero-shot one. See the project's research log for full numbers "
+                            "before relying on this for a chip outside the five listed above."),
     }
 
 
@@ -274,15 +285,18 @@ def chips():
 @app.post("/predict")
 def predict(req: PredictRequest):
     chip = req.chip.lower().strip()
+    if chip == "cusco":
+        raise HTTPException(
+            400,
+            "Unsupported chip 'cusco'. Cusco is this project's current zero-shot holdout chip "
+            "(Entries 087-088) -- deliberately excluded from every training run so it stays a "
+            "clean test of true generalization. It is not served live here; the research log "
+            "documents Entry 088's cold-chip results instead of a live or precomputed lookup.")
     if chip not in BACKENDS:
         raise HTTPException(
             400,
             f"Unsupported chip '{req.chip}'. This deployment is trained on {list(BACKENDS.keys())} "
-            "only. Quebec is this project's current zero-shot holdout chip (Entries 076-078) -- "
-            "deliberately excluded from every training run so it stays a clean test of true "
-            "generalization. It is not served live here; the public demo's Quebec option instead "
-            "uses a precomputed zero-shot lookup, clearly badged as such rather than presented as a "
-            "trained-chip prediction.")
+            "only.")
     t0 = time.time()
     result = live_predict(chip, req.qubit_a, req.qubit_b)
     result["latency_ms"] = round((time.time() - t0) * 1000, 1)
@@ -298,8 +312,11 @@ def predict_breakdown(req: PredictRequest):
     reproduce exact_dwell_cost's total exactly (see entry092's own
     self-check); this is exposition of existing physics, not a new model."""
     chip = req.chip.lower().strip()
+    if chip == "cusco":
+        raise HTTPException(400, "Unsupported chip 'cusco'. Cusco is this project's current "
+                            "zero-shot holdout chip (Entries 087-088) and is not served live here.")
     if chip not in BACKENDS:
-        raise HTTPException(400, f"Unsupported chip '{req.chip}'. Same four chips as /predict: "
+        raise HTTPException(400, f"Unsupported chip '{req.chip}'. Same five chips as /predict: "
                             f"{list(BACKENDS.keys())}.")
     backend, graph, coh = get_backend_ctx(chip)
     nq = backend.num_qubits
@@ -333,11 +350,12 @@ def predict_breakdown(req: PredictRequest):
 @app.get("/recommend")
 def recommend_endpoint(min_success: float = 0.0, max_hop: int = None,
                        max_uncertainty: float = None, chips: str = None, top_k: int = 5):
-    """Entry 093: rank (chip, qubit_a, qubit_b) bell-pair candidates by
-    predicted success, built on the precomputed 5-chip lookup table --
-    ranking/filtering, not a new model. chips is a comma-separated list
-    (e.g. 'kyiv,sherbrooke'); omit for all 5 (including Quebec, flagged
-    is_zero_shot). The top result includes a live failure-mode breakdown."""
+    """Entry 093/097: rank (chip, qubit_a, qubit_b) bell-pair candidates by
+    predicted success, built on the precomputed 5-chip lookup table (all
+    5 trained chips, including Quebec -- no longer zero-shot as of Entry
+    085/097) -- ranking/filtering, not a new model. chips is a
+    comma-separated list (e.g. 'kyiv,sherbrooke'); omit for all 5. The
+    top result includes a live failure-mode breakdown."""
     chip_list = [c.strip() for c in chips.split(",")] if chips else None
     results = _recommend(min_success=min_success, max_hop=max_hop, max_uncertainty=max_uncertainty,
                          chips=chip_list, top_k=top_k, explain_top=True)

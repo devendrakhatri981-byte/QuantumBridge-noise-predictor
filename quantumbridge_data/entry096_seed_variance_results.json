@@ -1,0 +1,71 @@
+{
+  "kyiv": [
+    {
+      "seed": 0,
+      "gnn_mae": 0.067,
+      "gnn_r2": 0.613,
+      "baseline_mae": 0.1023,
+      "pct_better": 34.5
+    },
+    {
+      "seed": 1,
+      "gnn_mae": 0.0561,
+      "gnn_r2": 0.721,
+      "baseline_mae": 0.1023,
+      "pct_better": 45.2
+    },
+    {
+      "seed": 2,
+      "gnn_mae": 0.0598,
+      "gnn_r2": 0.715,
+      "baseline_mae": 0.1023,
+      "pct_better": 41.6
+    }
+  ],
+  "brisbane": [
+    {
+      "seed": 0,
+      "gnn_mae": 0.1231,
+      "gnn_r2": -0.647,
+      "baseline_mae": 0.1118,
+      "pct_better": -10.1
+    },
+    {
+      "seed": 1,
+      "gnn_mae": 0.0739,
+      "gnn_r2": 0.207,
+      "baseline_mae": 0.1118,
+      "pct_better": 33.9
+    },
+    {
+      "seed": 2,
+      "gnn_mae": 0.0781,
+      "gnn_r2": 0.149,
+      "baseline_mae": 0.1118,
+      "pct_better": 30.2
+    }
+  ],
+  "sherbrooke": [
+    {
+      "seed": 0,
+      "gnn_mae": 0.1482,
+      "gnn_r2": -0.181,
+      "baseline_mae": 0.1284,
+      "pct_better": -15.4
+    },
+    {
+      "seed": 1,
+      "gnn_mae": 0.2807,
+      "gnn_r2": -1.985,
+      "baseline_mae": 0.1284,
+      "pct_better": -118.5
+    },
+    {
+      "seed": 2,
+      "gnn_mae": 0.2184,
+      "gnn_r2": -0.755,
+      "baseline_mae": 0.1284,
+      "pct_better": -70.0
+    }
+  ]
+}

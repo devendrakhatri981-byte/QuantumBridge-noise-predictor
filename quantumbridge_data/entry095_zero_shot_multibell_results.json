@@ -1,29 +1,29 @@
 [
   {
-    "holdout": "kyiv",
-    "train_chips": [
-      "sherbrooke",
-      "brisbane"
-    ],
-    "n_train": 340,
-    "n_test": 310,
-    "gnn_mae": 0.07151184231042862,
-    "gnn_r2": 0.6509711742401123,
-    "baseline_mae": 0.10227398574352264,
-    "baseline_r2": 0.2789878249168396
-  },
-  {
     "holdout": "sherbrooke",
     "train_chips": [
       "kyiv",
       "brisbane"
     ],
-    "n_train": 430,
-    "n_test": 220,
-    "gnn_mae": 0.2072153389453888,
-    "gnn_r2": -0.5152504444122314,
-    "baseline_mae": 0.12667010724544525,
-    "baseline_r2": 0.24766451120376587
+    "n_train": 605,
+    "n_test": 380,
+    "gnn_mae": 0.14824923872947693,
+    "gnn_r2": -0.18139803409576416,
+    "baseline_mae": 0.128431037068367,
+    "baseline_r2": 0.20222264528274536
+  },
+  {
+    "holdout": "kyiv",
+    "train_chips": [
+      "sherbrooke",
+      "brisbane"
+    ],
+    "n_train": 675,
+    "n_test": 310,
+    "gnn_mae": 0.06697770208120346,
+    "gnn_r2": 0.6126788854598999,
+    "baseline_mae": 0.10227398574352264,
+    "baseline_r2": 0.2789878249168396
   },
   {
     "holdout": "brisbane",
@@ -31,11 +31,11 @@
       "kyiv",
       "sherbrooke"
     ],
-    "n_train": 530,
-    "n_test": 120,
-    "gnn_mae": 0.08287286758422852,
-    "gnn_r2": 0.35139530897140503,
-    "baseline_mae": 0.10833016782999039,
-    "baseline_r2": 0.0005766749382019043
+    "n_train": 690,
+    "n_test": 295,
+    "gnn_mae": 0.1231428012251854,
+    "gnn_r2": -0.6474831104278564,
+    "baseline_mae": 0.11179614067077637,
+    "baseline_r2": -0.23033905029296875
   }
 ]

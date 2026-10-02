@@ -3,21 +3,30 @@
 A real backend for the QuantumBridge noise predictor, replacing the static
 demo's precomputed lookup table with live inference: every request runs
 an actual Qiskit SABRE-routed transpile, the v4.1 closed-form physics
-prediction, and an Entry 077 graph neural network forward pass (with
+prediction, and an Entry 085 graph neural network forward pass (with
 calibrated MC-Dropout uncertainty), computed on demand.
+
+**Entry 097 update:** this deployment was stuck on the 4-chip Entry 077
+model for a while after the 5-chip Entry 085 model existed and had been
+validated (Entries 108-112) -- `MODEL_PATH` was never bumped, and Quebec
+kept being refused here as a zero-shot holdout even though it had
+already been folded into Entry 085's training data. Both are now fixed:
+the API serves the 5-chip model, Quebec predicts live like any other
+trained chip, and Cusco (the project's current zero-shot holdout,
+Entries 087-088) is refused in Quebec's old place.
 
 This is a deliberately scoped v1, not the full "any circuit, any chip"
 vision:
 
 - **Circuit type:** Bell pairs only (H + CX between two qubits) -- what
   the model was trained and validated on.
-- **Chips:** `kyiv`, `sherbrooke`, `brisbane`, `osaka` -- the four chips
-  the deployed model (`entry077_deploy_params.json`) was trained on.
-  `quebec` is refused with an explicit message: it's this project's
-  current zero-shot holdout chip (Entries 076-078), deliberately kept
-  out of every training run so it stays a clean generalization test. The
-  live demo's Quebec option uses a precomputed zero-shot lookup instead,
-  clearly badged as such.
+- **Chips:** `kyiv`, `sherbrooke`, `brisbane`, `osaka`, `quebec` -- the
+  five chips the deployed model (`entry085_deploy_params.json`) was
+  trained on. `cusco` is refused with an explicit message: it's this
+  project's current zero-shot holdout chip (Entries 087-088),
+  deliberately kept out of every training run so it stays a clean
+  generalization test -- it is eval-only (228 circuits), not served live
+  or via a precomputed lookup here.
 - **Validation:** noise data comes from Qiskit's fake-backend snapshots
   run through Aer's simulator, not live queued jobs on real IBM hardware.
   This is stated in every `/health` and `/predict` response, not just here.
@@ -41,10 +50,11 @@ QuantumBridge_backup/
   exact_dwell_routing.py
   entry044_build_graphs.py
   quantumbridge_data/
-    entry077_deploy_params.json
-    offline_calibration_{kyiv,sherbrooke,brisbane,osaka}_full.json
-    real_topology_{kyiv,sherbrooke,brisbane,osaka}.json
-    coherence_{kyiv,sherbrooke,brisbane,osaka}.json
+    entry085_deploy_params.json
+    entry097_lookup_5chip.json
+    offline_calibration_{kyiv,sherbrooke,brisbane,osaka,quebec}_full.json
+    real_topology_{kyiv,sherbrooke,brisbane,osaka,quebec}.json
+    coherence_{kyiv,sherbrooke,brisbane,osaka,quebec}.json
 ```
 
 ## Run locally
@@ -78,7 +88,7 @@ caveat.
 Returns qubit counts for each supported chip.
 
 **`POST /predict`**
-Body: `{"chip": "kyiv" | "sherbrooke" | "brisbane" | "osaka", "qubit_a": int, "qubit_b": int}`
+Body: `{"chip": "kyiv" | "sherbrooke" | "brisbane" | "osaka" | "quebec", "qubit_a": int, "qubit_b": int}`
 
 Returns:
 ```json
@@ -133,13 +143,15 @@ decomposition of the same validated v4.1 closed-form formula (Entries
 024-032), not a separate model -- checked to reproduce `/predict`'s
 total exactly.
 
-**`GET /recommend`** (Entry 093)
+**`GET /recommend`** (Entry 093, lookup rebuilt in Entry 097)
 Query params: `min_success`, `max_hop`, `max_uncertainty`, `chips`
 (comma-separated, e.g. `kyiv,sherbrooke`), `top_k`. Ranks bell-pair
 candidates across chips by predicted success using the precomputed
-5-chip lookup table (Quebec included, flagged `is_zero_shot`) -- turns
-"grade this circuit" into "tell me where to run it." The top result
-includes a live failure-mode breakdown explaining the recommendation.
+5-chip lookup table (`entry097_lookup_5chip.json` -- all 5 chips are
+now trained, including Quebec, so `is_zero_shot` is `false` for all of
+them) -- turns "grade this circuit" into "tell me where to run it." The
+top result includes a live failure-mode breakdown explaining the
+recommendation.
 
 ## Deployment
 
@@ -169,7 +181,7 @@ prediction).
   simulation, disclosed in every response.
 - No authentication, rate limiting, or request logging -- add these
   before exposing this publicly at any real traffic volume.
-- No support for a chip outside the four trained ones. Quebec is the
-  current zero-shot holdout -- see Entries 076-078 in the research log
+- No support for a chip outside the five trained ones. Cusco is the
+  current zero-shot holdout -- see Entries 087-088 in the research log
   before considering whether to fold it into training (which would need
   a new holdout chip in turn, per this project's established pattern).
