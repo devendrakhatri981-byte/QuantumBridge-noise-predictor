@@ -1,0 +1,43 @@
+{
+  "kyiv": [
+    {
+      "seed": 0,
+      "gnn_mae": 0.0572,
+      "gnn_r2": 0.751,
+      "baseline_mae": 0.1007,
+      "pct_better": 43.2
+    }
+  ],
+  "brisbane": [
+    {
+      "seed": 0,
+      "gnn_mae": 0.079,
+      "gnn_r2": 0.244,
+      "baseline_mae": 0.1167,
+      "pct_better": 32.3
+    }
+  ],
+  "sherbrooke": [
+    {
+      "seed": 0,
+      "gnn_mae": 0.1812,
+      "gnn_r2": -0.453,
+      "baseline_mae": 0.1258,
+      "pct_better": -44.1
+    },
+    {
+      "seed": 1,
+      "gnn_mae": 0.2814,
+      "gnn_r2": -2.03,
+      "baseline_mae": 0.1258,
+      "pct_better": -123.7
+    },
+    {
+      "seed": 2,
+      "gnn_mae": 0.1447,
+      "gnn_r2": -0.039,
+      "baseline_mae": 0.1258,
+      "pct_better": -15.1
+    }
+  ]
+}
