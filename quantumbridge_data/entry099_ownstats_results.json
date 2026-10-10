@@ -1,0 +1,15 @@
+[
+  {
+    "holdout": "sherbrooke",
+    "train_chips": [
+      "kyiv",
+      "brisbane"
+    ],
+    "n_train": 1065,
+    "n_test": 525,
+    "gnn_mae": 0.11041369289159775,
+    "gnn_r2": 0.2982757091522217,
+    "baseline_mae": 0.12576444447040558,
+    "baseline_r2": 0.21216458082199097
+  }
+]

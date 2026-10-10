@@ -39,8 +39,9 @@ from exact_dwell_routing import route_with_explicit_swaps
 IN_PATH = "quantumbridge_data/entry089_multibell_sanity.json"
 OUT_PATH = "quantumbridge_data/entry090_multibell_graph_dataset.json"
 
-from qiskit_ibm_runtime.fake_provider import FakeKyiv, FakeSherbrooke, FakeBrisbane
-BACKENDS = {"kyiv": FakeKyiv, "sherbrooke": FakeSherbrooke, "brisbane": FakeBrisbane}
+from qiskit_ibm_runtime.fake_provider import FakeKyiv, FakeSherbrooke, FakeBrisbane, FakeOsaka, FakeQuebec
+BACKENDS = {"kyiv": FakeKyiv, "sherbrooke": FakeSherbrooke, "brisbane": FakeBrisbane,
+            "osaka": FakeOsaka, "quebec": FakeQuebec}
 
 
 def build_circuit(chip_nq, pairs):
