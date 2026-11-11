@@ -42,7 +42,7 @@ os.environ.setdefault("MKL_NUM_THREADS", "1")
 os.environ.setdefault("NUMEXPR_NUM_THREADS", "1")
 
 from qiskit import QuantumCircuit, transpile
-from qiskit_ibm_runtime.fake_provider import FakeKyiv, FakeSherbrooke, FakeBrisbane, FakeOsaka, FakeQuebec
+from qiskit_ibm_runtime.fake_provider import FakeKyiv, FakeSherbrooke, FakeBrisbane, FakeOsaka, FakeQuebec, FakeFez, FakeMarrakesh, FakeKingston
 from qiskit_aer import AerSimulator
 from qiskit_aer.noise import NoiseModel
 
@@ -54,7 +54,8 @@ SHOTS = 4096
 SEEDS = (1, 2, 3, 4)
 OUT_PATH = "quantumbridge_data/entry089_multibell_sanity.json"
 BACKENDS = {"kyiv": FakeKyiv, "sherbrooke": FakeSherbrooke, "brisbane": FakeBrisbane,
-            "osaka": FakeOsaka, "quebec": FakeQuebec}
+            "osaka": FakeOsaka, "quebec": FakeQuebec,
+            "fez": FakeFez, "marrakesh": FakeMarrakesh, "kingston": FakeKingston}
 N_PAIRS_CHOICES = (2, 3)
 
 _cache = {}

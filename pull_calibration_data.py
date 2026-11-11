@@ -9,13 +9,10 @@ from qiskit_ibm_runtime import QiskitRuntimeService
 import json
 from datetime import datetime
 
-TOKEN = "whudFfVHj_V1izGAIXKVulrRhub49tQc-nrr8prWqVSA"
-
-service = QiskitRuntimeService(
-    channel="ibm_quantum_platform",
-    token=TOKEN,
-    instance="open-instance"
-)
+# Credentials come from the account saved locally with
+# QiskitRuntimeService.save_account(...) (stored in ~/.qiskit, outside the repo).
+# Never hardcode API keys in source files.
+service = QiskitRuntimeService()
 
 for backend_name in ["ibm_fez", "ibm_kingston"]:
     print(f"\n{'='*60}")

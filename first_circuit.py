@@ -4,7 +4,7 @@ from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 service = QiskitRuntimeService(
     channel="ibm_quantum_platform",
-    token="whudFfVHj_V1izGAIXKVulrRhub49tQc-nrr8prWqVSA",
+    token=__import__("os").environ["IBM_QUANTUM_TOKEN"],
     instance="open-instance"
 )
 

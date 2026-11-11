@@ -7,7 +7,7 @@ import time
 from datetime import datetime
 
 RUNS_PER_CIRCUIT = 15
-TOKEN = "whudFfVHj_V1izGAIXKVulrRhub49tQc-nrr8prWqVSA"
+TOKEN = __import__("os").environ["IBM_QUANTUM_TOKEN"]  # never hardcode keys
 
 service = QiskitRuntimeService(
     channel="ibm_quantum_platform",
