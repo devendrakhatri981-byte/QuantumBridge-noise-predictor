@@ -257,7 +257,7 @@ def health():
     return {
         "status": "ok",
         "supported_chips": list(BACKENDS.keys()),
-        "circuit_types_supported": ["bell"],
+        "circuit_types_supported": ["bell", "multi-bell (POST /predict/multi)"],
         "model": "entry085_deploy_params.json (unified 5-chip MC-Dropout GNN)",
         "validation_note": ("Trained and validated against Qiskit fake-backend + Aer simulation "
                             "only, not real IBM hardware. Cusco is the current true zero-shot "
@@ -344,6 +344,119 @@ def predict_breakdown(req: PredictRequest):
         "note": ("Physics-informed decomposition of the same v4.1 closed-form formula used "
                 "elsewhere (Entry 024-032), not a separate model -- validated to reproduce "
                 "the combined success prediction exactly (Entry 092)."),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Multi-bell (Entries 089-105): N disjoint bell pairs run in parallel, success
+# = every pair correlated in the same shot. Separate 7-node/5-edge-feature
+# model (5-seed ensemble, trained on the 5 chips' own circuits).
+# ---------------------------------------------------------------------------
+
+_MULTI = None
+
+
+def _load_multi():
+    global _MULTI
+    if _MULTI is None:
+        import json
+        m = json.load(open(os.path.join(os.path.dirname(__file__), "..", "quantumbridge_data",
+                                         "entry105_multibell_deploy.json")))
+        _MULTI = {
+            "members": [{k: {"W": np.array(v["W"]), "b": np.array(v["b"])} for k, v in p.items()}
+                        for p in m["members"]],
+            "gmu": np.array(m["glob_mu"]), "gsd": np.array(m["glob_sd"]),
+            "ns": {c: (np.array(v[0]), np.array(v[1])) for c, v in m["node_stats"].items()},
+            "es": {c: (np.array(v[0]), np.array(v[1])) for c, v in m["edge_stats"].items()},
+            "mx_n": m["max_n"], "mx_e": m["max_e"], "n_train": m["n_train"],
+        }
+    return _MULTI
+
+
+def _multi_forward(p, M, nf, nm, src, dst, ef, em_, gl):
+    mx_n = M["mx_n"]
+
+    def mpr(pm, pu, h):
+        msg = relu(lin(pm, np.concatenate([h[src], h[dst], ef], axis=-1))) * em_[:, None]
+        agg = np.zeros((mx_n, H)); np.add.at(agg, dst, msg)
+        deg = np.zeros(mx_n); np.add.at(deg, dst, em_); deg += 1e-6
+        return relu(lin(pu, np.concatenate([h, agg / deg[:, None]], axis=-1))) * nm[:, None]
+
+    h = relu(lin(p["node_embed"], nf)) * nm[:, None]
+    h = mpr(p["msg"], p["update"], h)
+    h = mpr(p["msg2"], p["update2"], h)
+    pooled = (h * nm[:, None]).sum(axis=0) / (nm.sum() + 1e-6)
+    x = relu(lin(p["readout1"], np.concatenate([pooled, gl])))
+    return float(sigmoid(lin(p["readout2"], x)[0]))
+
+
+class MultiRequest(BaseModel):
+    chip: str = Field(..., description="One of: kyiv, sherbrooke, brisbane, osaka, quebec")
+    pairs: list[list[int]] = Field(..., description="2-6 disjoint qubit pairs, e.g. [[0,5],[20,27]]")
+
+
+@app.post("/predict/multi")
+def predict_multi(req: MultiRequest):
+    """Entry 105: joint success of N disjoint bell pairs run simultaneously
+    (all pairs correlated in the same shot). Returns the independence baseline
+    (product of each pair's isolated v4.1 prediction), the GNN prediction
+    (5-seed ensemble mean) and the ensemble spread as an uncertainty proxy.
+    Trained chips only; trained on 2,080 simulated circuits of 2-6 pairs."""
+    chip = req.chip.lower().strip()
+    if chip not in BACKENDS:
+        raise HTTPException(400, f"Unsupported chip '{req.chip}'. Trained chips: {list(BACKENDS.keys())}.")
+    pairs = [tuple(p) for p in req.pairs]
+    if not (2 <= len(pairs) <= 6) or any(len(p) != 2 for p in pairs):
+        raise HTTPException(400, "pairs must contain 2-6 [a, b] pairs.")
+    qs = [q for p in pairs for q in p]
+    backend, graph, coh = get_backend_ctx(chip)
+    nq = backend.num_qubits
+    if len(set(qs)) != len(qs) or any(not (0 <= q < nq) for q in qs):
+        raise HTTPException(400, f"all qubits must be distinct integers in [0, {nq-1}] for {chip}")
+    dists = []
+    for a, b in pairs:
+        path = em.shortest_path(graph, a, b)
+        if path is None:
+            raise HTTPException(400, f"no routable path between qubits {a} and {b} on {chip}")
+        dists.append(len(path) - 1)
+
+    from entry090_build_multibell_graphs import graph_for_multibell_record
+    t0 = time.time()
+    prod, per = 1.0, []
+    for a, b in pairs:
+        qs_ = QuantumCircuit(nq, 2); qs_.h(a); qs_.cx(a, b)
+        pr, _, _ = exact_dwell_cost(qs_, backend, graph, coh, [(a, b)], [a, b])
+        per.append(round(pr, 4)); prod *= pr
+    g = graph_for_multibell_record(backend, graph, coh, {"logical_pairs": [list(p) for p in pairs]})
+    M = _load_multi()
+    if g["n_nodes"] > M["mx_n"] or len(g["edges"]) > M["mx_e"]:
+        raise HTTPException(400, "routing for this pair set is larger than the model's trained capacity "
+                            f"({M['mx_n']} nodes / {M['mx_e']} edges); try pairs with shorter routes.")
+    n = len(pairs)
+    nf = np.zeros((M["mx_n"], 7), np.float32); nm = np.zeros(M["mx_n"], np.float32)
+    for i, f in enumerate(g["nodes"]): nf[i] = f
+    nm[:g["n_nodes"]] = 1
+    src = np.zeros(M["mx_e"], np.int32); dst = np.zeros(M["mx_e"], np.int32)
+    ef = np.zeros((M["mx_e"], 5), np.float32); em_ = np.zeros(M["mx_e"], np.float32)
+    for i, e in enumerate(g["edges"]):
+        src[i], dst[i] = e[0], e[1]; ef[i] = e[2:]
+    em_[:len(g["edges"])] = 1
+    nmu, nsd = M["ns"][chip]; emu, esd = M["es"][chip]
+    gl = (np.array([float(n), prod]) - M["gmu"]) / M["gsd"]
+    preds = [_multi_forward(p, M, (nf - nmu) / nsd, nm, src, dst, (ef - emu) / esd, em_, gl)
+             for p in M["members"]]
+    return {
+        "chip": chip, "pairs": req.pairs, "n_pairs": n, "bfs_hop_distances": dists,
+        "per_pair_v41": per,
+        "independence_baseline": round(prod, 4),
+        "gnn_prediction": round(float(np.mean(preds)), 4),
+        "gnn_uncertainty": round(float(np.std(preds)), 4),
+        "latency_ms": round((time.time() - t0) * 1000, 1),
+        "note": ("Multi-bell (Entry 105): 5-seed GNN ensemble trained on 2,080 simulated multi-pair "
+                "circuits from these five chips, normalized with each chip's own training-circuit "
+                "statistics (no cold-start caveat for these chips; a NEW chip would need an unlabeled "
+                "circuit sample first, Entries 099-101). Validated against Aer simulation only, not "
+                "real hardware. Uncertainty is ensemble spread, not MC-dropout."),
     }
 
 

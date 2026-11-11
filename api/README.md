@@ -143,6 +143,19 @@ decomposition of the same validated v4.1 closed-form formula (Entries
 024-032), not a separate model -- checked to reproduce `/predict`'s
 total exactly.
 
+**`POST /predict/multi`** (Entry 105)
+Body: `{"chip": "kyiv", "pairs": [[0, 5], [20, 27]]}` -- 2-6 disjoint bell
+pairs run simultaneously; success = every pair correlated in the same
+shot. Returns `independence_baseline` (product of each pair's isolated
+v4.1 prediction), `gnn_prediction` (5-seed ensemble mean),
+`gnn_uncertainty` (ensemble spread, not MC-dropout) and per-pair v4.1.
+Model: `entry105_multibell_deploy.json`, trained on 2,080 simulated
+circuits across the 5 chips, each normalized with its own training
+circuits' statistics, so trained chips carry no cold-start caveat (a new
+chip would need an unlabeled circuit sample first, Entries 099-101).
+Simulation-validated only; mixed bell/GHZ circuits (Entries 102-104) are
+a pilot and not served.
+
 **`GET /recommend`** (Entry 093, lookup rebuilt in Entry 097)
 Query params: `min_success`, `max_hop`, `max_uncertainty`, `chips`
 (comma-separated, e.g. `kyiv,sherbrooke`), `top_k`. Ranks bell-pair
