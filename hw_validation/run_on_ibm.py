@@ -13,14 +13,14 @@ sys.path.insert(0, ".")
 from qiskit import QuantumCircuit, transpile
 
 ap = argparse.ArgumentParser(); ap.add_argument("manifest"); ap.add_argument("--backend")
-ap.add_argument("--dry-run", action="store_true"); ap.add_argument("--limit", type=int, default=0)
+ap.add_argument("--dry-run", action="store_true"); ap.add_argument("--limit", type=int, default=0); ap.add_argument("--skip", type=int, default=0)
 a = ap.parse_args()
 man = json.load(open(a.manifest)); shots = man["shots"]
 
 if a.dry_run:
     import api.main as M
     import entry089_grow_multibell as g89
-    backend, _, _, sim = g89.get_ctx(man["chip_model"])   # noisy MPS simulator (127q-safe)
+    backend, _, _, sim = g89.get_ctx(man.get("sim_chip", man["chip_model"]))   # noisy MPS simulator (127q-safe)
 else:
     from qiskit_ibm_runtime import QiskitRuntimeService
     backend = QiskitRuntimeService().backend(a.backend)
@@ -37,7 +37,7 @@ def build(pairs):
     return qc
 
 
-circs = man["circuits"][: a.limit or None]
+circs = man["circuits"][a.skip: (a.skip + a.limit) if a.limit else None]
 tcs = [transpile(build(c["pairs"]), backend=backend, initial_layout=list(range(backend.num_qubits)),
                  optimization_level=3, seed_transpiler=1) for c in circs]
 if a.dry_run:
@@ -53,5 +53,5 @@ else:
     tag = a.backend
 out = {"manifest": a.manifest, "backend": tag, "shots": shots,
        "results": {c["id"]: cnt for c, cnt in zip(circs, counts)}}
-fn = a.manifest.replace("manifest_", f"counts_{tag}_")
+fn = a.manifest.replace("manifest_", f"counts_{tag}_").replace(".json", f"_s{a.skip}.json" if a.skip else ".json")
 json.dump(out, open(fn, "w")); print("saved", fn)

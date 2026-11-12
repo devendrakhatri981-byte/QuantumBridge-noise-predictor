@@ -55,7 +55,7 @@ SEEDS = (1, 2, 3, 4)
 OUT_PATH = "quantumbridge_data/entry089_multibell_sanity.json"
 BACKENDS = {"kyiv": FakeKyiv, "sherbrooke": FakeSherbrooke, "brisbane": FakeBrisbane,
             "osaka": FakeOsaka, "quebec": FakeQuebec,
-            "fez": FakeFez, "marrakesh": FakeMarrakesh, "kingston": FakeKingston}
+            "fez": FakeFez, "fez_live": FakeFez, "marrakesh": FakeMarrakesh, "kingston": FakeKingston}
 N_PAIRS_CHOICES = (2, 3)
 
 _cache = {}
