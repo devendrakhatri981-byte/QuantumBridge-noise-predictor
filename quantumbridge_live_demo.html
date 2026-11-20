@@ -130,6 +130,9 @@
     model and the actual closed-form formula — nothing here is faked or approximated for the demo.
     But the underlying noise data comes from Qiskit's "fake backend" snapshots of real IBM device
     calibration, run through Aer's noise simulator — not live queued jobs on physical hardware.
+    A first test on real IBM hardware (ibm_fez, 35 circuits) found the closed-form formula accurate
+    to about 2.4 points when given fresh calibration; the neural network's advantage over it has
+    only been shown in simulation so far.
     Ground truth is only available for the subset of pairs that were actually simulated
     (about 5,250 of the 40,005 shown here across all five chips); the rest show model predictions
     only, clearly marked.

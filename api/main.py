@@ -259,8 +259,11 @@ def health():
         "supported_chips": list(BACKENDS.keys()),
         "circuit_types_supported": ["bell", "multi-bell (POST /predict/multi)"],
         "model": "entry085_deploy_params.json (unified 5-chip MC-Dropout GNN)",
-        "validation_note": ("Trained and validated against Qiskit fake-backend + Aer simulation "
-                            "only, not real IBM hardware. Cusco is the current true zero-shot "
+        "validation_note": ("Trained and validated against Qiskit fake-backend + Aer simulation. "
+                            "A first real-hardware test (live ibm_fez, 35 circuits, Entries 106-108) "
+                            "showed the v4.1 physics prediction within ~2.4 pts with fresh calibration; "
+                            "the GNN's advantage over v4.1 is shown in simulation only, not yet on "
+                            "real hardware. Cusco is the current true zero-shot "
                             "holdout chip (never trained on, by design) -- Entry 088 found this "
                             "5-chip model beats the plain physics formula (v4.1) on Cusco by a wide "
                             "margin (MAE=4.01 vs 9.32, R2=0.784 vs 0.364), continuing a monotonic "

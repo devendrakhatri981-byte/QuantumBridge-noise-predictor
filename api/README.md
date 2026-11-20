@@ -190,8 +190,12 @@ prediction).
 - No GHZ, star, or chain circuit support in the live API, even though the
   training data includes them -- only the bell-pair feature-extraction
   path has been wired and tested here.
-- No real IBM hardware validation -- everything is fake-backend + Aer
-  simulation, disclosed in every response.
+- Limited real-hardware validation. The models were trained and tested on
+  fake-backend + Aer simulation (disclosed in every response). A first test
+  on live ibm_fez (Entries 106-108, 35 circuits) showed the v4.1 physics
+  prediction with fresh calibration within ~2.4 points; the GNN's advantage
+  over v4.1 has NOT been shown on real hardware, and the served chips are
+  127-qubit Eagle snapshots, not Heron.
 - No authentication, rate limiting, or request logging -- add these
   before exposing this publicly at any real traffic volume.
 - No support for a chip outside the five trained ones. Cusco is the

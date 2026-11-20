@@ -85,9 +85,19 @@ data — the widening isn't cosmetic, it tracks where the model is actually more
 
 ## Honest Status
 
-- Entries 001–012 used **real IBM hardware**. Entries 013–059 use Qiskit fake providers, which
+- Entries 001–012 used **real IBM hardware**. Entries 013–105 use Qiskit fake providers, which
   carry real recorded calibration snapshots but are not live devices. IBM Quantum Platform
-  access lapsed with a trial account on 4 Aug 2026.
+  access lapsed with a trial account on 4 Aug 2026 and was restored in Nov 2026.
+- **First real-hardware validation of the current models (Entries 106–108, 12 Nov 2026).** 35
+  circuits (20 single bell pairs, 15 multi-bell) on live `ibm_fez` (156-qubit Heron), with
+  predictions committed before any job ran. The v4.1 physics formula, given freshly pulled
+  calibration, predicted within **2.4 points on average** (bias +0.3, rank correlation 0.89;
+  multi-bell MAE 2.2 pts vs 8.4 for a constant guess). A stale calibration snapshot over-predicted
+  by ~5 points. Single-pair success varied by only ~4 points on that device, so there is no
+  evidence of per-pair skill from this run, and the Eagle-trained GNN did **not** beat v4.1 on
+  Heron. **The GNN's advantage is shown in simulation only; it has not yet been demonstrated on
+  real hardware.** Also, routes through dead couplers (error ≈ 1.0) are not modelled by v4.1.
+  One device, one day, 35 circuits.
 - Cross-chip generalization is real but **asymmetric** — Sherbrooke→Kyiv transfers noticeably
   better than Kyiv→Sherbrooke. The demo discloses this on every result rather than presenting
   one blended reliability number.
