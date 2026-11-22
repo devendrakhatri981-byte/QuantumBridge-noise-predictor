@@ -38,6 +38,10 @@ DEFAULT_CHIP = "cairo"
 # it is now tracked and, under STRICT_CALIBRATION, refused outright.
 FALLBACK_ERR = 0.01
 STRICT_CALIBRATION = False   # True -> raise instead of guessing
+# Entry 109: edges reported at error >= 0.5 (up to 1.0) are DEAD couplers, not placeholders: Aer and
+# real hardware really do randomize through them. Opt-in (default False keeps Entries 013-108
+# reproducible); when True they keep their reported error instead of the 1% fallback.
+DEAD_EDGE_AWARE = False
 UNCALIBRATED = set()         # populated by build_connectivity_graph()
 
 
@@ -73,7 +77,7 @@ def build_connectivity_graph(calibration, chip=DEFAULT_CHIP, report_coverage=Fal
     for g in calibration["two_qubit_gate_errors"]:
         q1, q2 = g["qubits"]
         err = g["gate_error"] or 0.01
-        if err < 0.5:  # filter placeholder entries (Entry 020)
+        if err < 0.5 or (DEAD_EDGE_AWARE and err <= 1.0):  # filter placeholder entries (Entry 020)
             error_lookup[tuple(sorted((q1, q2)))] = err
 
     graph = {}
