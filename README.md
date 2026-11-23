@@ -96,7 +96,7 @@ data — the widening isn't cosmetic, it tracks where the model is actually more
   by ~5 points. Single-pair success varied by only ~4 points on that device, so there is no
   evidence of per-pair skill from this run, and the Eagle-trained GNN did **not** beat v4.1 on
   Heron. **The GNN's advantage is shown in simulation only; it has not yet been demonstrated on
-  real hardware.** Also, routes through dead couplers (error ≈ 1.0) are not modelled by v4.1.
+  real hardware.** Caution on "dead" couplers: calibration snapshots flag some couplers at error ≈ 1.0. Simulation treats them as dead (success collapses to ~0.5), but a pre-registered test on the one such coupler of live `ibm_fez` (12 circuits, Entry 113) found success of 0.75–0.90, nowhere near the floor, so those flags may be artifacts. The simulation-only GNN advantage on such routes (Entries 109–110) may therefore not carry over to real hardware.
   One device, one day, 35 circuits.
 - Cross-chip generalization is real but **asymmetric** — Sherbrooke→Kyiv transfers noticeably
   better than Kyiv→Sherbrooke. The demo discloses this on every result rather than presenting
