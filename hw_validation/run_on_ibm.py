@@ -51,7 +51,13 @@ else:
     r = job.result(); counts = [x.data.c.get_counts() if hasattr(x.data, "c") else
                                 list(x.data.values())[0].get_counts() for x in r]
     tag = a.backend
-out = {"manifest": a.manifest, "backend": tag, "shots": shots,
+dead = {tuple(e) for e in man.get("dead_edges_targeted", [])}
+uses_dead = {}
+for c, tc in zip(circs, tcs):
+    uses_dead[c["id"]] = any(tuple(sorted(tc.find_bit(q).index for q in i.qubits)) in dead
+                             for i in tc.data if i.operation.num_qubits == 2) if dead else None
+if dead: print("transpiled circuits using a dead edge:", sum(bool(v) for v in uses_dead.values()), "of", len(uses_dead))
+out = {"manifest": a.manifest, "backend": tag, "shots": shots, "uses_dead_edge": uses_dead,
        "results": {c["id"]: cnt for c, cnt in zip(circs, counts)}}
 fn = a.manifest.replace("manifest_", f"counts_{tag}_").replace(".json", f"_s{a.skip}.json" if a.skip else ".json")
 json.dump(out, open(fn, "w")); print("saved", fn)

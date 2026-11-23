@@ -1,0 +1,247 @@
+{
+ "chip_model": "fez_live",
+ "sim_chip": "fez",
+ "num_qubits": 156,
+ "created": "2026-11-22 21:39",
+ "shots": 8192,
+ "dead_edges_targeted": [
+  [
+   32,
+   33
+  ]
+ ],
+ "dead_qubits_excluded": [
+  72
+ ],
+ "note": "Entry 113: predictions frozen before hardware run. rule = 0.505+0.074*v41 for T/F, 0.66 for C (Eagle Aer fits).",
+ "circuits": [
+  {
+   "id": "deadF_00",
+   "kind": "bell",
+   "dead_class": "F",
+   "pairs": [
+    [
+     33,
+     32
+    ]
+   ],
+   "hops": [
+    1
+   ],
+   "v41": 0.8785869197839001,
+   "v41_dead_aware": 0.4415009647155277,
+   "rule": 0.5700154320640086,
+   "v41_stale_snapshot": 0.8785869197839001,
+   "gnn": null
+  },
+  {
+   "id": "deadF_01",
+   "kind": "bell",
+   "dead_class": "F",
+   "pairs": [
+    [
+     32,
+     33
+    ]
+   ],
+   "hops": [
+    1
+   ],
+   "v41": 0.8785869197839,
+   "v41_dead_aware": 0.4415009647155277,
+   "rule": 0.5700154320640086,
+   "v41_stale_snapshot": 0.8785869197839,
+   "gnn": null
+  },
+  {
+   "id": "deadF_02",
+   "kind": "bell",
+   "dead_class": "F",
+   "pairs": [
+    [
+     31,
+     39
+    ]
+   ],
+   "hops": [
+    3
+   ],
+   "v41": 0.8740868580545303,
+   "v41_dead_aware": 0.4405038835391282,
+   "rule": 0.5696824274960353,
+   "v41_stale_snapshot": 0.8740868580545303,
+   "gnn": null
+  },
+  {
+   "id": "deadF_03",
+   "kind": "bell",
+   "dead_class": "F",
+   "pairs": [
+    [
+     31,
+     34
+    ]
+   ],
+   "hops": [
+    3
+   ],
+   "v41": 0.872964508944678,
+   "v41_dead_aware": 0.44017931138648714,
+   "rule": 0.5695993736619062,
+   "v41_stale_snapshot": 0.872964508944678,
+   "gnn": null
+  },
+  {
+   "id": "deadT_04",
+   "kind": "bell",
+   "dead_class": "T",
+   "pairs": [
+    [
+     28,
+     34
+    ]
+   ],
+   "hops": [
+    6
+   ],
+   "v41": 0.9189631644159812,
+   "v41_dead_aware": 0.4737393956174127,
+   "rule": 0.5730032741667827,
+   "v41_stale_snapshot": 0.9189631644159812,
+   "gnn": null
+  },
+  {
+   "id": "deadT_05",
+   "kind": "bell",
+   "dead_class": "T",
+   "pairs": [
+    [
+     15,
+     31
+    ]
+   ],
+   "hops": [
+    6
+   ],
+   "v41": 0.9261231488860989,
+   "v41_dead_aware": 0.476996879117451,
+   "rule": 0.5735331130175714,
+   "v41_stale_snapshot": 0.9261231488860989,
+   "gnn": null
+  },
+  {
+   "id": "deadT_06",
+   "kind": "bell",
+   "dead_class": "T",
+   "pairs": [
+    [
+     35,
+     31
+    ]
+   ],
+   "hops": [
+    4
+   ],
+   "v41": 0.8756764100717621,
+   "v41_dead_aware": 0.4483559477745121,
+   "rule": 0.5698000543453103,
+   "v41_stale_snapshot": 0.8756764100717621,
+   "gnn": null
+  },
+  {
+   "id": "deadT_07",
+   "kind": "bell",
+   "dead_class": "T",
+   "pairs": [
+    [
+     18,
+     53
+    ]
+   ],
+   "hops": [
+    5
+   ],
+   "v41": 0.9177350474903123,
+   "v41_dead_aware": 0.47084662602627586,
+   "rule": 0.5729123935142831,
+   "v41_stale_snapshot": 0.9177350474903123,
+   "gnn": null
+  },
+  {
+   "id": "deadC_08",
+   "kind": "bell",
+   "dead_class": "C",
+   "pairs": [
+    [
+     33,
+     31
+    ]
+   ],
+   "hops": [
+    2
+   ],
+   "v41": 0.9427013460136279,
+   "v41_dead_aware": 0.9427013460136279,
+   "rule": 0.66,
+   "v41_stale_snapshot": 0.9427013460136279,
+   "gnn": null
+  },
+  {
+   "id": "deadC_09",
+   "kind": "bell",
+   "dead_class": "C",
+   "pairs": [
+    [
+     32,
+     35
+    ]
+   ],
+   "hops": [
+    3
+   ],
+   "v41": 0.8940924023705453,
+   "v41_dead_aware": 0.8940924023705453,
+   "rule": 0.66,
+   "v41_stale_snapshot": 0.8940924023705453,
+   "gnn": null
+  },
+  {
+   "id": "deadC_10",
+   "kind": "bell",
+   "dead_class": "C",
+   "pairs": [
+    [
+     33,
+     27
+    ]
+   ],
+   "hops": [
+    6
+   ],
+   "v41": 0.7752081549918763,
+   "v41_dead_aware": 0.7752081549918763,
+   "rule": 0.66,
+   "v41_stale_snapshot": 0.7752081549918763,
+   "gnn": null
+  },
+  {
+   "id": "deadC_11",
+   "kind": "bell",
+   "dead_class": "C",
+   "pairs": [
+    [
+     32,
+     39
+    ]
+   ],
+   "hops": [
+    2
+   ],
+   "v41": 0.8954397060466655,
+   "v41_dead_aware": 0.8954397060466655,
+   "rule": 0.66,
+   "v41_stale_snapshot": 0.8954397060466655,
+   "gnn": null
+  }
+ ]
+}

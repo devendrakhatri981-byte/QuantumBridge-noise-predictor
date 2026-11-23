@@ -33,7 +33,7 @@ def report(name, sel):
     if len(sel) < 3: return
     y = np.array([m for _, m in sel])
     print(f"\n{name} (n={len(sel)}): measured mean {y.mean():.3f}")
-    for k in ("v41", "v41_stale_snapshot", "gnn"):
+    for k in ("v41", "v41_dead_aware", "rule", "v41_stale_snapshot", "gnn"):
         pairs_ = [(c[k], m) for c, m in sel if c.get(k) is not None]
         if len(pairs_) < 3: continue
         p = np.array([a for a, _ in pairs_]); y = np.array([m for _, m in pairs_])
@@ -44,7 +44,9 @@ def report(name, sel):
 report("ALL", rows)
 report("single bell", [r for r in rows if r[0]["kind"] == "bell"])
 report("multi-bell", [r for r in rows if r[0]["kind"] == "multibell"])
-print("\nid           hops      measured   v4.1  stale   gnn")
+for cl in ("F", "T", "C"):
+    report(f"dead-edge class {cl}", [r for r in rows if r[0].get("dead_class") == cl])
+print("\nid           hops      measured   v4.1  stale   gnn  (dead-aware / rule where present)")
 for c, m in rows:
     g_ = c.get("gnn"); st = c.get("v41_stale_snapshot", float("nan"))
-    print(f"{c['id']:12s} {str(c['hops']):9s} {m:8.3f} {c['v41']:6.3f} {st:6.3f} " + (f"{g_:6.3f}" if g_ is not None else "   n/a"))
+    print(f"{c['id']:12s} {str(c['hops']):9s} {m:8.3f} {c['v41']:6.3f} {st:6.3f} " + (f"{g_:6.3f}" if g_ is not None else "   n/a") + (f"  aware {c['v41_dead_aware']:.3f} rule {c['rule']:.3f}" if "rule" in c else ""))
